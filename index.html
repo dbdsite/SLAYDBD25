@@ -793,68 +793,84 @@
         }
 
         /* Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            backdrop-filter: blur(5px);
-        }
+        /* Исправление модальных окон для мобильных */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: flex-start;  /* Изменено с center */
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    overflow-y: auto;  /* Добавлено */
+    padding: 20px;     /* Добавлено */
+}
 
-        .modal-overlay.active {
-            display: flex;
-        }
+.modal-overlay.active {
+    display: flex;
+}
 
-        .modal {
+.modal {
     background: linear-gradient(135deg, rgba(15, 15, 15, 0.99) 0%, rgba(25, 25, 25, 0.98) 100%);
     border: 2px solid var(--gold);
     border-radius: 25px;
-    padding: 40px;
+    padding: 30px;  /* Уменьшено с 40px */
     max-width: 500px;
-    width: 90%;
+    width: 100%;    /* Изменено с 90% */
     text-align: center;
     animation: modalAppear 0.3s ease-out;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+    margin: auto;   /* Добавлено */
+    max-height: none; /* Убираем ограничение высоты */
 }
 
-        @keyframes modalAppear {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .modal-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-
-        .modal-text {
-            color: var(--gold-light);
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .support-modal {
-            max-width: 450px;
-        }
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 10px;
+        align-items: flex-start;
+    }
+    
+    .modal {
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+    
+    .modal-title {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    .modal-text {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .form-textarea {
+        min-height: 80px;
+    }
+    
+    /* Кнопки в модальных окнах */
+    .modal .btn-small {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        min-width: 120px;
+    }
+    
+    .support-modal {
+        max-width: 100%;
+    }
+}
 
         /* Success Message */
         .success-message {
@@ -1402,31 +1418,33 @@
         </section>
 
         <!-- Streamers List Section -->
-        <section class="section" id="streamersListSection">
-            <div class="section-header">
-                <h2 class="section-title"> Список Стримеров</h2>
-                <p class="section-description">Все участники SLAY DBD 2025</p>
-            </div>
-            
-            <div id="streamersLoading" class="loading-container">
-                <div class="loading-spinner"></div>
-                <p>Загрузка списка стримеров...</p>
-            </div>
-            
-            <div id="streamersError" class="error-container" style="display: none;">
-                <div class="error-icon">⚠️</div>
-                <p>Не удалось загрузить список стримеров</p>
-                <button class="btn btn-small" onclick="loadStreamersFromSheet()">Попробовать снова</button>
-            </div>
-            
-            <div class="streamers-grid" id="streamersGrid">
-                <!-- Стримеры загрузятся сюда -->
-            </div>
-            
-            <div style="text-align: center;">
-                <button class="btn btn-back" onclick="showSection('mainMenu')">← Назад</button>
-            </div>
-        </section>
+<section class="section" id="streamersListSection">
+    <div class="section-header">
+        <h2 class="section-title">📺 Список Стримеров</h2>
+        <p class="section-description">Все участники SLAY DBD 25</p>
+        <br>
+        <button class="btn btn-back" onclick="showSection('mainMenu')" style="margin-bottom: 20px; margin-top: 0;">← Назад</button>
+    </div>
+    
+    <div id="streamersLoading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Загрузка списка стримеров...</p>
+    </div>
+    
+    <div id="streamersError" class="error-container" style="display: none;">
+        <div class="error-icon">⚠️</div>
+        <p>Не удалось загрузить список стримеров</p>
+        <button class="btn btn-small" onclick="loadStreamersFromSheet()">Попробовать снова</button>
+    </div>
+    
+    <div class="streamers-grid" id="streamersGrid">
+        <!-- Стримеры загрузятся сюда -->
+    </div>
+      <center>
+      <br>
+        <button class="btn btn-back" onclick="showSection('mainMenu')" style="margin-bottom: 20px; margin-top: 0;">← Назад</button>
+        </center>
+</section>
     </div>
 
     <!-- Footer -->
@@ -1585,10 +1603,10 @@
 </div>
 
     <script>
-        // ============================================
-        // CONFIGURATION - НАСТРОЙКИ
-        // ============================================
-        const CONFIG = {
+    // ============================================
+    // CONFIGURATION - НАСТРОЙКИ
+    // ============================================
+    const CONFIG = {
             // Включение/выключение кнопок (true = включено, false = выключено)
             SUGGEST_STREAMER_ENABLED: true,
             VOTE_ENABLED: false,
@@ -1616,308 +1634,379 @@
             SUPPORT_URL: 'https://dalink.to/slaydbd25'
         };
 
-        // ============================================
-        // БАЗА ДАННЫХ СТРИМЕРОВ (32 стримера) - FALLBACK
-        // ============================================
-        const STREAMERS_DB = [
-            { id: 1, name: "GhostFace_Pro", image: "https://i.pravatar.cc/300?img=1", twitch: "https://twitch.tv/ghostface_pro" },
-            { id: 2, name: "SurvivorQueen", image: "https://i.pravatar.cc/300?img=2", twitch: "https://twitch.tv/survivorqueen" },
-            { id: 3, name: "EntitySlayer", image: "https://i.pravatar.cc/300?img=3", twitch: "https://twitch.tv/entityslayer" },
-            { id: 4, name: "LoopMaster", image: "https://i.pravatar.cc/300?img=4", twitch: "https://twitch.tv/loopmaster" },
-            { id: 5, name: "FogWhisperer", image: "https://i.pravatar.cc/300?img=5", twitch: "https://twitch.tv/fogwhisperer" },
-            { id: 6, name: "KillerInstinct", image: "https://i.pravatar.cc/300?img=6", twitch: "https://twitch.tv/killerinstinct" },
-            { id: 7, name: "GenRusher", image: "https://i.pravatar.cc/300?img=7", twitch: "https://twitch.tv/genrusher" },
-            { id: 8, name: "HooksAndLoops", image: "https://i.pravatar.cc/300?img=8", twitch: "https://twitch.tv/hooksandloops" },
-            { id: 9, name: "BloodpointKing", image: "https://i.pravatar.cc/300?img=9", twitch: "https://twitch.tv/bloodpointking" },
-            { id: 10, name: "PalletGod", image: "https://i.pravatar.cc/300?img=10", twitch: "https://twitch.tv/palletgod" },
-            { id: 11, name: "ToxicNea", image: "https://i.pravatar.cc/300?img=11", twitch: "https://twitch.tv/toxicnea" },
-            { id: 12, name: "StealthyMyers", image: "https://i.pravatar.cc/300?img=12", twitch: "https://twitch.tv/stealthymyers" },
-            { id: 13, name: "FlashlightHero", image: "https://i.pravatar.cc/300?img=13", twitch: "https://twitch.tv/flashlighthero" },
-            { id: 14, name: "CampfireTales", image: "https://i.pravatar.cc/300?img=14", twitch: "https://twitch.tv/campfiretales" },
-            { id: 15, name: "HatchEscape", image: "https://i.pravatar.cc/300?img=15", twitch: "https://twitch.tv/hatchescape" },
-            { id: 16, name: "MoriMaster", image: "https://i.pravatar.cc/300?img=16", twitch: "https://twitch.tv/morimaster" },
-            { id: 17, name: "PerkBuilder", image: "https://i.pravatar.cc/300?img=17", twitch: "https://twitch.tv/perkbuilder" },
-            { id: 18, name: "TunnelVision", image: "https://i.pravatar.cc/300?img=18", twitch: "https://twitch.tv/tunnelvision" },
-            { id: 19, name: "HeadOnQueen", image: "https://i.pravatar.cc/300?img=19", twitch: "https://twitch.tv/headonqueen" },
-            { id: 20, name: "BlightRush", image: "https://i.pravatar.cc/300?img=20", twitch: "https://twitch.tv/blightrush" },
-            { id: 21, name: "NurseMain", image: "https://i.pravatar.cc/300?img=21", twitch: "https://twitch.tv/nursemain" },
-            { id: 22, name: "DeadHardGod", image: "https://i.pravatar.cc/300?img=22", twitch: "https://twitch.tv/deadhardgod" },
-            { id: 23, name: "SpiritPhaser", image: "https://i.pravatar.cc/300?img=23", twitch: "https://twitch.tv/spiritphaser" },
-            { id: 24, name: "LockerDwight", image: "https://i.pravatar.cc/300?img=24", twitch: "https://twitch.tv/lockerdwight" },
-            { id: 25, name: "AdrenalineRush", image: "https://i.pravatar.cc/300?img=25", twitch: "https://twitch.tv/adrenalinerush" },
-            { id: 26, name: "BBQChili", image: "https://i.pravatar.cc/300?img=26", twitch: "https://twitch.tv/bbqchili" },
-            { id: 27, name: "UnbreakableWill", image: "https://i.pravatar.cc/300?img=27", twitch: "https://twitch.tv/unbreakablewill" },
-            { id: 28, name: "DevourHope", image: "https://i.pravatar.cc/300?img=28", twitch: "https://twitch.tv/devourhope" },
-            { id: 29, name: "SelfCareAndy", image: "https://i.pravatar.cc/300?img=29", twitch: "https://twitch.tv/selfcareandy" },
-            { id: 30, name: "NoEdGamer", image: "https://i.pravatar.cc/300?img=30", twitch: "https://twitch.tv/noedgamer" },
-            { id: 31, name: "DecisiveStrike", image: "https://i.pravatar.cc/300?img=31", twitch: "https://twitch.tv/decisivestrike" },
-            { id: 32, name: "PopGoesWeasel", image: "https://i.pravatar.cc/300?img=32", twitch: "https://twitch.tv/popgoesweasel" }
-        ];
+    // ============================================
+    // БАЗА ДАННЫХ СТРИМЕРОВ (32 стримера) - FALLBACK
+    // ============================================
+    const STREAMERS_DB = [
+        { id: 1, name: "GhostFace_Pro", image: "https://i.pravatar.cc/300?img=1", twitch: "https://twitch.tv/ghostface_pro" },
+        { id: 2, name: "SurvivorQueen", image: "https://i.pravatar.cc/300?img=2", twitch: "https://twitch.tv/survivorqueen" },
+        { id: 3, name: "EntitySlayer", image: "https://i.pravatar.cc/300?img=3", twitch: "https://twitch.tv/entityslayer" },
+        { id: 4, name: "LoopMaster", image: "https://i.pravatar.cc/300?img=4", twitch: "https://twitch.tv/loopmaster" },
+        { id: 5, name: "FogWhisperer", image: "https://i.pravatar.cc/300?img=5", twitch: "https://twitch.tv/fogwhisperer" },
+        { id: 6, name: "KillerInstinct", image: "https://i.pravatar.cc/300?img=6", twitch: "https://twitch.tv/killerinstinct" },
+        { id: 7, name: "GenRusher", image: "https://i.pravatar.cc/300?img=7", twitch: "https://twitch.tv/genrusher" },
+        { id: 8, name: "HooksAndLoops", image: "https://i.pravatar.cc/300?img=8", twitch: "https://twitch.tv/hooksandloops" },
+        { id: 9, name: "BloodpointKing", image: "https://i.pravatar.cc/300?img=9", twitch: "https://twitch.tv/bloodpointking" },
+        { id: 10, name: "PalletGod", image: "https://i.pravatar.cc/300?img=10", twitch: "https://twitch.tv/palletgod" },
+        { id: 11, name: "ToxicNea", image: "https://i.pravatar.cc/300?img=11", twitch: "https://twitch.tv/toxicnea" },
+        { id: 12, name: "StealthyMyers", image: "https://i.pravatar.cc/300?img=12", twitch: "https://twitch.tv/stealthymyers" },
+        { id: 13, name: "FlashlightHero", image: "https://i.pravatar.cc/300?img=13", twitch: "https://twitch.tv/flashlighthero" },
+        { id: 14, name: "CampfireTales", image: "https://i.pravatar.cc/300?img=14", twitch: "https://twitch.tv/campfiretales" },
+        { id: 15, name: "HatchEscape", image: "https://i.pravatar.cc/300?img=15", twitch: "https://twitch.tv/hatchescape" },
+        { id: 16, name: "MoriMaster", image: "https://i.pravatar.cc/300?img=16", twitch: "https://twitch.tv/morimaster" },
+        { id: 17, name: "PerkBuilder", image: "https://i.pravatar.cc/300?img=17", twitch: "https://twitch.tv/perkbuilder" },
+        { id: 18, name: "TunnelVision", image: "https://i.pravatar.cc/300?img=18", twitch: "https://twitch.tv/tunnelvision" },
+        { id: 19, name: "HeadOnQueen", image: "https://i.pravatar.cc/300?img=19", twitch: "https://twitch.tv/headonqueen" },
+        { id: 20, name: "BlightRush", image: "https://i.pravatar.cc/300?img=20", twitch: "https://twitch.tv/blightrush" },
+        { id: 21, name: "NurseMain", image: "https://i.pravatar.cc/300?img=21", twitch: "https://twitch.tv/nursemain" },
+        { id: 22, name: "DeadHardGod", image: "https://i.pravatar.cc/300?img=22", twitch: "https://twitch.tv/deadhardgod" },
+        { id: 23, name: "SpiritPhaser", image: "https://i.pravatar.cc/300?img=23", twitch: "https://twitch.tv/spiritphaser" },
+        { id: 24, name: "LockerDwight", image: "https://i.pravatar.cc/300?img=24", twitch: "https://twitch.tv/lockerdwight" },
+        { id: 25, name: "AdrenalineRush", image: "https://i.pravatar.cc/300?img=25", twitch: "https://twitch.tv/adrenalinerush" },
+        { id: 26, name: "BBQChili", image: "https://i.pravatar.cc/300?img=26", twitch: "https://twitch.tv/bbqchili" },
+        { id: 27, name: "UnbreakableWill", image: "https://i.pravatar.cc/300?img=27", twitch: "https://twitch.tv/unbreakablewill" },
+        { id: 28, name: "DevourHope", image: "https://i.pravatar.cc/300?img=28", twitch: "https://twitch.tv/devourhope" },
+        { id: 29, name: "SelfCareAndy", image: "https://i.pravatar.cc/300?img=29", twitch: "https://twitch.tv/selfcareandy" },
+        { id: 30, name: "NoEdGamer", image: "https://i.pravatar.cc/300?img=30", twitch: "https://twitch.tv/noedgamer" },
+        { id: 31, name: "DecisiveStrike", image: "https://i.pravatar.cc/300?img=31", twitch: "https://twitch.tv/decisivestrike" },
+        { id: 32, name: "PopGoesWeasel", image: "https://i.pravatar.cc/300?img=32", twitch: "https://twitch.tv/popgoesweasel" }
+    ];
 
-        // ============================================
-        // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-        // ============================================
-        let currentNomination = '';
-        let currentStreamers = [];
-        let currentRound = 1;
-        let currentMatch = 0;
-        let winner = null;
-        let voterData = {};
-        let supportUserTelegram = '';
+    // ============================================
+    // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+    // ============================================
+    let currentNomination = '';
+    let currentStreamers = [];
+    let currentRound = 1;
+    let currentMatch = 0;
+    let winner = null;
+    let voterData = {};
+    let supportUserTelegram = '';
+    let selectedStreamerForVote = { name: '', twitch: '' };
+    let streamersVoteTelegram = '';
 
-        const NOMINATION_NAMES = {
-            'best_streamer': 'Лучший ДБД стример года',
-            'best_guide': 'Лучший гайд контент',
-            'best_entertainment': 'Лучший развлекательный контент',
-            'viewers_choice': 'Приз зрительских симпатий'
+    const NOMINATION_NAMES = {
+        'best_streamer': 'Лучший ДБД стример года',
+        'best_guide': 'Лучший гайд контент',
+        'best_entertainment': 'Лучший развлекательный контент',
+        'viewers_choice': 'Приз зрительских симпатий'
+    };
+
+    // ============================================
+    // BROWSER FINGERPRINT (защита от инкогнито)
+    // ============================================
+    function generateFingerprint() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        ctx.textBaseline = 'top';
+        ctx.font = '14px Arial';
+        ctx.fillText('fingerprint', 2, 2);
+        const canvasData = canvas.toDataURL();
+        
+        const fingerprint = [
+            navigator.userAgent,
+            navigator.language,
+            screen.width + 'x' + screen.height,
+            screen.colorDepth,
+            new Date().getTimezoneOffset(),
+            navigator.hardwareConcurrency || 'unknown',
+            canvasData.slice(-50)
+        ].join('|');
+        
+        let hash = 0;
+        for (let i = 0; i < fingerprint.length; i++) {
+            const char = fingerprint.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        
+        return 'fp_' + Math.abs(hash).toString(36);
+    }
+
+    function getFingerprint() {
+        let fp = localStorage.getItem('deviceFingerprint');
+        if (!fp) {
+            fp = generateFingerprint();
+            localStorage.setItem('deviceFingerprint', fp);
+        }
+        return fp;
+    }
+
+    // ============================================
+    // COOKIES FUNCTIONS
+    // ============================================
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Strict';
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+        return null;
+    }
+
+    function hasAlreadyActed(actionType) {
+        if (localStorage.getItem(actionType)) {
+            return true;
+        }
+        if (getCookie(actionType)) {
+            return true;
+        }
+        return false;
+    }
+
+    function markAsActed(actionType) {
+        const fp = getFingerprint();
+        const data = {
+            fingerprint: fp,
+            timestamp: Date.now()
         };
+        localStorage.setItem(actionType, JSON.stringify(data));
+        setCookie(actionType, fp, 365);
+    }
 
-        // ============================================
-        // INTRO ANIMATION
-        // ============================================
-        document.addEventListener('DOMContentLoaded', function() {
-            createIntroParticles();
-            setTimeout(() => {
-                document.getElementById('introOverlay').classList.add('hidden');
-            }, 4500);
-            checkVotedNominations();
-        });
+    // ============================================
+    // INTRO ANIMATION
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        createIntroParticles();
+        setTimeout(() => {
+            document.getElementById('introOverlay').classList.add('hidden');
+        }, 4500);
+        checkVotedNominations();
+    });
 
-        function createIntroParticles() {
-            const container = document.getElementById('introParticles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 3 + 's';
-                particle.style.animationDuration = (2 + Math.random() * 2) + 's';
-                container.appendChild(particle);
+    function createIntroParticles() {
+        const container = document.getElementById('introParticles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            particle.style.animationDuration = (2 + Math.random() * 2) + 's';
+            container.appendChild(particle);
+        }
+    }
+
+    // ============================================
+    // NAVIGATION
+    // ============================================
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        
+        if (sectionId === 'streamersListSection') {
+            loadStreamersFromSheet();
+        }
+        
+        window.scrollTo(0, 0);
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('active');
+    }
+
+    function showModal(modalId, text = null) {
+        if (text) {
+            const textElement = document.getElementById(modalId + 'Text');
+            if (textElement) {
+                textElement.textContent = text;
             }
         }
+        document.getElementById(modalId).classList.add('active');
+    }
 
-        // ============================================
-        // NAVIGATION
-        // ============================================
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
+    // ============================================
+    // STREAMERS FROM GOOGLE SHEETS
+    // ============================================
+    async function loadStreamersFromSheet() {
+        const loadingEl = document.getElementById('streamersLoading');
+        const errorEl = document.getElementById('streamersError');
+        const gridEl = document.getElementById('streamersGrid');
+        
+        loadingEl.style.display = 'block';
+        errorEl.style.display = 'none';
+        gridEl.innerHTML = '';
+        
+        if (!CONFIG.GOOGLE_SHEET_ID || 
+            CONFIG.GOOGLE_SHEET_ID === 'ВАШ_ID_ТАБЛИЦЫ' || 
+            CONFIG.GOOGLE_SHEET_ID.length < 10) {
+            console.log('Google Sheet ID не настроен, используем локальную базу');
+            loadingEl.style.display = 'none';
+            renderStreamers(STREAMERS_DB);
+            return;
+        }
+        
+        try {
+            const url = `https://docs.google.com/spreadsheets/d/${CONFIG.GOOGLE_SHEET_ID}/export?format=csv&sheet=${encodeURIComponent(CONFIG.GOOGLE_SHEET_NAME)}`;
             
-            // Load streamers when opening that section
-            if (sectionId === 'streamersListSection') {
-                loadStreamersFromSheet();
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
             }
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-
-        function showModal(modalId, text = null) {
-            if (text) {
-                const textElement = document.getElementById(modalId + 'Text');
-                if (textElement) {
-                    textElement.textContent = text;
+            
+            const csvText = await response.text();
+            const lines = csvText.split('\n').filter(line => line.trim());
+            
+            if (lines.length < 2) {
+                throw new Error('Таблица пуста');
+            }
+            
+            const streamers = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = parseCSVLine(lines[i].trim());
+                
+                const name = values[0] || '';
+                const image = values[1] || '';
+                const twitch = values[2] || '';
+                
+                if (name && twitch) {
+                    streamers.push({
+                        name: name.trim(),
+                        image: image.trim() || 'https://via.placeholder.com/150?text=No+Image',
+                        twitch: twitch.trim()
+                    });
                 }
             }
-            document.getElementById(modalId).classList.add('active');
+            
+            loadingEl.style.display = 'none';
+            
+            if (streamers.length > 0) {
+                renderStreamers(streamers);
+            } else {
+                renderStreamers(STREAMERS_DB);
+            }
+            
+        } catch (error) {
+            console.error('Ошибка загрузки:', error);
+            loadingEl.style.display = 'none';
+            renderStreamers(STREAMERS_DB);
         }
-
-        // ============================================
-// STREAMERS FROM GOOGLE SHEETS
-// ============================================
-
-async function loadStreamersFromSheet() {
-    const loadingEl = document.getElementById('streamersLoading');
-    const errorEl = document.getElementById('streamersError');
-    const gridEl = document.getElementById('streamersGrid');
-    
-    loadingEl.style.display = 'block';
-    errorEl.style.display = 'none';
-    gridEl.innerHTML = '';
-    
-    // Проверка настроек
-    if (!CONFIG.GOOGLE_SHEET_ID || 
-        CONFIG.GOOGLE_SHEET_ID === 'ВАШ_ID_ТАБЛИЦЫ' || 
-        CONFIG.GOOGLE_SHEET_ID.length < 10) {
-        console.log('Google Sheet ID не настроен, используем локальную базу');
-        loadingEl.style.display = 'none';
-        renderStreamers(STREAMERS_DB);
-        return;
     }
-    
-    try {
-        // Используем CSV формат
-        const url = `https://docs.google.com/spreadsheets/d/${CONFIG.GOOGLE_SHEET_ID}/export?format=csv&sheet=${encodeURIComponent(CONFIG.GOOGLE_SHEET_NAME)}`;
+
+    function parseCSVLine(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
         
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-        }
-        
-        const csvText = await response.text();
-        const lines = csvText.split('\n').filter(line => line.trim());
-        
-        if (lines.length < 2) {
-            throw new Error('Таблица пуста');
-        }
-        
-        const streamers = [];
-        
-        for (let i = 1; i < lines.length; i++) {
-            const values = parseCSVLine(lines[i].trim());
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
             
-            const name = values[0] || '';
-            const image = values[1] || '';
-            const twitch = values[2] || '';
-            
-            if (name && twitch) {
-                streamers.push({
-                    name: name.trim(),
-                    image: image.trim() || 'https://via.placeholder.com/150?text=No+Image',
-                    twitch: twitch.trim()
-                });
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                result.push(current.replace(/^"|"$/g, '').trim());
+                current = '';
+            } else {
+                current += char;
             }
         }
         
-        loadingEl.style.display = 'none';
+        result.push(current.replace(/^"|"$/g, '').trim());
+        return result;
+    }
+
+    function renderStreamers(streamers) {
+        const gridEl = document.getElementById('streamersGrid');
+        const hasVoted = hasAlreadyActed('streamersListVoted');
         
-        if (streamers.length > 0) {
-            renderStreamers(streamers);
-        } else {
-            renderStreamers(STREAMERS_DB);
+        if (streamers.length === 0) {
+            gridEl.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gold-light);">
+                    <p>Список стримеров пока пуст</p>
+                </div>
+            `;
+            return;
         }
         
-    } catch (error) {
-        console.error('Ошибка загрузки:', error);
-        loadingEl.style.display = 'none';
-        renderStreamers(STREAMERS_DB);
+        gridEl.innerHTML = streamers.map(streamer => `
+            <div class="streamer-list-card">
+                <img src="${streamer.image}" alt="${streamer.name}" class="streamer-list-image" 
+                     onerror="this.src='https://via.placeholder.com/120?text=No+Image'">
+                <h3 class="streamer-list-name">${streamer.name}</h3>
+                <div class="streamer-buttons">
+                    <a href="${streamer.twitch}" target="_blank" class="streamer-list-link">
+                        <i class="fab fa-twitch"></i> TWITCH
+                    </a>
+                    <button class="streamer-vote-btn" 
+                            onclick="openStreamersVoteModal('${escapeHtml(streamer.name)}', '${escapeHtml(streamer.twitch)}')"
+                            ${hasVoted ? 'disabled' : ''}>
+                        ${hasVoted ? '✓ Голос отдан' : '🗳️ Проголосовать'}
+                    </button>
+                </div>
+            </div>
+        `).join('');
     }
-}
 
-function parseCSVLine(line) {
-    const result = [];
-    let current = '';
-    let inQuotes = false;
-    
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        
-        if (char === '"') {
-            inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-            result.push(current.replace(/^"|"$/g, '').trim());
-            current = '';
-        } else {
-            current += char;
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML.replace(/'/g, "\\'").replace(/"/g, '\\"');
+    }
+
+    // ============================================
+    // STREAMERS LIST VOTING
+    // ============================================
+    function openStreamersVoteModal(streamerName, streamerTwitch) {
+        if (hasAlreadyActed('streamersListVoted')) {
+            showStreamersVoteStep('streamersVoteAlready');
+            document.getElementById('streamersVoteModal').classList.add('active');
+            return;
         }
-    }
-    
-    result.push(current.replace(/^"|"$/g, '').trim());
-    return result;
-}
-
-function renderStreamers(streamers) {
-    const gridEl = document.getElementById('streamersGrid');
-    const hasVoted = localStorage.getItem('streamersListVoted');
-    
-    if (streamers.length === 0) {
-        gridEl.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gold-light);">
-                <p>Список стримеров пока пуст</p>
-            </div>
-        `;
-        return;
-    }
-    
-    gridEl.innerHTML = streamers.map(streamer => `
-        <div class="streamer-list-card">
-            <img src="${streamer.image}" alt="${streamer.name}" class="streamer-list-image" 
-                 onerror="this.src='https://via.placeholder.com/120?text=No+Image'">
-            <h3 class="streamer-list-name">${streamer.name}</h3>
-            <div class="streamer-buttons">
-                <a href="${streamer.twitch}" target="_blank" class="streamer-list-link">
-                    <i class="fab fa-twitch"></i> TWITCH
-                </a>
-                <button class="streamer-vote-btn" 
-                        onclick="openStreamersVoteModal('${escapeHtml(streamer.name)}', '${escapeHtml(streamer.twitch)}')"
-                        ${hasVoted ? 'disabled' : ''}>
-                    ${hasVoted ? '✓ Голос отдан' : '🗳️ Проголосовать'}
-                </button>
-            </div>
-        </div>
-    `).join('');
-}
-
-function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML.replace(/'/g, "\\'").replace(/"/g, '\\"');
-}
-
-// ============================================
-// STREAMERS LIST VOTING
-// ============================================
-
-let selectedStreamerForVote = {
-    name: '',
-    twitch: ''
-};
-let streamersVoteTelegram = '';
-
-function openStreamersVoteModal(streamerName, streamerTwitch) {
-    if (localStorage.getItem('streamersListVoted')) {
-        showStreamersVoteStep('streamersVoteAlready');
+        
+        selectedStreamerForVote = {
+            name: streamerName,
+            twitch: streamerTwitch
+        };
+        
+        document.getElementById('voteStreamerName').textContent = streamerName;
+        document.getElementById('voteStreamerNameConfirm').textContent = streamerName;
+        document.getElementById('streamersVoteTelegram').value = '';
+        
+        showStreamersVoteStep('streamersVoteStep1');
         document.getElementById('streamersVoteModal').classList.add('active');
-        return;
     }
-    
-    selectedStreamerForVote = {
-        name: streamerName,
-        twitch: streamerTwitch
-    };
-    
-    document.getElementById('voteStreamerName').textContent = streamerName;
-    document.getElementById('voteStreamerNameConfirm').textContent = streamerName;
-    document.getElementById('streamersVoteTelegram').value = '';
-    
-    showStreamersVoteStep('streamersVoteStep1');
-    document.getElementById('streamersVoteModal').classList.add('active');
-}
 
-function closeStreamersVoteModal() {
-    document.getElementById('streamersVoteModal').classList.remove('active');
-    selectedStreamerForVote = { name: '', twitch: '' };
-    streamersVoteTelegram = '';
-}
+    function closeStreamersVoteModal() {
+        document.getElementById('streamersVoteModal').classList.remove('active');
+        selectedStreamerForVote = { name: '', twitch: '' };
+        streamersVoteTelegram = '';
+    }
 
-function showStreamersVoteStep(stepId) {
-    const steps = ['streamersVoteStep1', 'streamersVoteStep2', 'streamersVoteStep3', 'streamersVoteAlready'];
-    steps.forEach(step => {
-        const el = document.getElementById(step);
-        if (el) {
-            el.style.display = step === stepId ? 'block' : 'none';
+    function showStreamersVoteStep(stepId) {
+        const steps = ['streamersVoteStep1', 'streamersVoteStep2', 'streamersVoteStep3', 'streamersVoteAlready'];
+        steps.forEach(step => {
+            const el = document.getElementById(step);
+            if (el) {
+                el.style.display = step === stepId ? 'block' : 'none';
+            }
+        });
+    }
+
+    function streamersVoteStep2() {
+        const telegram = document.getElementById('streamersVoteTelegram').value.trim();
+        
+        if (!telegram) {
+            showModal('errorModal', 'Введите ваш Telegram логин');
+            return;
         }
-    });
-}
-
-function streamersVoteStep2() {
-    const telegram = document.getElementById('streamersVoteTelegram').value.trim();
-    
-    if (!telegram) {
-        showModal('errorModal', 'Введите ваш Telegram логин');
-        return;
+        
+        streamersVoteTelegram = telegram;
+        showStreamersVoteStep('streamersVoteStep2');
     }
-    
-    streamersVoteTelegram = telegram;
-    showStreamersVoteStep('streamersVoteStep2');
-}
 
-async function submitStreamersVote() {
-    const message = `🗳️ *ГОЛОС ЗА СТРИМЕРА*
+    async function submitStreamersVote() {
+        const fingerprint = getFingerprint();
+        
+        const message = `🗳️ *ГОЛОС ЗА СТРИМЕРА*
 
 👤 *Голосующий:*
-└ Telegram: ${streamersVoteTelegram}
+├ Telegram: ${streamersVoteTelegram}
+└ 🔐 ID: \`${fingerprint}\`
 
 🎮 *Голос за стримера:*
 ├ Никнейм: ${selectedStreamerForVote.name}
@@ -1925,82 +2014,82 @@ async function submitStreamersVote() {
 
 📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
 
-    const success = await sendToTelegram(message, CONFIG.THREADS.STREAMERS_LIST_VOTE);
-    
-    if (success) {
-        localStorage.setItem('streamersListVoted', 'true');
-        localStorage.setItem('streamersListVotedFor', selectedStreamerForVote.name);
-        localStorage.setItem('streamersListVotedDate', new Date().toISOString());
+        const success = await sendToTelegram(message, CONFIG.THREADS.STREAMERS_LIST_VOTE);
         
-        showStreamersVoteStep('streamersVoteStep3');
-        updateVoteButtons();
-    } else {
-        showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
+        if (success) {
+            markAsActed('streamersListVoted');
+            showStreamersVoteStep('streamersVoteStep3');
+            updateVoteButtons();
+        } else {
+            showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
+        }
     }
-}
 
-function updateVoteButtons() {
-    const buttons = document.querySelectorAll('.streamer-vote-btn');
-    buttons.forEach(btn => {
-        btn.disabled = true;
-        btn.innerHTML = '✓ Голос отдан';
-    });
-}
+    function updateVoteButtons() {
+        const buttons = document.querySelectorAll('.streamer-vote-btn');
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            btn.innerHTML = '✓ Голос отдан';
+        });
+    }
 
-        // ============================================
-        // SUGGEST STREAMER
-        // ============================================
-        function handleSuggestStreamer() {
-            if (!CONFIG.SUGGEST_STREAMER_ENABLED) {
-                showModal('disabledModal', 'Функция "Предложить стримера" временно недоступна. Следите за новостями!');
-                return;
-            }
+    // ============================================
+    // SUGGEST STREAMER
+    // ============================================
+    function handleSuggestStreamer() {
+        if (!CONFIG.SUGGEST_STREAMER_ENABLED) {
+            showModal('disabledModal', 'Функция "Предложить стримера" временно недоступна. Следите за новостями!');
+            return;
+        }
 
-            if (localStorage.getItem('hasSuggested')) {
-                showSection('suggestSection');
-                document.getElementById('suggestStep1').style.display = 'none';
-                document.getElementById('suggestStep2').style.display = 'none';
-                document.getElementById('suggestSuccess').style.display = 'none';
-                document.getElementById('alreadySuggested').style.display = 'block';
-                return;
-            }
-
+        if (hasAlreadyActed('hasSuggested')) {
             showSection('suggestSection');
-            document.getElementById('suggestStep1').style.display = 'block';
+            document.getElementById('suggestStep1').style.display = 'none';
             document.getElementById('suggestStep2').style.display = 'none';
             document.getElementById('suggestSuccess').style.display = 'none';
-            document.getElementById('alreadySuggested').style.display = 'none';
+            document.getElementById('alreadySuggested').style.display = 'block';
+            return;
         }
 
-        function suggestStep2() {
-            const telegram = document.getElementById('userTelegram').value.trim();
-            const twitch = document.getElementById('userTwitch').value.trim();
+        showSection('suggestSection');
+        document.getElementById('suggestStep1').style.display = 'block';
+        document.getElementById('suggestStep2').style.display = 'none';
+        document.getElementById('suggestSuccess').style.display = 'none';
+        document.getElementById('alreadySuggested').style.display = 'none';
+    }
 
-            if (!telegram || !twitch) {
-                showModal('errorModal', 'Пожалуйста, заполните все поля!');
-                return;
-            }
+    function suggestStep2() {
+        const telegram = document.getElementById('userTelegram').value.trim();
+        const twitch = document.getElementById('userTwitch').value.trim();
 
-            document.getElementById('suggestStep1').style.display = 'none';
-            document.getElementById('suggestStep2').style.display = 'block';
+        if (!telegram || !twitch) {
+            showModal('errorModal', 'Пожалуйста, заполните все поля!');
+            return;
         }
 
-        async function submitSuggestion() {
-            const userTelegram = document.getElementById('userTelegram').value.trim();
-            const userTwitch = document.getElementById('userTwitch').value.trim();
-            const streamerNick = document.getElementById('streamerNick').value.trim();
-            const streamerTwitch = document.getElementById('streamerTwitch').value.trim();
+        document.getElementById('suggestStep1').style.display = 'none';
+        document.getElementById('suggestStep2').style.display = 'block';
+    }
 
-            if (!streamerNick || !streamerTwitch) {
-                showModal('errorModal', 'Пожалуйста, заполните все поля!');
-                return;
-            }
+    async function submitSuggestion() {
+        const userTelegram = document.getElementById('userTelegram').value.trim();
+        const userTwitch = document.getElementById('userTwitch').value.trim();
+        const streamerNick = document.getElementById('streamerNick').value.trim();
+        const streamerTwitch = document.getElementById('streamerTwitch').value.trim();
 
-            const message = `🎯 *НОВОЕ ПРЕДЛОЖЕНИЕ СТРИМЕРА*
+        if (!streamerNick || !streamerTwitch) {
+            showModal('errorModal', 'Пожалуйста, заполните все поля!');
+            return;
+        }
+
+        const fingerprint = getFingerprint();
+
+        const message = `🎯 *НОВОЕ ПРЕДЛОЖЕНИЕ СТРИМЕРА*
 
 👤 *Отправитель:*
 ├ Telegram: ${userTelegram}
-└ Twitch: ${userTwitch}
+├ Twitch: ${userTwitch}
+└ 🔐 ID: \`${fingerprint}\`
 
 🎮 *Предложенный стример:*
 ├ Никнейм: ${streamerNick}
@@ -2008,159 +2097,160 @@ function updateVoteButtons() {
 
 📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
 
-            const success = await sendToTelegram(message, CONFIG.THREADS.SUGGESTIONS);
+        const success = await sendToTelegram(message, CONFIG.THREADS.SUGGESTIONS);
 
-            if (success) {
-                localStorage.setItem('hasSuggested', 'true');
-                document.getElementById('suggestStep2').style.display = 'none';
-                document.getElementById('suggestSuccess').style.display = 'block';
-            } else {
-                showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
-            }
+        if (success) {
+            markAsActed('hasSuggested');
+            document.getElementById('suggestStep2').style.display = 'none';
+            document.getElementById('suggestSuccess').style.display = 'block';
+        } else {
+            showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
         }
+    }
 
-        // ============================================
-        // VOTING
-        // ============================================
-        function handleVote() {
-            if (!CONFIG.VOTE_ENABLED) {
-                showModal('disabledModal', 'Голосование пока недоступно. Голосование и предложения не закрыты!');
-                return;
-            }
-            showSection('voteSection');
+    // ============================================
+    // VOTING
+    // ============================================
+    function handleVote() {
+        if (!CONFIG.VOTE_ENABLED) {
+            showModal('disabledModal', 'Голосование временно недоступно. Следите за новостями!');
+            return;
         }
+        showSection('voteSection');
+    }
 
-        function checkVotedNominations() {
-            const nominations = ['best_streamer', 'best_guide', 'best_entertainment', 'viewers_choice'];
-            nominations.forEach(nom => {
-                const btn = document.querySelector(`[data-nomination="${nom}"]`);
-                if (btn && localStorage.getItem(`voted_${nom}`)) {
-                    btn.classList.add('voted');
-                }
-            });
-        }
-
-        function startVoting(nomination) {
-            if (localStorage.getItem(`voted_${nomination}`)) {
-                currentNomination = nomination;
-                showSection('votingProcess');
-                document.getElementById('voterVerification').style.display = 'none';
-                document.getElementById('bracketVoting').style.display = 'none';
-                document.getElementById('winnerDisplay').style.display = 'none';
-                document.getElementById('voteSuccess').style.display = 'none';
-                document.getElementById('alreadyVoted').style.display = 'block';
-                document.getElementById('currentNominationTitle').textContent = NOMINATION_NAMES[nomination];
-                return;
+    function checkVotedNominations() {
+        const nominations = ['best_streamer', 'best_guide', 'best_entertainment', 'viewers_choice'];
+        nominations.forEach(nom => {
+            const btn = document.querySelector(`[data-nomination="${nom}"]`);
+            if (btn && hasAlreadyActed(`voted_${nom}`)) {
+                btn.classList.add('voted');
             }
+        });
+    }
 
+    function startVoting(nomination) {
+        if (hasAlreadyActed(`voted_${nomination}`)) {
             currentNomination = nomination;
-            document.getElementById('currentNominationTitle').textContent = NOMINATION_NAMES[nomination];
             showSection('votingProcess');
-            
-            document.getElementById('voterVerification').style.display = 'block';
+            document.getElementById('voterVerification').style.display = 'none';
             document.getElementById('bracketVoting').style.display = 'none';
             document.getElementById('winnerDisplay').style.display = 'none';
-            document.getElementById('alreadyVoted').style.display = 'none';
             document.getElementById('voteSuccess').style.display = 'none';
+            document.getElementById('alreadyVoted').style.display = 'block';
+            document.getElementById('currentNominationTitle').textContent = NOMINATION_NAMES[nomination];
+            return;
         }
 
-        function startBracket() {
-            const nick = document.getElementById('voterNick').value.trim();
-            const telegram = document.getElementById('voterTelegram').value.trim();
-            const twitch = document.getElementById('voterTwitch').value.trim();
+        currentNomination = nomination;
+        document.getElementById('currentNominationTitle').textContent = NOMINATION_NAMES[nomination];
+        showSection('votingProcess');
+        
+        document.getElementById('voterVerification').style.display = 'block';
+        document.getElementById('bracketVoting').style.display = 'none';
+        document.getElementById('winnerDisplay').style.display = 'none';
+        document.getElementById('alreadyVoted').style.display = 'none';
+        document.getElementById('voteSuccess').style.display = 'none';
+    }
 
-            if (!nick || !telegram || !twitch) {
-                showModal('errorModal', 'Пожалуйста, заполните все поля!');
-                return;
-            }
+    function startBracket() {
+        const nick = document.getElementById('voterNick').value.trim();
+        const telegram = document.getElementById('voterTelegram').value.trim();
+        const twitch = document.getElementById('voterTwitch').value.trim();
 
-            voterData = { nick, telegram, twitch };
-
-            // Shuffle and prepare streamers
-            currentStreamers = [...STREAMERS_DB].sort(() => Math.random() - 0.5);
-            currentRound = 1;
-            currentMatch = 0;
-
-            document.getElementById('voterVerification').style.display = 'none';
-            document.getElementById('bracketVoting').style.display = 'block';
-
-            showNextMatch();
+        if (!nick || !telegram || !twitch) {
+            showModal('errorModal', 'Пожалуйста, заполните все поля!');
+            return;
         }
 
-        function showNextMatch() {
-            if (currentStreamers.length === 1) {
-                winner = currentStreamers[0];
-                showWinner();
-                return;
-            }
+        voterData = { nick, telegram, twitch };
 
-            const remainingInRound = currentStreamers.length;
-            
-            document.getElementById('roundInfo').textContent = 
-                `Осталось стримеров: ${remainingInRound}`;
-            
-            const progress = ((32 - remainingInRound) / 31) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
+        currentStreamers = [...STREAMERS_DB].sort(() => Math.random() - 0.5);
+        currentRound = 1;
+        currentMatch = 0;
 
-            const streamer1 = currentStreamers[0];
-            const streamer2 = currentStreamers[1];
+        document.getElementById('voterVerification').style.display = 'none';
+        document.getElementById('bracketVoting').style.display = 'block';
 
-            document.getElementById('streamersBattle').innerHTML = `
-                <div class="streamer-card" onclick="selectStreamer(0)">
-                    <img src="${streamer1.image}" alt="${streamer1.name}" class="streamer-image" 
-                         onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
-                    <h3 class="streamer-name">${streamer1.name}</h3>
-                    <a href="${streamer1.twitch}" target="_blank" class="streamer-link" onclick="event.stopPropagation()">
-                        <i class="fab fa-twitch"></i> Twitch
-                    </a>
-                </div>
-                <span class="vs-text">VS</span>
-                <div class="streamer-card" onclick="selectStreamer(1)">
-                    <img src="${streamer2.image}" alt="${streamer2.name}" class="streamer-image"
-                         onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
-                    <h3 class="streamer-name">${streamer2.name}</h3>
-                    <a href="${streamer2.twitch}" target="_blank" class="streamer-link" onclick="event.stopPropagation()">
-                        <i class="fab fa-twitch"></i> Twitch
-                    </a>
-                </div>
-            `;
+        showNextMatch();
+    }
+
+    function showNextMatch() {
+        if (currentStreamers.length === 1) {
+            winner = currentStreamers[0];
+            showWinner();
+            return;
         }
 
-        function selectStreamer(index) {
-            const selectedStreamer = currentStreamers[index];
-            
-            currentStreamers.splice(0, 2);
-            currentStreamers.push(selectedStreamer);
-            currentStreamers = currentStreamers.sort(() => Math.random() - 0.5);
-            
-            setTimeout(() => showNextMatch(), 300);
-        }
+        const remainingInRound = currentStreamers.length;
+        
+        document.getElementById('roundInfo').textContent = 
+            `Осталось стримеров: ${remainingInRound}`;
+        
+        const progress = ((32 - remainingInRound) / 31) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
 
-        function showWinner() {
-            document.getElementById('bracketVoting').style.display = 'none';
-            document.getElementById('winnerDisplay').style.display = 'block';
-            
-            document.getElementById('winnerCard').innerHTML = `
-                <img src="${winner.image}" alt="${winner.name}" class="streamer-image"
-                     onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
-                <h3 class="streamer-name">${winner.name}</h3>
-                <a href="${winner.twitch}" target="_blank" class="streamer-link">
+        const streamer1 = currentStreamers[0];
+        const streamer2 = currentStreamers[1];
+
+        document.getElementById('streamersBattle').innerHTML = `
+            <div class="streamer-card" onclick="selectStreamer(0)">
+                <img src="${streamer1.image}" alt="${streamer1.name}" class="streamer-image" 
+                     onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                <h3 class="streamer-name">${streamer1.name}</h3>
+                <a href="${streamer1.twitch}" target="_blank" class="streamer-link" onclick="event.stopPropagation()">
                     <i class="fab fa-twitch"></i> Twitch
                 </a>
-            `;
-        }
+            </div>
+            <span class="vs-text">VS</span>
+            <div class="streamer-card" onclick="selectStreamer(1)">
+                <img src="${streamer2.image}" alt="${streamer2.name}" class="streamer-image"
+                     onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+                <h3 class="streamer-name">${streamer2.name}</h3>
+                <a href="${streamer2.twitch}" target="_blank" class="streamer-link" onclick="event.stopPropagation()">
+                    <i class="fab fa-twitch"></i> Twitch
+                </a>
+            </div>
+        `;
+    }
 
-        async function submitVote() {
-            const threadId = getThreadIdForNomination(currentNomination);
-            
-            const message = `🏆 *НОВЫЙ ГОЛОС*
+    function selectStreamer(index) {
+        const selectedStreamer = currentStreamers[index];
+        
+        currentStreamers.splice(0, 2);
+        currentStreamers.push(selectedStreamer);
+        currentStreamers = currentStreamers.sort(() => Math.random() - 0.5);
+        
+        setTimeout(() => showNextMatch(), 300);
+    }
+
+    function showWinner() {
+        document.getElementById('bracketVoting').style.display = 'none';
+        document.getElementById('winnerDisplay').style.display = 'block';
+        
+        document.getElementById('winnerCard').innerHTML = `
+            <img src="${winner.image}" alt="${winner.name}" class="streamer-image"
+                 onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+            <h3 class="streamer-name">${winner.name}</h3>
+            <a href="${winner.twitch}" target="_blank" class="streamer-link">
+                <i class="fab fa-twitch"></i> Twitch
+            </a>
+        `;
+    }
+
+    async function submitVote() {
+        const threadId = getThreadIdForNomination(currentNomination);
+        const fingerprint = getFingerprint();
+        
+        const message = `🏆 *НОВЫЙ ГОЛОС*
 
 📋 *Номинация:* ${NOMINATION_NAMES[currentNomination]}
 
 👤 *Голосующий:*
 ├ Никнейм: ${voterData.nick}
 ├ Telegram: ${voterData.telegram}
-└ Twitch: ${voterData.twitch}
+├ Twitch: ${voterData.twitch}
+└ 🔐 ID: \`${fingerprint}\`
 
 🎮 *Выбранный стример:*
 ├ Никнейм: ${winner.name}
@@ -2168,210 +2258,221 @@ function updateVoteButtons() {
 
 📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
 
-            const success = await sendToTelegram(message, threadId);
+        const success = await sendToTelegram(message, threadId);
 
-            if (success) {
-                localStorage.setItem(`voted_${currentNomination}`, 'true');
-                document.getElementById('winnerDisplay').style.display = 'none';
-                document.getElementById('voteSuccess').style.display = 'block';
-                checkVotedNominations();
-            } else {
-                showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
-            }
+        if (success) {
+            markAsActed(`voted_${currentNomination}`);
+            document.getElementById('winnerDisplay').style.display = 'none';
+            document.getElementById('voteSuccess').style.display = 'block';
+            checkVotedNominations();
+        } else {
+            showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
         }
+    }
 
-        function getThreadIdForNomination(nomination) {
-            switch(nomination) {
-                case 'best_streamer': return CONFIG.THREADS.BEST_STREAMER;
-                case 'best_guide': return CONFIG.THREADS.BEST_GUIDE;
-                case 'best_entertainment': return CONFIG.THREADS.BEST_ENTERTAINMENT;
-                case 'viewers_choice': return CONFIG.THREADS.VIEWERS_CHOICE;
-                default: return null;
-            }
+    function getThreadIdForNomination(nomination) {
+        switch(nomination) {
+            case 'best_streamer': return CONFIG.THREADS.BEST_STREAMER;
+            case 'best_guide': return CONFIG.THREADS.BEST_GUIDE;
+            case 'best_entertainment': return CONFIG.THREADS.BEST_ENTERTAINMENT;
+            case 'viewers_choice': return CONFIG.THREADS.VIEWERS_CHOICE;
+            default: return null;
         }
+    }
 
-        function backToNominations() {
-            showSection('voteSection');
-            document.getElementById('voterNick').value = '';
-            document.getElementById('voterTelegram').value = '';
-            document.getElementById('voterTwitch').value = '';
-            voterData = {};
-            currentStreamers = [];
-            winner = null;
-        }
+    function backToNominations() {
+        showSection('voteSection');
+        document.getElementById('voterNick').value = '';
+        document.getElementById('voterTelegram').value = '';
+        document.getElementById('voterTwitch').value = '';
+        voterData = {};
+        currentStreamers = [];
+        winner = null;
+    }
 
-        // ============================================
-        // SUPPORT FUNCTIONALITY
-        // ============================================
-        function openSupportModal() {
-            const lastSent = localStorage.getItem('supportLastSent');
-            if (lastSent) {
-                const timePassed = Date.now() - parseInt(lastSent);
-                const hoursLeft = 24 - (timePassed / (1000 * 60 * 60));
+    // ============================================
+    // SUPPORT FUNCTIONALITY
+    // ============================================
+    function openSupportModal() {
+        const lastSentLocal = localStorage.getItem('supportLastSent');
+        const lastSentCookie = getCookie('supportLastSent');
+        const lastSent = lastSentLocal || lastSentCookie;
+        
+        if (lastSent) {
+            const timePassed = Date.now() - parseInt(lastSent);
+            const hoursLeft = 24 - (timePassed / (1000 * 60 * 60));
+            
+            if (hoursLeft > 0) {
+                showSupportStep('supportAlreadySent');
                 
-                if (hoursLeft > 0) {
-                    showSupportStep('supportAlreadySent');
-                    
-                    const hours = Math.floor(hoursLeft);
-                    const minutes = Math.floor((hoursLeft - hours) * 60);
-                    document.getElementById('supportCooldown').textContent = 
-                        hours > 0 ? `${hours} ч. ${minutes} мин.` : `${minutes} мин.`;
-                    
-                    document.getElementById('supportModal').classList.add('active');
-                    return;
-                }
-            }
-            
-            showSupportStep('supportStep1');
-            document.getElementById('supportTelegram').value = '';
-            document.getElementById('supportMessage').value = '';
-            document.getElementById('supportModal').classList.add('active');
-        }
-
-        function showSupportStep(stepId) {
-            const steps = ['supportStep1', 'supportStep2', 'supportStep3', 'supportStep4', 'supportAlreadySent'];
-            steps.forEach(step => {
-                document.getElementById(step).style.display = step === stepId ? 'block' : 'none';
-            });
-        }
-
-        function supportStep2() {
-            const telegram = document.getElementById('supportTelegram').value.trim();
-            
-            if (!telegram) {
-                showModal('errorModal', 'Введите ваш Telegram логин');
+                const hours = Math.floor(hoursLeft);
+                const minutes = Math.floor((hoursLeft - hours) * 60);
+                document.getElementById('supportCooldown').textContent = 
+                    hours > 0 ? `${hours} ч. ${minutes} мин.` : `${minutes} мин.`;
+                
+                document.getElementById('supportModal').classList.add('active');
                 return;
             }
-            
-            supportUserTelegram = telegram;
-            showSupportStep('supportStep2');
+        }
+        
+        showSupportStep('supportStep1');
+        document.getElementById('supportTelegram').value = '';
+        document.getElementById('supportMessage').value = '';
+        document.getElementById('supportModal').classList.add('active');
+    }
+
+    function showSupportStep(stepId) {
+        const steps = ['supportStep1', 'supportStep2', 'supportStep3', 'supportStep4', 'supportAlreadySent'];
+        steps.forEach(step => {
+            const el = document.getElementById(step);
+            if (el) {
+                el.style.display = step === stepId ? 'block' : 'none';
+            }
+        });
+    }
+
+    function supportStep2() {
+        const telegram = document.getElementById('supportTelegram').value.trim();
+        
+        if (!telegram) {
+            showModal('errorModal', 'Введите ваш Telegram логин');
+            return;
+        }
+        
+        supportUserTelegram = telegram;
+        showSupportStep('supportStep2');
+    }
+
+    function supportStep3() {
+        showSupportStep('supportStep3');
+    }
+
+    async function submitSupport() {
+        const message = document.getElementById('supportMessage').value.trim();
+        
+        if (!message) {
+            showModal('errorModal', 'Введите ваше сообщение');
+            return;
+        }
+        
+        if (message.length < 10) {
+            showModal('errorModal', 'Сообщение слишком короткое (минимум 10 символов)');
+            return;
         }
 
-        function supportStep3() {
-            showSupportStep('supportStep3');
-        }
-
-        async function submitSupport() {
-            const message = document.getElementById('supportMessage').value.trim();
-            
-            if (!message) {
-                showModal('errorModal', 'Введите ваше сообщение');
-                return;
-            }
-            
-            if (message.length < 10) {
-                showModal('errorModal', 'Сообщение слишком короткое (минимум 10 символов)');
-                return;
-            }
-            
-            const telegramMessage = `💬 *ОБРАЩЕНИЕ В ПОДДЕРЖКУ*
+        const fingerprint = getFingerprint();
+        
+        const telegramMessage = `💬 *ОБРАЩЕНИЕ В ПОДДЕРЖКУ*
 
 👤 *Отправитель:*
-└ Telegram: ${supportUserTelegram}
+├ Telegram: ${supportUserTelegram}
+└ 🔐 ID: \`${fingerprint}\`
 
 📝 *Сообщение:*
 ${message}
 
 📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
 
-            const success = await sendToTelegram(telegramMessage, CONFIG.THREADS.SUPPORT);
+        const success = await sendToTelegram(telegramMessage, CONFIG.THREADS.SUPPORT);
+        
+        if (success) {
+            const timestamp = Date.now().toString();
+            localStorage.setItem('supportLastSent', timestamp);
+            setCookie('supportLastSent', timestamp, 1);
+            showSupportStep('supportStep4');
+        } else {
+            showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
+        }
+    }
+
+    // ============================================
+    // TELEGRAM API
+    // ============================================
+    async function sendToTelegram(message, threadId = null) {
+        try {
+            const url = `https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendMessage`;
             
-            if (success) {
-                localStorage.setItem('supportLastSent', Date.now().toString());
-                showSupportStep('supportStep4');
-            } else {
-                showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
-            }
-        }
-
-        // ============================================
-        // TELEGRAM API
-        // ============================================
-        async function sendToTelegram(message, threadId = null) {
-            try {
-                const url = `https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendMessage`;
-                
-                const body = {
-                    chat_id: CONFIG.TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown',
-                    disable_web_page_preview: true
-                };
-
-                if (threadId) {
-                    body.message_thread_id = threadId;
-                }
-
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(body)
-                });
-
-                const data = await response.json();
-                return data.ok;
-            } catch (error) {
-                console.error('Telegram API Error:', error);
-                return false;
-            }
-        }
-
-        // ============================================
-        // ANTI-DEVTOOLS PROTECTION
-        // ============================================
-        // Disable right-click
-        document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // Disable keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12') {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && e.key === 'u') {
-                e.preventDefault();
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // Detect DevTools
-        (function() {
-            const devtools = {
-                isOpen: false,
-                orientation: undefined
+            const body = {
+                chat_id: CONFIG.TELEGRAM_CHAT_ID,
+                text: message,
+                parse_mode: 'Markdown',
+                disable_web_page_preview: true
             };
 
-            const threshold = 160;
+            if (threadId) {
+                body.message_thread_id = threadId;
+            }
 
-            setInterval(() => {
-                const widthThreshold = globalThis.outerWidth - globalThis.innerWidth > threshold;
-                const heightThreshold = globalThis.outerHeight - globalThis.innerHeight > threshold;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
 
-                if (!(heightThreshold && widthThreshold) &&
-                    ((globalThis.Firebug && globalThis.Firebug.chrome && globalThis.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
-                    if (!devtools.isOpen) {
-    devtools.isOpen = true;
-    document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000000;color:#D4AF37;font-size:2rem;font-family:sans-serif;text-align:center;padding:20px;">⚠️ Просмотр кода запрещён!</div>';
-}
-                } else {
-                    devtools.isOpen = false;
+            const data = await response.json();
+            return data.ok;
+        } catch (error) {
+            console.error('Telegram API Error:', error);
+            return false;
+        }
+    }
+
+    // ============================================
+    // ANTI-DEVTOOLS PROTECTION
+    // ============================================
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Disable keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Detect DevTools
+    (function() {
+        const devtools = {
+            isOpen: false,
+            orientation: undefined
+        };
+
+        const threshold = 160;
+
+        setInterval(() => {
+            const widthThreshold = globalThis.outerWidth - globalThis.innerWidth > threshold;
+            const heightThreshold = globalThis.outerHeight - globalThis.innerHeight > threshold;
+
+            if (!(heightThreshold && widthThreshold) &&
+                ((globalThis.Firebug && globalThis.Firebug.chrome && globalThis.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
+                if (!devtools.isOpen) {
+                    devtools.isOpen = true;
+                    document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000000;color:#D4AF37;font-size:2rem;font-family:sans-serif;text-align:center;padding:20px;">⚠️ Просмотр кода запрещён!</div>';
                 }
-            }, 500);
-        })();
-    </script>
+            } else {
+                devtools.isOpen = false;
+            }
+        }, 500);
+    })();
+</script>
 </body>
 </html>
