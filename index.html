@@ -24,7 +24,7 @@
     <meta name="twitter:title" content="SLAYDBD25 - Dead by Daylight">
     <meta name="twitter:description" content="SLAYDBD25 | DBD Сommunity">
     <meta name="twitter:image" content="https://i.postimg.cc/MGw3LXCs/2SLAYDBD-05-52-43.png">
-    
+
     <style>
         :root {
             --gold: #D4AF37;
@@ -1050,6 +1050,49 @@
                 font-size: 0.8rem;
             }
         }
+        /* Streamers Vote Button */
+.streamer-vote-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.streamer-vote-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+.streamer-vote-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #444 0%, #666 100%);
+    color: #999;
+}
+
+.streamer-vote-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.streamer-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
     </style>
 </head>
 <body>
@@ -1080,7 +1123,7 @@
                 <div class="menu-buttons">
                     <button class="btn" onclick="showSection('fundSection')">💎 Поддержать фонд</button>
                     <button class="btn" id="suggestBtn" onclick="handleSuggestStreamer()">🎯 Предложить стримера</button>
-                    <button class="btn" id="voteBtn" onclick="handleVote()">🏆 Проголосовать за стримера</button>
+                    <button class="btn" id="voteBtn" onclick="handleVote()">🏆 Номинировать Стримера</button>
                     <button class="btn" onclick="showSection('infoSection')">📋 Информация о мероприятии</button>
                     <button class="btn" onclick="showSection('streamersListSection')">📺 Список стримеров</button>
                     <button class="btn" onclick="openSupportModal()">💬 Связаться с поддержкой</button>
@@ -1097,14 +1140,16 @@
                 <div class="fund-icon">🎁</div>
                 <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">О нашем фонде</h3>
                 <p style="color: var(--gold-light); line-height: 1.8; margin-bottom: 20px;">
-                    Фонд SLAY DBD 25 создан для поддержки стримерского сообщества Dead by Daylight. 
-                    Все собранные средства направляются на организацию мероприятий, призовой фонд для победителей 
-                    и развитие комьюнити.
+                    Фонд SLAY DBD 2025 создан для поддержки стримерского сообщества Dead by Daylight. 
+                    Все собранные средства направяться в призовой фонд для победителя премии 
+                    и развитие комьюнити. 20% Организации 80% Победителю.
                 </p>
                 <p style="color: var(--gold-light); line-height: 1.8; margin-bottom: 30px;">
                     Ваша поддержка помогает нам делать наши мероприятия ещё более масштабными и незабываемыми! 
                     Каждый донат — это вклад в развитие любимого сообщества.
                 </p>
+                <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">Фонд сейчас составляет - 00000 руб.</h3>
+                <br>
                 <button class="btn" onclick="window.open(CONFIG.SUPPORT_URL, '_blank')">
                     ❤️ Поддержать
                 </button>
@@ -1278,9 +1323,9 @@
             </div>
             <div class="info-content">
                 <div class="info-block">
-                    <h3><span class="info-icon">🎮</span> Что такое SLAY DBD 25?</h3>
+                    <h3><span class="info-icon">🎮</span> Что такое SLAY DBD 2025?</h3>
                     <p>
-                        SLAY DBD 25 — это ежегодная премия, посвящённая лучшим стримерам и контент-мейкерам 
+                        SLAY DBD 2025 — это ежегодная премия, посвящённая лучшим стримерам и контент-мейкерам 
                         Dead by Daylight. Мы отмечаем тех, кто делает наше сообщество ярче, интереснее и веселее!
                     </p>
                 </div>
@@ -1295,16 +1340,39 @@
                     <h3><span class="info-icon">👥</span> Организаторы</h3>
                     <p>
                         Мероприятие организовано силами активных членов DBD-сообщества. Наша команда состоит 
-                        из энтузиастов, которые любят игру и её комьюнити так же сильно, как и вы!
+                        из энтузиастов, которые любят игру и её комьюнити так же сильно, как и вы, а именно:
+                        </p>
+                        <br>
+                        <p>
+                        • <a href="https://www.twitch.tv/lagerta_seeman" target="_blank">LagertaSeeman</a>
+                        </p>
+                        <br>
+                        <p>
+                        • <a href="https://www.twitch.tv/mcpleh" target="_blank">MCPLEH</a>
+                        </p>
+                        <br>
+                        <p>
+                        • <a href="https://www.twitch.tv/nestli_exidaz" target="_blank">NESTLI_EXIDAZ</a>
+                        </p>
+                        <br>
+                        <p>
+                        • <a href="https://vk.com/deadbydaylight_overhear" target="_blank">У костра ВК</a>
+                        </p>
+                        <br>
+                        <p>
+                        • <a href="https://t.me/deadbydaylight_overhear" target="_blank">У костра Telegram</a>
                     </p>
                 </div>
                 <div class="info-block">
                     <h3><span class="info-icon">📅</span> Даты проведения</h3>
                     <p>
-                        <strong>Приём заявок:</strong> 1 - 15 января 2025<br>
-                        <strong>Голосование:</strong> 16 - 31 января 2025<br>
-                        <strong>Объявление победителей:</strong> 1 февраля 2025
+                        <strong>Приём заявок и голосование:</strong> 8 - 25 декабря 2025<br>
+                        <strong>Голосование на Номинацию:</strong> 26 декабря 2025 - 7-8 января 2026<br>
+                        <strong>Объявление победителей:</strong> 8-9 января 2026
                     </p>
+                    <p>
+                        • Все даты примерные ~
+                        </p>
                 </div>
                 <div class="info-block">
                     <h3><span class="info-icon">🏆</span> Номинации</h3>
@@ -1313,6 +1381,18 @@
                         • Лучший гайд контент<br>
                         • Лучший развлекательный контент<br>
                         • Приз зрительских симпатий
+                    </p>
+                </div>
+                <div class="info-block">
+                    <h3><span class="info-icon">👍</span> Другая информация</h3>
+                    <p>
+                        • Проголосовать за стримера можно в разделе списка стримеров.<br>
+                        • Если вы попали на сайт, и не хотите этого, напишите в поддержку сайта.<br>
+                        • В номинации будет только 32 стримера, у кого будет больше всего голосов.<br>
+                        • Пополнив фонд, вы увиличите призовой стримеров в номинации, ведь именно ваш стример может победить!<br>
+                        • ТГ и ваш Твич нужен для индификации голоса и связи в случае чего.<br>
+                        • Будьте внимательны при заполнении заявки, когда предлогаете стримера, плохие анкеты будут пропускаться.<br>
+                        • Номинация стримеров откроется когда там наберется хотябы чуть больше 40 человек.
                     </p>
                 </div>
             </div>
@@ -1443,6 +1523,67 @@
         </div>
     </div>
 
+<!-- Streamers List Vote Modal -->
+<div class="modal-overlay" id="streamersVoteModal">
+    <div class="modal">
+        <!-- Step 1: Telegram Input -->
+        <div id="streamersVoteStep1">
+            <div class="modal-icon">🗳️</div>
+            <h3 class="modal-title">Голосование за стримера</h3>
+            <p class="modal-text">Вы голосуете за: <strong id="voteStreamerName"></strong></p>
+            <div class="form-group" style="text-align: left;">
+                <label class="form-label">Ваш Telegram логин</label>
+                <input type="text" class="form-input" id="streamersVoteTelegram" placeholder="@username">
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-small" onclick="closeStreamersVoteModal()">Отмена</button>
+                <button class="btn btn-small" onclick="streamersVoteStep2()">Далее →</button>
+            </div>
+        </div>
+        
+        <!-- Step 2: Warning -->
+        <div id="streamersVoteStep2" style="display: none;">
+            <div class="modal-icon">⚠️</div>
+            <h3 class="modal-title">Внимание!</h3>
+            <p class="modal-text">
+                В номинации будут участвовать только <strong>32 стримера</strong>, 
+                которые наберут больше всего голосов.
+                <br><br>
+                <strong>Ваш голос отменить будет нельзя!</strong>
+                <br><br>
+                Вы уверены, что хотите проголосовать за <strong id="voteStreamerNameConfirm"></strong>?
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-small" onclick="closeStreamersVoteModal()">Отмена</button>
+                <button class="btn btn-small" onclick="submitStreamersVote()">✓ Отправить голос</button>
+            </div>
+        </div>
+        
+        <!-- Step 3: Success -->
+        <div id="streamersVoteStep3" style="display: none;">
+            <div class="modal-icon">🎉</div>
+            <h3 class="modal-title">Голос принят!</h3>
+            <p class="modal-text">
+                Спасибо за ваш голос! Он успешно отправлен.
+                <br><br>
+                Следите за новостями, чтобы узнать результаты!
+            </p>
+            <button class="btn btn-small" onclick="closeStreamersVoteModal()">Закрыть</button>
+        </div>
+        
+        <!-- Already Voted -->
+        <div id="streamersVoteAlready" style="display: none;">
+            <div class="modal-icon">🚫</div>
+            <h3 class="modal-title">Вы уже голосовали!</h3>
+            <p class="modal-text">
+                Вы уже отдали свой голос за стримера. 
+                Повторное голосование невозможно.
+            </p>
+            <button class="btn btn-small" onclick="closeStreamersVoteModal()">Закрыть</button>
+        </div>
+    </div>
+</div>
+
     <script>
         // ============================================
         // CONFIGURATION - НАСТРОЙКИ
@@ -1463,7 +1604,8 @@
                 BEST_GUIDE: 9,
                 BEST_ENTERTAINMENT: 11,
                 VIEWERS_CHOICE: 13,
-                SUPPORT: 27
+                SUPPORT: 27,
+                STREAMERS_LIST_VOTE: 51
             },
 
             // Google Sheets Configuration
@@ -1581,107 +1723,229 @@
         }
 
         // ============================================
-        // STREAMERS FROM GOOGLE SHEETS
-        // ============================================
-        async function loadStreamersFromSheet() {
-            const loadingEl = document.getElementById('streamersLoading');
-            const errorEl = document.getElementById('streamersError');
-            const gridEl = document.getElementById('streamersGrid');
-            
-            loadingEl.style.display = 'block';
-            errorEl.style.display = 'none';
-            gridEl.innerHTML = '';
-            
-            // Check if Google Sheet is configured
-            if (!CONFIG.GOOGLE_SHEET_ID || CONFIG.GOOGLE_SHEET_ID === 'ВАШ_ID_ТАБЛИЦЫ') {
-                console.log('Google Sheet ID not configured, using local database');
-                loadingEl.style.display = 'none';
-                renderStreamers(STREAMERS_DB);
-                return;
-            }
-            
-            try {
-                const url = `https://docs.google.com/spreadsheets/d/${CONFIG.GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(CONFIG.GOOGLE_SHEET_NAME)}`;
-                
-                const response = await fetch(url);
-                const text = await response.text();
-                
-                // Parse Google's response
-                const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);?$/);
-                
-                if (!jsonMatch) {
-                    throw new Error('Invalid response format');
-                }
-                
-                const data = JSON.parse(jsonMatch[1]);
-                
-                if (data.status === 'error') {
-                    throw new Error(data.errors?.[0]?.message || 'Google Sheets error');
-                }
-                
-                const rows = data.table.rows;
-                const streamers = [];
-                
-                // Determine start index (skip header)
-                let startIndex = 0;
-                if (rows[0]?.c?.[0]?.v) {
-                    const firstValue = String(rows[0].c[0].v).toLowerCase();
-                    if (firstValue === 'name' || firstValue === 'имя' || firstValue === 'ник') {
-                        startIndex = 1;
-                    }
-                }
-                
-                for (let i = startIndex; i < rows.length; i++) {
-                    const row = rows[i];
-                    if (row && row.c) {
-                        const name = row.c[0]?.v || '';
-                        const image = row.c[1]?.v || 'https://via.placeholder.com/150?text=No+Image';
-                        const twitch = row.c[2]?.v || '';
-                        
-                        if (name && twitch) {
-                            streamers.push({ name, image, twitch });
-                        }
-                    }
-                }
-                
-                loadingEl.style.display = 'none';
-                
-                if (streamers.length > 0) {
-                    renderStreamers(streamers);
-                } else {
-                    renderStreamers(STREAMERS_DB);
-                }
-                
-            } catch (error) {
-                console.error('Error loading streamers:', error);
-                loadingEl.style.display = 'none';
-                renderStreamers(STREAMERS_DB);
-            }
-        }
+// STREAMERS FROM GOOGLE SHEETS
+// ============================================
 
-        function renderStreamers(streamers) {
-            const gridEl = document.getElementById('streamersGrid');
-            
-            if (streamers.length === 0) {
-                gridEl.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gold-light);">
-                        <p>Список стримеров пока пуст</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            gridEl.innerHTML = streamers.map(streamer => `
-                <div class="streamer-list-card">
-                    <img src="${streamer.image}" alt="${streamer.name}" class="streamer-list-image" 
-                         onerror="this.src='https://via.placeholder.com/120?text=No+Image'">
-                    <h3 class="streamer-list-name">${streamer.name}</h3>
-                    <a href="${streamer.twitch}" target="_blank" class="streamer-list-link">
-                        <i class="fab fa-twitch"></i> TWITCH
-                    </a>
-                </div>
-            `).join('');
+async function loadStreamersFromSheet() {
+    const loadingEl = document.getElementById('streamersLoading');
+    const errorEl = document.getElementById('streamersError');
+    const gridEl = document.getElementById('streamersGrid');
+    
+    loadingEl.style.display = 'block';
+    errorEl.style.display = 'none';
+    gridEl.innerHTML = '';
+    
+    // Проверка настроек
+    if (!CONFIG.GOOGLE_SHEET_ID || 
+        CONFIG.GOOGLE_SHEET_ID === 'ВАШ_ID_ТАБЛИЦЫ' || 
+        CONFIG.GOOGLE_SHEET_ID.length < 10) {
+        console.log('Google Sheet ID не настроен, используем локальную базу');
+        loadingEl.style.display = 'none';
+        renderStreamers(STREAMERS_DB);
+        return;
+    }
+    
+    try {
+        // Используем CSV формат
+        const url = `https://docs.google.com/spreadsheets/d/${CONFIG.GOOGLE_SHEET_ID}/export?format=csv&sheet=${encodeURIComponent(CONFIG.GOOGLE_SHEET_NAME)}`;
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
         }
+        
+        const csvText = await response.text();
+        const lines = csvText.split('\n').filter(line => line.trim());
+        
+        if (lines.length < 2) {
+            throw new Error('Таблица пуста');
+        }
+        
+        const streamers = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            const values = parseCSVLine(lines[i].trim());
+            
+            const name = values[0] || '';
+            const image = values[1] || '';
+            const twitch = values[2] || '';
+            
+            if (name && twitch) {
+                streamers.push({
+                    name: name.trim(),
+                    image: image.trim() || 'https://via.placeholder.com/150?text=No+Image',
+                    twitch: twitch.trim()
+                });
+            }
+        }
+        
+        loadingEl.style.display = 'none';
+        
+        if (streamers.length > 0) {
+            renderStreamers(streamers);
+        } else {
+            renderStreamers(STREAMERS_DB);
+        }
+        
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        loadingEl.style.display = 'none';
+        renderStreamers(STREAMERS_DB);
+    }
+}
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current.replace(/^"|"$/g, '').trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    
+    result.push(current.replace(/^"|"$/g, '').trim());
+    return result;
+}
+
+function renderStreamers(streamers) {
+    const gridEl = document.getElementById('streamersGrid');
+    const hasVoted = localStorage.getItem('streamersListVoted');
+    
+    if (streamers.length === 0) {
+        gridEl.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--gold-light);">
+                <p>Список стримеров пока пуст</p>
+            </div>
+        `;
+        return;
+    }
+    
+    gridEl.innerHTML = streamers.map(streamer => `
+        <div class="streamer-list-card">
+            <img src="${streamer.image}" alt="${streamer.name}" class="streamer-list-image" 
+                 onerror="this.src='https://via.placeholder.com/120?text=No+Image'">
+            <h3 class="streamer-list-name">${streamer.name}</h3>
+            <div class="streamer-buttons">
+                <a href="${streamer.twitch}" target="_blank" class="streamer-list-link">
+                    <i class="fab fa-twitch"></i> TWITCH
+                </a>
+                <button class="streamer-vote-btn" 
+                        onclick="openStreamersVoteModal('${escapeHtml(streamer.name)}', '${escapeHtml(streamer.twitch)}')"
+                        ${hasVoted ? 'disabled' : ''}>
+                    ${hasVoted ? '✓ Голос отдан' : '🗳️ Проголосовать'}
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML.replace(/'/g, "\\'").replace(/"/g, '\\"');
+}
+
+// ============================================
+// STREAMERS LIST VOTING
+// ============================================
+
+let selectedStreamerForVote = {
+    name: '',
+    twitch: ''
+};
+let streamersVoteTelegram = '';
+
+function openStreamersVoteModal(streamerName, streamerTwitch) {
+    if (localStorage.getItem('streamersListVoted')) {
+        showStreamersVoteStep('streamersVoteAlready');
+        document.getElementById('streamersVoteModal').classList.add('active');
+        return;
+    }
+    
+    selectedStreamerForVote = {
+        name: streamerName,
+        twitch: streamerTwitch
+    };
+    
+    document.getElementById('voteStreamerName').textContent = streamerName;
+    document.getElementById('voteStreamerNameConfirm').textContent = streamerName;
+    document.getElementById('streamersVoteTelegram').value = '';
+    
+    showStreamersVoteStep('streamersVoteStep1');
+    document.getElementById('streamersVoteModal').classList.add('active');
+}
+
+function closeStreamersVoteModal() {
+    document.getElementById('streamersVoteModal').classList.remove('active');
+    selectedStreamerForVote = { name: '', twitch: '' };
+    streamersVoteTelegram = '';
+}
+
+function showStreamersVoteStep(stepId) {
+    const steps = ['streamersVoteStep1', 'streamersVoteStep2', 'streamersVoteStep3', 'streamersVoteAlready'];
+    steps.forEach(step => {
+        const el = document.getElementById(step);
+        if (el) {
+            el.style.display = step === stepId ? 'block' : 'none';
+        }
+    });
+}
+
+function streamersVoteStep2() {
+    const telegram = document.getElementById('streamersVoteTelegram').value.trim();
+    
+    if (!telegram) {
+        showModal('errorModal', 'Введите ваш Telegram логин');
+        return;
+    }
+    
+    streamersVoteTelegram = telegram;
+    showStreamersVoteStep('streamersVoteStep2');
+}
+
+async function submitStreamersVote() {
+    const message = `🗳️ *ГОЛОС ЗА СТРИМЕРА*
+
+👤 *Голосующий:*
+└ Telegram: ${streamersVoteTelegram}
+
+🎮 *Голос за стримера:*
+├ Никнейм: ${selectedStreamerForVote.name}
+└ Twitch: ${selectedStreamerForVote.twitch}
+
+📅 Дата: ${new Date().toLocaleString('ru-RU')}`;
+
+    const success = await sendToTelegram(message, CONFIG.THREADS.STREAMERS_LIST_VOTE);
+    
+    if (success) {
+        localStorage.setItem('streamersListVoted', 'true');
+        localStorage.setItem('streamersListVotedFor', selectedStreamerForVote.name);
+        localStorage.setItem('streamersListVotedDate', new Date().toISOString());
+        
+        showStreamersVoteStep('streamersVoteStep3');
+        updateVoteButtons();
+    } else {
+        showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
+    }
+}
+
+function updateVoteButtons() {
+    const buttons = document.querySelectorAll('.streamer-vote-btn');
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.innerHTML = '✓ Голос отдан';
+    });
+}
 
         // ============================================
         // SUGGEST STREAMER
@@ -1760,7 +2024,7 @@
         // ============================================
         function handleVote() {
             if (!CONFIG.VOTE_ENABLED) {
-                showModal('disabledModal', 'Голосование временно недоступно. Следите за новостями!');
+                showModal('disabledModal', 'Голосование пока недоступно. Голосование и предложения не закрыты!');
                 return;
             }
             showSection('voteSection');
