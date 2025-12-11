@@ -14,7 +14,7 @@
             // Включение/выключение кнопок (true = включено, false = выключено)
             BUTTONS: {
                 SUGGEST_STREAMER: true,      // Предложить стримера
-                NOMINATE_STREAMER: true,     // Номинировать стримера
+                NOMINATE_STREAMER: false,     // Номинировать стримера
                 STREAMERS_LIST: true,        // Список стримеров
                 NOMINEES_LIST: false,         // Список номинантов
                 SUPPORT_FUND: true,          // Поддержать фонд
