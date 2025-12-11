@@ -24,7 +24,7 @@
             },
 
             // Telegram Bot Configuration
-            TELEGRAM_BOT_TOKEN: '7648746510:AAEkqPfDUFFMbnXTlRpoDTLp3wuPlL_OI8w',
+            TELEGRAM_BOT_TOKEN: '7692104106:AAEqhV5eJfAZpa09Bo7RrOHQmViQX-qVwKs',
             TELEGRAM_CHAT_ID: '-1003313064216',
 
             // Thread IDs для разных разделов (Message Thread ID для топиков в группе)
