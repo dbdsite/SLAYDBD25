@@ -51,13 +51,13 @@
         // БАЗА ДАННЫХ СТРИМЕРОВ (32 стримера)
         // ============================================
         const STREAMERS_DB = [
-            {
+    {
         id: 1,
         name: "Spc_tgc",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f983d142-d6e5-46cf-80d9-f9c5cd6c6836-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=1",
         twitch: "https://twitch.tv/spc_tgc",
-        votes: 30,
+        votes: 46,
         interview: {
             q1: "Как давно стримишь?",
             a1: "Достаточно давно, больше 5 лет.",
@@ -73,7 +73,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=2",
         twitch: "https://twitch.tv/mogilevtm",
-        votes: 22,
+        votes: 23,
         interview: {
             q1: "Почему начал стримить?",
             a1: "Хотел делиться своим игровым опытом.",
@@ -105,7 +105,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b852763d-fd00-46e3-b5ff-765df0ebacd0-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=4",
         twitch: "https://twitch.tv/provans_kate",
-        votes: 14,
+        votes: 16,
         interview: {
             q1: "Твоя ниша?",
             a1: "Развлекательные и игровые стримы.",
@@ -121,7 +121,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/96383744-94f7-41a1-af62-3fe7c7641f09-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=5",
         twitch: "https://twitch.tv/stroganov",
-        votes: 13,
+        votes: 16,
         interview: {
             q1: "Как пришел в стриминг?",
             a1: "Друзья предложили попробовать.",
@@ -137,7 +137,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/61dffcb4-a3d1-4347-bbd4-80a74b57307a-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=6",
         twitch: "https://twitch.tv/mulder",
-        votes: 11,
+        votes: 22,
         interview: {
             q1: "Идея для никнейма?",
             a1: "Большой фанат сериала 'Секретные материалы'.",
@@ -153,7 +153,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/17e0566d-7b5c-453c-b7d6-a94569c05c80-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=7",
         twitch: "https://twitch.tv/penguin_ruina",
-        votes: 10,
+        votes: 30,
         interview: {
             q1: "Почему 'Penguin'?",
             a1: "Обожаю пингвинов с детства.",
@@ -169,7 +169,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/61d0b92f-27dc-4fd9-b35f-9cba01f5302c-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=8",
         twitch: "https://twitch.tv/anessstezia",
-        votes: 9,
+        votes: 20,
         interview: {
             q1: "Специализация?",
             a1: "Стримы по хоррорам и инди-играм.",
@@ -185,7 +185,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/9b0e6eea-1ff5-4601-a4f4-f7681a6397e4-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=9",
         twitch: "https://twitch.tv/kiperonzavod",
-        votes: 9,
+        votes: 13,
         interview: {
             q1: "Никнейм означает?",
             a1: "Был вратарем на заводских турнирах.",
@@ -201,7 +201,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cce3ce1c-bfec-4f25-80a7-4c0283118dce-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=10",
         twitch: "https://twitch.tv/parabellumltd",
-        votes: 9,
+        votes: 12,
         interview: {
             q1: "Философия канала?",
             a1: "Если хочешь мира, готовься к войне (в играх).",
@@ -217,7 +217,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/99f2889a-f77a-4ef0-9990-a7aca8413760-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=11",
         twitch: "https://twitch.tv/kalerine",
-        votes: 7,
+        votes: 15,
         interview: {
             q1: "О себе?",
             a1: "Стример, художник и любительница RPG.",
@@ -233,7 +233,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ad5997f1-c8b8-4dd5-8e44-1af0b476f91d-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=12",
         twitch: "https://twitch.tv/kristyusha_",
-        votes: 7,
+        votes: 9,
         interview: {
             q1: "Контент?",
             a1: "Разговорные стримы и прохождения сюжетных игр.",
@@ -265,7 +265,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/bcebbd2b-2034-4da6-9454-9041b46a059b-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=14",
         twitch: "https://twitch.tv/riversong___",
-        votes: 7,
+        votes: 13,
         interview: {
             q1: "Вдохновение для ника?",
             a1: "Персонаж из Доктора Кто и любовь к музыке.",
@@ -281,7 +281,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/519164d5-8061-46c0-ad90-f2ff2c0e8aab-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=15",
         twitch: "https://twitch.tv/tumannayamgla",
-        votes: 6,
+        votes: 32,
         interview: {
             q1: "Атмосфера?",
             a1: "Спокойные, медитативные стримы, часто с атмосферными играми.",
@@ -297,7 +297,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/0acbf4e9-a0f6-4d06-aa79-690f814fee2c-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=16",
         twitch: "https://twitch.tv/vshtamm",
-        votes: 6,
+        votes: 8,
         interview: {
             q1: "Тематика?",
             a1: "Выживание в играх и реальные навыки.",
@@ -313,7 +313,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b85dac9b-0ef6-427f-890c-8c1097973e53-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=17",
         twitch: "https://twitch.tv/animu19",
-        votes: 5,
+        votes: 8,
         interview: {
             q1: "Почему аниме?",
             a1: "Это часть моей жизни с детства.",
@@ -329,7 +329,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/61a303dd-fb89-4ae5-b329-95e1097a01cc-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=18",
         twitch: "https://twitch.tv/californication",
-        votes: 5,
+        votes: 8,
         interview: {
             q1: "Стиль?",
             a1: "Независимый дух Калифорнии и рок-н-ролл.",
@@ -361,7 +361,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b7a31939-32c0-404d-8b5a-3bea0be49c98-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=20",
         twitch: "https://twitch.tv/mcpleh",
-        votes: 5,
+        votes: 11,
         interview: {
             q1: "Minecraft?",
             a1: "Да, это моя основная и давняя любовь.",
@@ -377,7 +377,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cb5f7869-99b6-4a61-a85e-da6e2b5bdfe9-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=21",
         twitch: "https://twitch.tv/t1muren",
-        votes: 5,
+        votes: 10,
         interview: {
             q1: "Никнейм?",
             a1: "Комбинация имени Тимур и увлечения IT.",
@@ -393,7 +393,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cf9f8fe6-e398-483c-886f-d8fd377a9caf-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=22",
         twitch: "https://twitch.tv/timetokillteam",
-        votes: 5,
+        votes: 6,
         interview: {
             q1: "Командный стриминг?",
             a1: "Да, мы команда из нескольких человек.",
@@ -409,7 +409,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/e883a3a3-fd6e-4958-b929-9299ea5cf724-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=23",
         twitch: "https://twitch.tv/immolimbo",
-        votes: 4,
+        votes: 9,
         interview: {
             q1: "Стиль игр?",
             a1: "Хардкорные прохождения и сложные боссы.",
@@ -457,7 +457,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/188bb88f-1f7f-4da4-b849-d6159bfd439d-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=26",
         twitch: "https://twitch.tv/cfcbrt",
-        votes: 3,
+        votes: 5,
         interview: {
             q1: "Аббревиатура в нике?",
             a1: "Личный шифр из юности.",
@@ -473,7 +473,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/c6d254e0-e155-4268-beac-23a79db42d74-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=27",
         twitch: "https://twitch.tv/nightfuryo3o",
-        votes: 3,
+        votes: 5,
         interview: {
             q1: "Ночной фьюри?",
             a1: "Да, от дракона из 'Как приручить дракона'.",
@@ -505,7 +505,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/7bf0b38e-a322-46bf-a95a-92133e36a63a-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=29",
         twitch: "https://twitch.tv/hozymeii",
-        votes: 2,
+        votes: 3,
         interview: {
             q1: "Откуда ник?",
             a1: "От слов 'Хозяин' и 'Mei' из Overwatch.",
@@ -537,7 +537,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/481347b6-d915-4e3f-bb44-613a427e79f1-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=31",
         twitch: "https://twitch.tv/lagerta_seeman",
-        votes: 2,
+        votes: 3,
         interview: {
             q1: "Морская тема?",
             a1: "Бывший моряк, люблю морские баталии.",
@@ -553,7 +553,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/64fa2c37-8468-468c-b3d2-b815f00f663b-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=32",
         twitch: "https://twitch.tv/mypx7ka",
-        votes: 2,
+        votes: 4,
         interview: {
             q1: "Загадочный ник?",
             a1: "Это секрет, который знают только постоянные.",
@@ -569,7 +569,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/640c5535-ad20-491d-a02c-fbebac539ac6-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=33",
         twitch: "https://twitch.tv/priut_bezdeelnika",
-        votes: 2,
+        votes: 3,
         interview: {
             q1: "Приют?",
             a1: "Да, это место, где можно расслабиться.",
@@ -617,7 +617,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/98038355-f0f5-4804-9abc-57c42148a0d0-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=36",
         twitch: "https://twitch.tv/glimkat",
-        votes: 1,
+        votes: 2,
         interview: {
             q1: "Значение ника?",
             a1: "Мерцающий кот (Glimmer + cat).",
@@ -681,7 +681,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b1b9b857-e5c7-4649-b106-9d52605b98cf-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=40",
         twitch: "https://twitch.tv/galaxytm",
-        votes: 0,
+        votes: 1,
         interview: {
             q1: "Галактика?",
             a1: "Обожаю космос и научную фантастику.",
@@ -745,7 +745,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/91cb67be-e0fc-4573-99b4-e94e23ed1bc4-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=44",
         twitch: "https://twitch.tv/mommyalya",
-        votes: 0,
+        votes: 9,
         interview: {
             q1: "Мамочка?",
             a1: "Это мое внутрикомьюнити прозвище.",
@@ -761,7 +761,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/820f6700-4625-46f9-bded-b8010609967d-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=45",
         twitch: "https://twitch.tv/pluto_show",
-        votes: 0,
+        votes: 1,
         interview: {
             q1: "Плутон?",
             a1: "Да, это планета, и это шоу!",
@@ -777,7 +777,7 @@
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/998b3d6b-67c2-499c-8c9f-ee3a36c29fef-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=46",
         twitch: "https://twitch.tv/xvetka",
-        votes: 0,
+        votes: 1,
         interview: {
             q1: "Ветка?",
             a1: "Люблю природу и лесные походы.",
@@ -834,14 +834,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 50,
         name: "NutaOo",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/284ef710-a998-4bd2-8ae8-c9651df3f507-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/nutaoo",
-        votes: 0,
+        votes: 2,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -850,14 +850,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 51,
         name: "BanditkaRF",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/09781e6c-6af5-4917-b33c-4c9e7f4d814c-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/banditkarf",
-        votes: 14,
+        votes: 29,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -866,14 +866,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 52,
         name: "Boost_Meee",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d0232ce5-e635-4a5a-90e5-85cfac27da19-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/boost_meee",
-        votes: 0,
+        votes: 1,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -882,14 +882,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 53,
         name: "VikaKlubnika",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/c0b3bde8-39e0-4acc-84c3-40874c41f108-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/vikaklubnika01",
-        votes: 0,
+        votes: 1,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -898,14 +898,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 54,
         name: "Kakcaxap_OK",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/fcab06a2-414a-41d5-8d50-054959da2838-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/kakcaxap_ok",
-        votes: 0,
+        votes: 3,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -914,14 +914,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 55,
         name: "SmaiL_DBD",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ebf45954-0171-470f-9a69-2b0a970024e5-profile_image-70x70.jpeg",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/smail_dbd",
-        votes: 0,
+        votes: 18,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -930,8 +930,8 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-{
+    },
+    {
         id: 56,
         name: "Popa_s_kulachek",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/a2772f51-8379-48cc-931c-2be3cc0b3f77-profile_image-70x70.jpeg",
@@ -946,14 +946,14 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 57,
         name: "ParaDoxPlay",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/5fbe2233-c26d-42b7-957c-82af89e8f5fe-profile_image-70x70.png",
         profileImage: "https://i.pravatar.cc/500?img=49",
         twitch: "https://www.twitch.tv/paradoxplayttv",
-        votes: 0,
+        votes: 40,
         interview: {
             q1: "Элисси?",
             a1: "Уникальное написание моего имени Элис.",
@@ -962,8 +962,8 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            },
-        {
+    },
+    {
         id: 58,
         name: "PodliyKusb",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ee687841-e79d-41a5-bd70-07aba4bf935c-profile_image-70x70.png",
@@ -978,8 +978,40 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
-            }
-        ];
+    },
+    {
+        id: 59,
+        name: "Bieatris",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/e3653c68-4818-4136-be12-5b191984cc92-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=50",
+        twitch: "https://www.twitch.tv/bieatris",
+        votes: 0,
+        interview: {
+            q1: "Расскажи о своём контенте",
+            a1: "Стримы с акцентом на атмосферу и эстетику.",
+            q2: "Какие игры предпочитаешь?",
+            a2: "Инди-игры, арт-проекты и нарративные приключения.",
+            q3: "Пожелание зрителям?",
+            a3: "Находите красоту в мелочах. Спасибо, что вы с нами!"
+        }
+    },
+    {
+        id: 60,
+        name: "Prekrashev671",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/68d54adb-a38e-49a1-89ec-37974a383505-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=51",
+        twitch: "https://www.twitch.tv/prekrashev671",
+        votes: 1,
+        interview: {
+            q1: "Что означает твой никнейм?",
+            a1: "Это игра слов и отсылка к прекрасному в цифрах.",
+            q2: "На чём специализируешься?",
+            a2: "Игровые аналитические стримы и разбор механик.",
+            q3: "Чем хочешь запомниться?",
+            a3: "Хочу, чтобы после моих стримов зрители понимали игры глубже."
+        }
+    }
+];
 
         // ============================================
         // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
