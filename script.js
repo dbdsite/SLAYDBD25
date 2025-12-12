@@ -1,4 +1,4 @@
-        // Анти-копирование защита
+// Анти-копирование защита
 (function() {
     if (window.location.hostname !== 'dbdsite.github.io' && 
         window.location.hostname !== 'localhost' &&
@@ -24,8 +24,9 @@
             },
 
             // Telegram Bot Configuration
-            TELEGRAM_BOT_TOKEN: '7692104106:AAEqhV5eJfAZpa09Bo7RrOHQmViQX-qVwKs',
+            TELEGRAM_BOT_TOKEN: '7648746510:AAECKk-hOAIMd1_eQZItO8X69lQgKNl6Eoo',
             TELEGRAM_CHAT_ID: '-1003313064216',
+            TELEGRAM_CHANNEL_URL: 'https://t.me/slaydbd2025',
 
             // Thread IDs для разных разделов (Message Thread ID для топиков в группе)
             THREADS: {
@@ -833,6 +834,150 @@
             q3: "Пожелание?",
             a3: "Творите каждый день. Пока!"
         }
+            },
+        {
+        id: 50,
+        name: "NutaOo",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/284ef710-a998-4bd2-8ae8-c9651df3f507-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/nutaoo",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 51,
+        name: "BanditkaRF",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/09781e6c-6af5-4917-b33c-4c9e7f4d814c-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/banditkarf",
+        votes: 14,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 52,
+        name: "Boost_Meee",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d0232ce5-e635-4a5a-90e5-85cfac27da19-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/boost_meee",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 53,
+        name: "VikaKlubnika",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/c0b3bde8-39e0-4acc-84c3-40874c41f108-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/vikaklubnika01",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 54,
+        name: "Kakcaxap_OK",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/fcab06a2-414a-41d5-8d50-054959da2838-profile_image-70x70.jpeg",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/kakcaxap_ok",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 55,
+        name: "SmaiL_DBD",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ebf45954-0171-470f-9a69-2b0a970024e5-profile_image-70x70.jpeg",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/smail_dbd",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+{
+        id: 56,
+        name: "Popa_s_kulachek",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/a2772f51-8379-48cc-931c-2be3cc0b3f77-profile_image-70x70.jpeg",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/popa_s_kulachek",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 57,
+        name: "ParaDoxPlay",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/5fbe2233-c26d-42b7-957c-82af89e8f5fe-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/paradoxplayttv",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
+            },
+        {
+        id: 58,
+        name: "PodliyKusb",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ee687841-e79d-41a5-bd70-07aba4bf935c-profile_image-70x70.png",
+        profileImage: "https://i.pravatar.cc/500?img=49",
+        twitch: "https://www.twitch.tv/podliykusb",
+        votes: 0,
+        interview: {
+            q1: "Элисси?",
+            a1: "Уникальное написание моего имени Элис.",
+            q2: "О чем стримы?",
+            a2: "Арт-стримы, дизайн и креативные программы.",
+            q3: "Пожелание?",
+            a3: "Творите каждый день. Пока!"
+        }
             }
         ];
 
@@ -945,6 +1090,7 @@
                 'fund': { enabled: CONFIG.BUTTONS.SUPPORT_FUND, action: () => showSection('fundSection'), name: 'Поддержать фонд' },
                 'info': { enabled: CONFIG.BUTTONS.INFO, action: () => showSection('infoSection'), name: 'Информация' },
                 'votes': { enabled: CONFIG.BUTTONS.VOTES_COUNT, action: () => { showSection('votesSection'); loadVotes(); }, name: 'Количество голосов' },
+                'telegramNews': { enabled: CONFIG.BUTTONS.TELEGRAM_NEWS, action: () => window.open(CONFIG.TELEGRAM_CHANNEL_URL, '_blank'), name: 'Официальные новости телеграмм' },
                 'support': { enabled: CONFIG.BUTTONS.CONTACT_SUPPORT, action: openSupportModal, name: 'Связаться с поддержкой' }
             };
 
