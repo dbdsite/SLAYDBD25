@@ -7,12 +7,12 @@
     }
 })();
         
-        // ============================================
+ // ============================================
 // CONFIGURATION - НАСТРОЙКИ
 // ============================================
 const CONFIG = {
     // URL Google Apps Script (ОБЯЗАТЕЛЬНО ЗАМЕНИТЬ!)
-    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwqVft21GrSNNESk0x0x8sN_8_CAxGVhqVCCqj-lctqXpk5yn-ZjgTNYkwEPYyQEjbT5Q/exec',
+    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbx79lnlSoTmoW9pwEZr8-eE1eR69IQiahUZHXH-h3Kw_wjEAaxaLxWWXZc8yGCPwpJx7w/exec',
     
     // Локальные настройки (не содержат секретов!)
     TELEGRAM_CHANNEL_URL: 'https://t.me/slaydbd2025',
@@ -22,7 +22,7 @@ const CONFIG = {
     BUTTONS: {
         SUGGEST_STREAMER: true,
         NOMINATE_STREAMER: false,
-        STREAMERS_LIST: false,
+        STREAMERS_LIST: true,
         NOMINEES_LIST: false,
         SUPPORT_FUND: true,
         INFO: true,
@@ -847,31 +847,39 @@ function openNomineeProfile(streamerId) {
     const sourceStreamers = streamersFromSheet.length > 0 ? streamersFromSheet : STREAMERS_DB;
     const streamer = sourceStreamers.find(s => s.id === streamerId);
     if (!streamer) return;
-    
+
+    // Используем profileImage как основное, если оно есть, иначе image
     document.getElementById('nomineeProfileImage').src = streamer.profileImage || streamer.image;
     document.getElementById('nomineeProfileImage').alt = streamer.name;
     document.getElementById('nomineeProfileName').textContent = streamer.name;
     document.getElementById('nomineeProfileTwitch').href = streamer.twitch;
-    
+
     let interviewHTML = '<p style="color: #d4af37;">Интервью скоро появится...</p>';
-    
-    if (streamer.interview) {
-        interviewHTML = `
-            <div class="interview-item">
-                <p class="interview-question">${streamer.interview.q1}</p>
-                <p class="interview-answer">${streamer.interview.a1}</p>
-            </div>
-            <div class="interview-item">
-                <p class="interview-question">${streamer.interview.q2}</p>
-                <p class="interview-answer">${streamer.interview.a2}</p>
-            </div>
-            <div class="interview-item">
-                <p class="interview-question">${streamer.interview.q3}</p>
-                <p class="interview-answer">${streamer.interview.a3}</p>
-            </div>
-        `;
+
+    if (streamer.interview && streamer.interview.q1) {
+        interviewHTML = '';
+        
+        // Генерируем вопросы динамически
+        for (let i = 1; i <= 3; i++) {
+            const q = streamer.interview[`q${i}`];
+            const a = streamer.interview[`a${i}`];
+            
+            if (q && a) {
+                interviewHTML += `
+                    <div class="interview-item">
+                        <p class="interview-question">${q}</p>
+                        <p class="interview-answer">${a}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Если вдруг нет ни одного вопроса
+        if (interviewHTML === '') {
+            interviewHTML = '<p style="color: #d4af37;">Интервью скоро появится...</p>';
+        }
     }
-    
+
     document.getElementById('nomineeInterviewContent').innerHTML = interviewHTML;
     document.getElementById('nomineeProfileModal').classList.add('active');
 }
@@ -880,9 +888,38 @@ function openNomineeProfile(streamerId) {
 // FALLBACK STREAMERS DATABASE (на случай если API недоступен)
 // ============================================
 const STREAMERS_DB = [
-    { id: 1, name: "Spc_tgc", image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f983d142-d6e5-46cf-80d9-f9c5cd6c6836-profile_image-70x70.png", twitch: "https://twitch.tv/spc_tgc", votes: 46 },
-    { id: 2, name: "MogilevTM", image: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg", twitch: "https://twitch.tv/mogilevtm", votes: 23 },
-    // ... остальные стримеры
+    {
+        id: 1,
+        name: "Spc_tgc",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f983d142-d6e5-46cf-80d9-f9c5cd6c6836-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/f983d142-d6e5-46cf-80d9-f9c5cd6c6836-profile_image-70x70.png",
+        twitch: "https://twitch.tv/spc_tgc",
+        votes: 30,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Достаточно давно, больше 5 лет.",
+            q2: "Что самое важное в стриме?",
+            a2: "Взаимодействие с коммьюнити и качественный контент.",
+            q3: "Пожелание зрителям?",
+            a3: "Спасибо за вашу поддержку и активность!"
+        }
+    },
+    {
+        id: 2,
+        name: "MogilevTM",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg",
+        twitch: "https://twitch.tv/mogilevtm",
+        votes: 22,
+        interview: {
+            q1: "Почему начал стримить?",
+            a1: "Хотел делиться своим игровым опытом.",
+            q2: "Твой главный секрет успеха?",
+            a2: "Регулярность и постоянное самосовершенствование.",
+            q3: "Планы на будущее?",
+            a3: "Расти дальше и пробовать новые форматы."
+        }
+    }
 ];
 
         // ============================================
