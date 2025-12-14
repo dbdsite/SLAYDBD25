@@ -24,7 +24,7 @@
             },
 
             // Telegram Bot Configuration
-            TELEGRAM_BOT_TOKEN: '7692104106:AAEqhV5eJfAZpa09Bo7RrOHQmViQX-qVwKs',
+            TELEGRAM_BOT_TOKEN: '7692104106:AAGwHUzaFJSYulSuGf1NWJl-bkiS6V7el24',
             TELEGRAM_CHAT_ID: '-1003313064216',
             TELEGRAM_CHANNEL_URL: 'https://t.me/slaydbd2025',
 
