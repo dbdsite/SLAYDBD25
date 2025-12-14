@@ -12,7 +12,7 @@
 // ============================================
 const CONFIG = {
     // URL Google Apps Script (ОБЯЗАТЕЛЬНО ЗАМЕНИТЬ!)
-    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbz4IYFN6i_bnKZbEY6ZW8QOYk-nhy_Nau_Hg2_773nPeKjF80Jj5NT9ioI6qfTJxHFRmw/exec',
+    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbz64SE19UPezx-a_H2mMEH-dcHk_Darq4xfssPkxpR8aDFQD_dUABFP5UUXUOmle6IGHg/exec',
     
     // Локальные настройки (не содержат секретов!)
     TELEGRAM_CHANNEL_URL: 'https://t.me/slaydbd2025',
@@ -88,6 +88,81 @@ function getFingerprint() {
         localStorage.setItem('deviceFingerprint', fp);
     }
     return fp;
+}
+
+// ============================================
+// PLACEHOLDER IMAGES (SVG Data URI)
+// ============================================
+const PLACEHOLDER = {
+    // Аватар 120x120
+    AVATAR_120: 'data:image/svg+xml,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+            <rect fill="#1a1a2e" width="120" height="120" rx="10"/>
+            <circle fill="#16213e" cx="60" cy="45" r="22"/>
+            <ellipse fill="#16213e" cx="60" cy="95" rx="30" ry="22"/>
+            <text fill="#d4af37" font-family="Arial" font-size="10" x="60" y="118" text-anchor="middle">No Image</text>
+        </svg>
+    `),
+    
+    // Аватар 150x150 (для баттлов)
+    AVATAR_150: 'data:image/svg+xml,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+            <rect fill="#1a1a2e" width="150" height="150" rx="12"/>
+            <circle fill="#16213e" cx="75" cy="55" r="28"/>
+            <ellipse fill="#16213e" cx="75" cy="115" rx="38" ry="28"/>
+            <text fill="#d4af37" font-family="Arial" font-size="12" x="75" y="145" text-anchor="middle">No Image</text>
+        </svg>
+    `),
+    
+    // Аватар 200x200 (для победителя)
+    AVATAR_200: 'data:image/svg+xml,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+            <defs>
+                <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#1a1a2e"/>
+                    <stop offset="100%" style="stop-color:#16213e"/>
+                </linearGradient>
+            </defs>
+            <rect fill="url(#bg)" width="200" height="200" rx="15"/>
+            <circle fill="#0f3460" cx="100" cy="75" r="38"/>
+            <ellipse fill="#0f3460" cx="100" cy="155" rx="50" ry="35"/>
+            <text fill="#d4af37" font-family="Arial" font-size="14" x="100" y="195" text-anchor="middle">No Image</text>
+        </svg>
+    `),
+    
+    // Маленький аватар 50x50 (для голосов)
+    AVATAR_50: 'data:image/svg+xml,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+            <rect fill="#1a1a2e" width="50" height="50" rx="6"/>
+            <circle fill="#16213e" cx="25" cy="18" r="10"/>
+            <ellipse fill="#16213e" cx="25" cy="40" rx="14" ry="10"/>
+        </svg>
+    `),
+    
+    // Аватар 100x100 (для номинантов)
+    AVATAR_100: 'data:image/svg+xml,' + encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+            <rect fill="#1a1a2e" width="100" height="100" rx="8"/>
+            <circle fill="#16213e" cx="50" cy="38" r="18"/>
+            <ellipse fill="#16213e" cx="50" cy="78" rx="25" ry="18"/>
+            <text fill="#d4af37" font-family="Arial" font-size="9" x="50" y="96" text-anchor="middle">No Image</text>
+        </svg>
+    `)
+};
+
+// Универсальная функция обработки ошибок загрузки изображений
+function handleImageError(img, size = 120) {
+    img.onerror = null; // Предотвращаем бесконечный цикл
+    
+    const placeholders = {
+        50: PLACEHOLDER.AVATAR_50,
+        100: PLACEHOLDER.AVATAR_100,
+        120: PLACEHOLDER.AVATAR_120,
+        150: PLACEHOLDER.AVATAR_150,
+        200: PLACEHOLDER.AVATAR_200
+    };
+    
+    img.src = placeholders[size] || PLACEHOLDER.AVATAR_120;
 }
 
 // ============================================
@@ -369,8 +444,10 @@ function renderStreamers(streamers) {
     
     gridEl.innerHTML = streamers.map(streamer => `
         <div class="streamer-list-card">
-            <img src="${streamer.image}" alt="${streamer.name}" class="streamer-list-image" 
-                 onerror="this.src='https://via.placeholder.com/120?text=No+Image'">
+            <img src="${streamer.image || PLACEHOLDER.AVATAR_120}" 
+                 alt="${streamer.name}" 
+                 class="streamer-list-image" 
+                 onerror="handleImageError(this, 120)">
             <h3 class="streamer-list-name">${streamer.name}</h3>
             <div class="streamer-buttons">
                 <a href="${streamer.twitch}" target="_blank" class="streamer-list-link">
@@ -497,8 +574,10 @@ async function loadVotes() {
                     <div class="vote-position ${isTop3 ? 'top-3' : ''}">
                         ${isTop3 ? medals[position - 1] : position}
                     </div>
-                    <img src="${streamer.image}" alt="${streamer.name}" class="vote-avatar"
-                         onerror="this.src='https://via.placeholder.com/50?text=?'">
+                    <img src="${streamer.image || PLACEHOLDER.AVATAR_50}" 
+                         alt="${streamer.name}" 
+                         class="vote-avatar"
+                         onerror="handleImageError(this, 50)">
                     <div class="vote-info">
                         <div class="vote-name">${streamer.name}</div>
                         <div class="vote-bar-container">
@@ -666,8 +745,10 @@ function showNextMatch() {
 
     document.getElementById('streamersBattle').innerHTML = `
         <div class="streamer-card" onclick="selectStreamer(0)">
-            <img src="${streamer1.image}" alt="${streamer1.name}" class="streamer-image" 
-                 onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+            <img src="${streamer1.image || PLACEHOLDER.AVATAR_150}" 
+                 alt="${streamer1.name}" 
+                 class="streamer-image" 
+                 onerror="handleImageError(this, 150)">
             <h3 class="streamer-name">${streamer1.name}</h3>
             <a href="${streamer1.twitch}" target="_blank" class="streamer-link" onclick="event.stopPropagation()">
                 <i class="fab fa-twitch"></i> Twitch
@@ -675,8 +756,10 @@ function showNextMatch() {
         </div>
         <span class="vs-text">VS</span>
         <div class="streamer-card" onclick="selectStreamer(1)">
-            <img src="${streamer2.image}" alt="${streamer2.name}" class="streamer-image"
-                 onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+            <img src="${streamer2.image || PLACEHOLDER.AVATAR_150}" 
+                 alt="${streamer2.name}" 
+                 class="streamer-image"
+                 onerror="handleImageError(this, 150)">
             <h3 class="streamer-name">${streamer2.name}</h3>
             <a href="${streamer2.twitch}" target="_blank" class="streamer-link" onclick="event.stopPropagation()">
                 <i class="fab fa-twitch"></i> Twitch
@@ -698,8 +781,10 @@ function showWinner() {
     document.getElementById('winnerDisplay').style.display = 'block';
     
     document.getElementById('winnerCard').innerHTML = `
-        <img src="${winner.image}" alt="${winner.name}" class="streamer-image"
-             onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+        <img src="${winner.image || PLACEHOLDER.AVATAR_200}" 
+             alt="${winner.name}" 
+             class="streamer-image"
+             onerror="handleImageError(this, 200)">
         <h3 class="streamer-name">${winner.name}</h3>
         <a href="${winner.twitch}" target="_blank" class="streamer-link">
             <i class="fab fa-twitch"></i> Twitch
@@ -835,8 +920,10 @@ function loadNominees() {
     
     grid.innerHTML = sourceStreamers.map(streamer => `
         <div class="nominee-card" onclick="openNomineeProfile(${streamer.id})">
-            <img src="${streamer.image}" alt="${streamer.name}" class="nominee-card-image"
-                 onerror="this.src='https://via.placeholder.com/100?text=No+Image'">
+            <img src="${streamer.image || PLACEHOLDER.AVATAR_100}" 
+                 alt="${streamer.name}" 
+                 class="nominee-card-image"
+                 onerror="handleImageError(this, 100)">
             <h3 class="nominee-card-name">${streamer.name}</h3>
             <p class="nominee-card-hint">Нажмите для подробностей</p>
         </div>
