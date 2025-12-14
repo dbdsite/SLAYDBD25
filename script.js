@@ -22,7 +22,7 @@ const CONFIG = {
     BUTTONS: {
         SUGGEST_STREAMER: true,
         NOMINATE_STREAMER: false,
-        STREAMERS_LIST: true,
+        STREAMERS_LIST: false,
         NOMINEES_LIST: false,
         SUPPORT_FUND: true,
         INFO: true,
