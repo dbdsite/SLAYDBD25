@@ -805,22 +805,20 @@ body {
     font-size: 1.5rem;
 }
 
-/* Modal */
+/* Стили для правильного отображения модальных окон */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     display: none;
     justify-content: center;
-    align-items: flex-start;
-    z-index: 9999;
-    backdrop-filter: blur(5px);
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
     overflow-y: auto;
-    padding: 15px;
-    -webkit-overflow-scrolling: touch;
 }
 
 .modal-overlay.active {
@@ -829,22 +827,72 @@ body {
 
 .modal {
     background: var(--card-bg);
-    border: 2px solid var(--gold);
-    border-radius: 20px;
-    padding: 25px 20px;
+    border-radius: 15px;
+    padding: 30px;
     max-width: 500px;
     width: 100%;
-    text-align: center;
-    animation: modalAppear 0.3s ease-out;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-    margin: auto;
+    border: 2px solid var(--gold);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
     position: relative;
-    z-index: 10000;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalAppear 0.3s ease-out;
+}
+.modal-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.modal-title {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.modal-text {
+    color: var(--gold-light);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+/* Для капчи */
+#captchaQuestion {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(26, 26, 46, 0.8);
+    border-radius: 10px;
+    border: 1px solid var(--gold);
+}
+
+#captchaInput {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 @keyframes modalAppear {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Success Message */
@@ -1080,18 +1128,48 @@ body {
     overflow: hidden;
 }
 
+/* Кнопка закрытия для профиля номинанта */
 .modal-close-btn {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 15px;
-    background: none;
+    background: transparent;
     border: none;
     color: var(--gold);
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
-    z-index: 10;
-    padding: 10px;
-    touch-action: manipulation;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: rotate(90deg);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .modal {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+    }
+    
+    #captchaQuestion {
+        font-size: 2rem;
+    }
 }
 
 .modal-close-btn:active {
@@ -1325,4 +1403,101 @@ body {
     .footer {
         padding-bottom: max(25px, env(safe-area-inset-bottom));
     }
+}
+/* ============================================
+   КАПЧА СТИЛИ
+   ============================================ */
+.captcha-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.captcha-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.captcha-container h3 {
+    color: #d4af37;
+    margin-bottom: 10px;
+}
+
+.captcha-container p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.captcha-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.captcha-question {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d4af37;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+}
+
+.captcha-equals {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.captcha-input {
+    width: 80px;
+    height: 50px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-weight: bold;
+}
+
+.captcha-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.captcha-input::-webkit-outer-spin-button,
+.captcha-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.captcha-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.captcha-refresh {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: #d4af37;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.captcha-refresh:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+}
+
+/* Telegram input стили */
+input[id*="Telegram"]::placeholder,
+input[id*="telegram"]::placeholder {
+    color: rgba(212, 175, 55, 0.5);
 }
