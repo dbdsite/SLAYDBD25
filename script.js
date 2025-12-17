@@ -106,6 +106,62 @@ function validateTelegramLogin(value) {
 }
 
 // ============================================
+// НАСТРОЙКА TELEGRAM ИНПУТОВ
+// ============================================
+function setupTelegramInputs() {
+    // Находим все поля для ввода Telegram
+    const telegramInputs = document.querySelectorAll('input[id*="Telegram"], input[id*="telegram"]');
+    
+    telegramInputs.forEach(input => {
+        // Убираем предыдущие обработчики (если были)
+        input.removeEventListener('input', handleTelegramInput);
+        input.removeEventListener('blur', handleTelegramBlur);
+        
+        // Добавляем новые обработчики
+        input.addEventListener('input', handleTelegramInput);
+        input.addEventListener('blur', handleTelegramBlur);
+        
+        // Устанавливаем placeholder если его нет
+        if (!input.placeholder) {
+            input.placeholder = '@username';
+        }
+    });
+}
+
+function handleTelegramInput(e) {
+    const input = e.target;
+    let value = input.value;
+    
+    // Убираем пробелы в начале
+    value = value.trimStart();
+    
+    // Если пользователь начал вводить без @, не мешаем ему
+    // Но показываем подсказку
+    if (value.length > 0 && !value.startsWith('@')) {
+        input.style.borderColor = '#ff6b6b';
+    } else {
+        input.style.borderColor = '';
+    }
+    
+    input.value = value;
+}
+
+function handleTelegramBlur(e) {
+    const input = e.target;
+    let value = input.value.trim();
+    
+    // При потере фокуса сбрасываем стиль
+    input.style.borderColor = '';
+    
+    // Если поле не пустое и не начинается с @, можно добавить подсказку
+    // Но НЕ добавляем @ автоматически - пользователь должен сам
+    if (value.length > 0 && !value.startsWith('@')) {
+        // Можно показать tooltip или оставить как есть
+        // Валидация произойдёт при отправке
+    }
+}
+
+// ============================================
 // КАПЧА - ЗАЩИТА ОТ НАКРУТКИ
 // ============================================
 function generateCaptcha() {
