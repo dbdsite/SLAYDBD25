@@ -6,8 +6,9 @@
         document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#D4AF37;font-size:24px;">⚠️ Несанкционированный доступ запрещен!</div>';
     }
 })();
+       
         
- // ============================================
+// ============================================
 // CONFIGURATION - НАСТРОЙКИ
 // ============================================
 const CONFIG = {
@@ -43,12 +44,114 @@ let selectedStreamerForVote = { name: '', twitch: '' };
 let streamersVoteTelegram = '';
 let streamersFromSheet = [];
 
+// КАПЧА ПЕРЕМЕННЫЕ
+let captchaAnswer = 0;
+let captchaVerified = false;
+
 const NOMINATION_NAMES = {
     'best_streamer': 'Лучший ДБД стример года',
     'best_guide': 'Лучший гайд контент',
     'best_entertainment': 'Лучший развлекательный контент',
     'viewers_choice': 'Приз зрительских симпатий'
 };
+
+// ============================================
+// TELEGRAM VALIDATOR - ОБЯЗАТЕЛЬНЫЙ @
+// ============================================
+
+// Валидация Telegram логина (пользователь САМ должен написать @)
+function validateTelegramLogin(value) {
+    const trimmed = value.trim();
+    
+    // Проверяем что начинается с @
+    if (!trimmed.startsWith('@')) {
+        return { 
+            valid: false, 
+            error: 'Telegram логин должен начинаться с @ (например: @username)' 
+        };
+    }
+    
+    // Проверяем минимальную длину (@ + минимум 5 символов)
+    if (trimmed.length < 6) {
+        return { 
+            valid: false, 
+            error: 'Telegram логин слишком короткий (минимум 5 символов после @)' 
+        };
+    }
+    
+    // Проверяем максимальную длину (@ + максимум 32 символа)
+    if (trimmed.length > 33) {
+        return { 
+            valid: false, 
+            error: 'Telegram логин слишком длинный (максимум 32 символа после @)' 
+        };
+    }
+    
+    // Проверяем допустимые символы (буквы, цифры, подчеркивание)
+    const usernameRegex = /^@[a-zA-Z][a-zA-Z0-9_]{4,31}$/;
+    if (!usernameRegex.test(trimmed)) {
+        return { 
+            valid: false, 
+            error: 'Telegram логин может содержать только латинские буквы, цифры и _ (должен начинаться с буквы)' 
+        };
+    }
+    
+    return { 
+        valid: true, 
+        value: trimmed,  // Это поле должно быть value, а не formatted
+        formatted: trimmed  // Добавляем formatted для обратной совместимости
+    };
+}
+
+// ============================================
+// КАПЧА - ЗАЩИТА ОТ НАКРУТКИ
+// ============================================
+function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    
+    // Выбираем операцию (только + и - для простоты, чтобы не было отрицательных результатов)
+    const useAddition = Math.random() > 0.5;
+    
+    let question, answer;
+    
+    if (useAddition) {
+        question = `${num1} + ${num2}`;
+        answer = num1 + num2;
+    } else {
+        // Для вычитания делаем так, чтобы результат был положительным
+        const bigger = Math.max(num1, num2);
+        const smaller = Math.min(num1, num2);
+        question = `${bigger} - ${smaller}`;
+        answer = bigger - smaller;
+    }
+    
+    captchaAnswer = answer;
+    captchaVerified = false;
+    
+    return question;
+}
+
+function verifyCaptcha(userAnswer) {
+    const parsed = parseInt(userAnswer, 10);
+    if (isNaN(parsed)) {
+        return false;
+    }
+    captchaVerified = (parsed === captchaAnswer);
+    return captchaVerified;
+}
+
+function refreshCaptcha() {
+    const captchaQuestion = document.getElementById('captchaQuestion');
+    if (captchaQuestion) {
+        captchaQuestion.textContent = generateCaptcha();
+    }
+    const captchaInput = document.getElementById('captchaInput');
+    if (captchaInput) {
+        captchaInput.value = '';
+    }
+    captchaVerified = false;
+}
 
 // ============================================
 // BROWSER FINGERPRINT
@@ -94,7 +197,6 @@ function getFingerprint() {
 // PLACEHOLDER IMAGES (SVG Data URI)
 // ============================================
 const PLACEHOLDER = {
-    // Аватар 120x120
     AVATAR_120: 'data:image/svg+xml,' + encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
             <rect fill="#1a1a2e" width="120" height="120" rx="10"/>
@@ -104,7 +206,6 @@ const PLACEHOLDER = {
         </svg>
     `),
     
-    // Аватар 150x150 (для баттлов)
     AVATAR_150: 'data:image/svg+xml,' + encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
             <rect fill="#1a1a2e" width="150" height="150" rx="12"/>
@@ -114,7 +215,6 @@ const PLACEHOLDER = {
         </svg>
     `),
     
-    // Аватар 200x200 (для победителя)
     AVATAR_200: 'data:image/svg+xml,' + encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
             <defs>
@@ -130,7 +230,6 @@ const PLACEHOLDER = {
         </svg>
     `),
     
-    // Маленький аватар 50x50 (для голосов)
     AVATAR_50: 'data:image/svg+xml,' + encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
             <rect fill="#1a1a2e" width="50" height="50" rx="6"/>
@@ -139,7 +238,6 @@ const PLACEHOLDER = {
         </svg>
     `),
     
-    // Аватар 100x100 (для номинантов)
     AVATAR_100: 'data:image/svg+xml,' + encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
             <rect fill="#1a1a2e" width="100" height="100" rx="8"/>
@@ -150,10 +248,8 @@ const PLACEHOLDER = {
     `)
 };
 
-// Универсальная функция обработки ошибок загрузки изображений
 function handleImageError(img, size = 120) {
-    img.onerror = null; // Предотвращаем бесконечный цикл
-    
+    img.onerror = null;
     const placeholders = {
         50: PLACEHOLDER.AVATAR_50,
         100: PLACEHOLDER.AVATAR_100,
@@ -161,7 +257,6 @@ function handleImageError(img, size = 120) {
         150: PLACEHOLDER.AVATAR_150,
         200: PLACEHOLDER.AVATAR_200
     };
-    
     img.src = placeholders[size] || PLACEHOLDER.AVATAR_120;
 }
 
@@ -192,12 +287,10 @@ function markAsActed(actionType) {
 }
 
 // ============================================
-// API ЗАПРОСЫ К GOOGLE APPS SCRIPT (ИСПРАВЛЕНО!)
+// API ЗАПРОСЫ К GOOGLE APPS SCRIPT
 // ============================================
-
 async function apiRequest(action, data = {}) {
     try {
-        // Используем text/plain чтобы избежать preflight запроса
         const response = await fetch(CONFIG.GOOGLE_APPS_SCRIPT_URL, {
             method: 'POST',
             headers: {
@@ -210,14 +303,12 @@ async function apiRequest(action, data = {}) {
             })
         });
         
-        // Проверяем, что ответ получен
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
         
         const text = await response.text();
         
-        // Пробуем распарсить JSON
         try {
             return JSON.parse(text);
         } catch (e) {
@@ -233,7 +324,6 @@ async function apiRequest(action, data = {}) {
 
 async function apiGet(action) {
     try {
-        // GET запросы работают без проблем
         const response = await fetch(`${CONFIG.GOOGLE_APPS_SCRIPT_URL}?action=${action}`, {
             method: 'GET',
         });
@@ -317,6 +407,9 @@ function hideLoadingOverlay() {
 document.addEventListener('DOMContentLoaded', async function() {
     createIntroParticles();
     
+    // Настраиваем автоформатирование Telegram полей
+    setupTelegramInputs();
+    
     // Проверяем доступность API
     const pingResult = await apiGet('ping');
     if (pingResult.error) {
@@ -357,19 +450,36 @@ function showSection(sectionId) {
         loadStreamersFromSheet();
     }
     
+    // Повторно настраиваем Telegram инпуты (для динамически созданных)
+    setTimeout(setupTelegramInputs, 100);
+    
     window.scrollTo(0, 0);
 }
 
 function closeModal(modalId) {
     document.getElementById(modalId).classList.remove('active');
+    // Сбрасываем капчу при закрытии
+    captchaVerified = false;
 }
 
 function showModal(modalId, text = null) {
+    const modal = document.getElementById(modalId);
+    
     if (text) {
         const textElement = document.getElementById(modalId + 'Text');
         if (textElement) textElement.textContent = text;
     }
-    document.getElementById(modalId).classList.add('active');
+    
+    // Устанавливаем высокий z-index для окон ошибок
+    if (modalId === 'errorModal' || modalId === 'disabledModal') {
+        modal.style.zIndex = '9999';
+    }
+    
+    modal.classList.add('active');
+    
+    // Фокус на кнопку закрытия
+    const closeBtn = modal.querySelector('button');
+    if (closeBtn) closeBtn.focus();
 }
 
 // ============================================
@@ -390,7 +500,7 @@ function handleButton(buttonType) {
     const button = buttonMap[buttonType];
     
     if (!button.enabled) {
-        showModal('disabledModal', `Раздел "${button.name}" пока что недоступен.`);
+        showDisabledModal( `Раздел "${button.name}" пока что недоступен.`);
         return;
     }
     
@@ -424,7 +534,6 @@ async function loadStreamersFromSheet() {
         console.error('Ошибка загрузки:', error);
         loadingEl.style.display = 'none';
         
-        // Fallback на локальную базу
         if (typeof STREAMERS_DB !== 'undefined') {
             renderStreamers(STREAMERS_DB);
         } else {
@@ -468,7 +577,7 @@ function escapeHtmlAttr(text) {
 }
 
 // ============================================
-// ГОЛОСОВАНИЕ ЗА СТРИМЕРА (СПИСОК)
+// ГОЛОСОВАНИЕ ЗА СТРИМЕРА (СПИСОК) С КАПЧЕЙ
 // ============================================
 function openStreamersVoteModal(streamerName, streamerTwitch) {
     if (hasAlreadyActed('streamersListVoted')) {
@@ -483,34 +592,83 @@ function openStreamersVoteModal(streamerName, streamerTwitch) {
     document.getElementById('voteStreamerNameConfirm').textContent = streamerName;
     document.getElementById('streamersVoteTelegram').value = '';
     
+    // Сбрасываем капчу
+    captchaVerified = false;
+    
     showStreamersVoteStep('streamersVoteStep1');
     document.getElementById('streamersVoteModal').classList.add('active');
+    
+    // Настраиваем Telegram input
+    setTimeout(setupTelegramInputs, 100);
 }
 
 function closeStreamersVoteModal() {
     document.getElementById('streamersVoteModal').classList.remove('active');
     selectedStreamerForVote = { name: '', twitch: '' };
     streamersVoteTelegram = '';
+    captchaVerified = false;
 }
 
 function showStreamersVoteStep(stepId) {
-    ['streamersVoteStep1', 'streamersVoteStep2', 'streamersVoteStep3', 'streamersVoteAlready'].forEach(step => {
+    ['streamersVoteStep1', 'streamersVoteStep2', 'streamersVoteCaptcha', 'streamersVoteStep3', 'streamersVoteAlready'].forEach(step => {
         const el = document.getElementById(step);
         if (el) el.style.display = step === stepId ? 'block' : 'none';
     });
 }
 
 function streamersVoteStep2() {
-    const telegram = document.getElementById('streamersVoteTelegram').value.trim();
+    const telegramInput = document.getElementById('streamersVoteTelegram');
+    let telegram = telegramInput.value.trim();
+    
     if (!telegram) {
-        showModal('errorModal', 'Введите ваш Telegram логин');
+        showErrorModal('Введите ваш Telegram логин');
         return;
     }
-    streamersVoteTelegram = telegram;
+    
+    // Форматируем и валидируем
+    const validation = validateTelegramLogin(telegram);
+    if (!validation.valid) {
+        showErrorModal(validation.error);
+        return;
+    }
+    
+    // Обновляем значение в поле отформатированным логином
+    telegramInput.value = validation.value;  // Используем validation.value
+    streamersVoteTelegram = validation.value;  // Используем validation.value
+    
+    // Переходим к капче
+    showStreamersVoteStep('streamersVoteCaptcha');
+    refreshCaptcha();
+}
+
+function streamersVoteCheckCaptcha() {
+    const captchaInput = document.getElementById('captchaInput');
+    const userAnswer = captchaInput.value.trim();
+    
+    if (!userAnswer) {
+        showErrorModal('Введите ответ на задачу');
+        return;
+    }
+    
+    if (!verifyCaptcha(userAnswer)) {
+        showErrorModal('Неверный ответ! Попробуйте ещё раз.');
+        refreshCaptcha();
+        return;
+    }
+    
+    // Капча пройдена - переходим к подтверждению
     showStreamersVoteStep('streamersVoteStep2');
 }
 
 async function submitStreamersVote() {
+    // Проверяем что капча была пройдена
+    if (!captchaVerified) {
+        showErrorModal('Пожалуйста, пройдите проверку');
+        showStreamersVoteStep('streamersVoteCaptcha');
+        refreshCaptcha();
+        return;
+    }
+    
     showLoadingOverlay('Отправка голоса...');
     
     const result = await apiRequest('vote', {
@@ -522,10 +680,10 @@ async function submitStreamersVote() {
     
     if (result.error) {
         if (result.code === 'DUPLICATE') {
-            showModal('errorModal', 'Вы уже голосовали!');
+            showErrorModal('Вы уже голосовали!');
             markAsActed('streamersListVoted');
         } else {
-            showModal('errorModal', 'Ошибка: ' + result.error);
+            showErrorModal('Ошибка: ' + result.error);
         }
         return;
     }
@@ -535,7 +693,7 @@ async function submitStreamersVote() {
         showStreamersVoteStep('streamersVoteStep3');
         updateVoteButtons();
     } else {
-        showModal('errorModal', 'Ошибка отправки. Попробуйте позже.');
+        showErrorModal('Ошибка отправки. Попробуйте позже.');
     }
 }
 
@@ -613,16 +771,28 @@ function handleSuggestStreamer() {
     document.getElementById('suggestStep2').style.display = 'none';
     document.getElementById('suggestSuccess').style.display = 'none';
     document.getElementById('alreadySuggested').style.display = 'none';
+    
+    setTimeout(setupTelegramInputs, 100);
 }
 
 function suggestStep2() {
-    const telegram = document.getElementById('userTelegram').value.trim();
+    const telegramInput = document.getElementById('userTelegram');
     const twitch = document.getElementById('userTwitch').value.trim();
+    let telegram = telegramInput.value.trim();
 
     if (!telegram || !twitch) {
-        showModal('errorModal', 'Пожалуйста, заполните все поля!');
+        showErrorModal('Пожалуйста, заполните все поля!');
         return;
     }
+
+    // Валидация Telegram
+    const validation = validateTelegramLogin(telegram);
+    if (!validation.valid) {
+        showErrorModal(validation.error);
+        return;
+    }
+    
+    telegramInput.value = validation.value;  // Используем validation.value
 
     document.getElementById('suggestStep1').style.display = 'none';
     document.getElementById('suggestStep2').style.display = 'block';
@@ -635,7 +805,7 @@ async function submitSuggestion() {
     const streamerTwitch = document.getElementById('streamerTwitch').value.trim();
 
     if (!streamerNick || !streamerTwitch) {
-        showModal('errorModal', 'Пожалуйста, заполните все поля!');
+        showErrorModal('Пожалуйста, заполните все поля!');
         return;
     }
 
@@ -656,10 +826,10 @@ async function submitSuggestion() {
         document.getElementById('suggestSuccess').style.display = 'block';
     } else {
         if (result.code === 'DUPLICATE') {
-            showModal('errorModal', 'Вы уже отправляли предложение!');
+            showErrorModal('Вы уже отправляли предложение!');
             markAsActed('hasSuggested');
         } else {
-            showModal('errorModal', 'Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
+            showErrorModal( 'Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
         }
     }
 }
@@ -702,21 +872,33 @@ function startVoting(nomination) {
     document.getElementById('winnerDisplay').style.display = 'none';
     document.getElementById('alreadyVoted').style.display = 'none';
     document.getElementById('voteSuccess').style.display = 'none';
+    
+    setTimeout(setupTelegramInputs, 100);
 }
 
 function startBracket() {
     const nick = document.getElementById('voterNick').value.trim();
-    const telegram = document.getElementById('voterTelegram').value.trim();
+    const telegramInput = document.getElementById('voterTelegram');
     const twitch = document.getElementById('voterTwitch').value.trim();
+    let telegram = telegramInput.value.trim();
 
     if (!nick || !telegram || !twitch) {
-        showModal('errorModal', 'Пожалуйста, заполните все поля!');
+        showErrorModal('Пожалуйста, заполните все поля!');
         return;
     }
 
+    // Валидация Telegram
+    const validation = validateTelegramLogin(telegram);
+    if (!validation.valid) {
+        showErrorModal(validation.error);
+        return;
+    }
+    
+    telegramInput.value = validation.value;  // Используем validation.value
+    telegram = validation.value;  // Используем validation.value
+
     voterData = { nick, telegram, twitch };
     
-    // Используем загруженных стримеров или локальную базу
     const sourceStreamers = streamersFromSheet.length > 0 ? streamersFromSheet : STREAMERS_DB;
     currentStreamers = [...sourceStreamers].sort(() => Math.random() - 0.5);
 
@@ -813,10 +995,10 @@ async function submitVote() {
         checkVotedNominations();
     } else {
         if (result.code === 'DUPLICATE') {
-            showModal('errorModal', 'Вы уже голосовали в этой номинации!');
+            showErrorModal( 'Вы уже голосовали в этой номинации!');
             markAsActed(`voted_${currentNomination}`);
         } else {
-            showModal('errorModal', 'Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
+            showErrorModal( 'Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
         }
     }
 }
@@ -856,6 +1038,8 @@ function openSupportModal() {
     document.getElementById('supportTelegram').value = '';
     document.getElementById('supportMessage').value = '';
     document.getElementById('supportModal').classList.add('active');
+    
+    setTimeout(setupTelegramInputs, 100);
 }
 
 function showSupportStep(stepId) {
@@ -866,12 +1050,23 @@ function showSupportStep(stepId) {
 }
 
 function supportStep2() {
-    const telegram = document.getElementById('supportTelegram').value.trim();
+    const telegramInput = document.getElementById('supportTelegram');
+    let telegram = telegramInput.value.trim();
+    
     if (!telegram) {
-        showModal('errorModal', 'Введите ваш Telegram логин');
+        showErrorModal('Введите ваш Telegram логин');
         return;
     }
-    supportUserTelegram = telegram;
+    
+    // Валидация Telegram
+    const validation = validateTelegramLogin(telegram);
+    if (!validation.valid) {
+        showErrorModal(validation.error);
+        return;
+    }
+    
+    telegramInput.value = validation.value;  // Используем validation.value
+    supportUserTelegram = validation.value;  // Используем validation.value
     showSupportStep('supportStep2');
 }
 
@@ -883,12 +1078,12 @@ async function submitSupport() {
     const message = document.getElementById('supportMessage').value.trim();
     
     if (!message) {
-        showModal('errorModal', 'Введите ваше сообщение');
+        showErrorModal( 'Введите ваше сообщение');
         return;
     }
     
     if (message.length < 10) {
-        showModal('errorModal', 'Сообщение слишком короткое (минимум 10 символов)');
+        showErrorModal( 'Сообщение слишком короткое (минимум 10 символов)');
         return;
     }
 
@@ -907,12 +1102,12 @@ async function submitSupport() {
         setCookie('supportLastSent', timestamp, 1);
         showSupportStep('supportStep4');
     } else {
-        showModal('errorModal', 'Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
+        showErrorModal( 'Ошибка отправки: ' + (result.error || 'Попробуйте позже'));
     }
 }
 
 // ============================================
-// NOMINEES (локальная база как fallback)
+// NOMINEES
 // ============================================
 function loadNominees() {
     const grid = document.getElementById('nomineesGrid');
@@ -935,7 +1130,6 @@ function openNomineeProfile(streamerId) {
     const streamer = sourceStreamers.find(s => s.id === streamerId);
     if (!streamer) return;
 
-    // Используем profileImage как основное, если оно есть, иначе image
     document.getElementById('nomineeProfileImage').src = streamer.profileImage || streamer.image;
     document.getElementById('nomineeProfileImage').alt = streamer.name;
     document.getElementById('nomineeProfileName').textContent = streamer.name;
@@ -946,7 +1140,6 @@ function openNomineeProfile(streamerId) {
     if (streamer.interview && streamer.interview.q1) {
         interviewHTML = '';
         
-        // Генерируем вопросы динамически
         for (let i = 1; i <= 3; i++) {
             const q = streamer.interview[`q${i}`];
             const a = streamer.interview[`a${i}`];
@@ -961,7 +1154,6 @@ function openNomineeProfile(streamerId) {
             }
         }
         
-        // Если вдруг нет ни одного вопроса
         if (interviewHTML === '') {
             interviewHTML = '<p style="color: #d4af37;">Интервью скоро появится...</p>';
         }
@@ -972,7 +1164,7 @@ function openNomineeProfile(streamerId) {
 }
 
 // ============================================
-// FALLBACK STREAMERS DATABASE (на случай если API недоступен)
+// FALLBACK STREAMERS DATABASE
 // ============================================
 const STREAMERS_DB = [
     {
@@ -1009,7 +1201,67 @@ const STREAMERS_DB = [
     }
 ];
 
-        // ============================================
+// ============================================
+// НОВАЯ ФУНКЦИЯ ДЛЯ ПРАВИЛЬНОГО ПОКАЗА ОШИБОК
+// ============================================
+function showErrorModal(text) {
+    const modal = document.getElementById('errorModal');
+    const textElement = document.getElementById('errorModalText');
+    
+    if (textElement) {
+        textElement.textContent = text;
+    }
+    
+    // Устанавливаем самый высокий z-index
+    modal.style.zIndex = '99999';
+    modal.classList.add('active');
+    
+    // Фокус на кнопку закрытия
+    const closeBtn = modal.querySelector('button');
+    if (closeBtn) closeBtn.focus();
+    
+    // Прокручиваем к окну ошибки
+    modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function showDisabledModal(text) {
+    const modal = document.getElementById('disabledModal');
+    const textElement = document.getElementById('disabledModalText');
+    
+    if (textElement) {
+        textElement.textContent = text;
+    }
+    
+    // Устанавливаем самый высокий z-index
+    modal.style.zIndex = '99999';
+    modal.classList.add('active');
+    
+    // Фокус на кнопку закрытия
+    const closeBtn = modal.querySelector('button');
+    if (closeBtn) closeBtn.focus();
+    
+    // Прокручиваем к окну ошибки
+    modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Обновляем функцию closeModal
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        // Сбрасываем z-index после закрытия
+        setTimeout(() => {
+            modal.style.zIndex = '';
+        }, 300);
+    }
+    
+    // Сбрасываем капчу при закрытии
+    if (modalId === 'streamersVoteModal') {
+        captchaVerified = false;
+    }
+}
+
+    // ============================================
     // ANTI-DEVTOOLS PROTECTION
     // ============================================
     document.addEventListener('contextmenu', e => e.preventDefault());
