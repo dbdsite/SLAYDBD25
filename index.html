@@ -486,65 +486,95 @@
     </div>
 
     <!-- Streamers List Vote Modal -->
-    <div class="modal-overlay" id="streamersVoteModal">
-        <div class="modal">
-            <!-- Step 1: Telegram Input -->
-            <div id="streamersVoteStep1">
-                <div class="modal-icon">🗳️</div>
-                <h3 class="modal-title">Голосование за стримера</h3>
-                <p class="modal-text">Вы голосуете за: <strong id="voteStreamerName"></strong></p>
-                <div class="form-group" style="text-align: left;">
-                    <label class="form-label">Ваш Telegram логин</label>
-                    <input type="text" class="form-input" id="streamersVoteTelegram" placeholder="@username">
-                </div>
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <button class="btn btn-secondary btn-small" onclick="closeStreamersVoteModal()">Отмена</button>
-                    <button class="btn btn-small" onclick="streamersVoteStep2()">Далее →</button>
-                </div>
+<div class="modal-overlay" id="streamersVoteModal">
+    <div class="modal">
+        <!-- Step 1: Telegram Input -->
+        <div id="streamersVoteStep1">
+            <div class="modal-icon">🗳️</div>
+            <h3 class="modal-title">Голосование за стримера</h3>
+            <p class="modal-text">Вы голосуете за: <strong id="voteStreamerName"></strong></p>
+            <div class="form-group" style="text-align: left;">
+                <label class="form-label">Ваш Telegram логин</label>
+                <input type="text" class="form-input" id="streamersVoteTelegram" placeholder="@username">
             </div>
-            
-            <!-- Step 2: Warning -->
-            <div id="streamersVoteStep2" style="display: none;">
-                <div class="modal-icon">⚠️</div>
-                <h3 class="modal-title">Внимание!</h3>
-                <p class="modal-text">
-                    В номинации будут участвовать только <strong>32 стримера</strong>, 
-                    которые наберут больше всего голосов.
-                    <br><br>
-                    <strong>Ваш голос отменить будет нельзя!</strong>
-                    <br><br>
-                    Вы уверены, что хотите проголосовать за <strong id="voteStreamerNameConfirm"></strong>?
-                </p>
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <button class="btn btn-secondary btn-small" onclick="closeStreamersVoteModal()">Отмена</button>
-                    <button class="btn btn-small" onclick="submitStreamersVote()">✓ Отправить голос</button>
-                </div>
-            </div>
-            
-            <!-- Step 3: Success -->
-            <div id="streamersVoteStep3" style="display: none;">
-                <div class="modal-icon">🎉</div>
-                <h3 class="modal-title">Голос принят!</h3>
-                <p class="modal-text">
-                    Спасибо за ваш голос! Он успешно отправлен.
-                    <br><br>
-                    Следите за новостями, чтобы узнать результаты!
-                </p>
-                <button class="btn btn-small" onclick="closeStreamersVoteModal()">Закрыть</button>
-            </div>
-            
-            <!-- Already Voted -->
-            <div id="streamersVoteAlready" style="display: none;">
-                <div class="modal-icon">🚫</div>
-                <h3 class="modal-title">Вы уже голосовали!</h3>
-                <p class="modal-text">
-                    Вы уже отдали свой голос за стримера. 
-                    Повторное голосование невозможно.
-                </p>
-                <button class="btn btn-small" onclick="closeStreamersVoteModal()">Закрыть</button>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-small" onclick="closeStreamersVoteModal()">Отмена</button>
+                <button class="btn btn-small" onclick="streamersVoteStep2()">Далее →</button>
             </div>
         </div>
+        
+        <!-- Step 2: CAPTCHA -->
+        <div id="streamersVoteCaptcha" style="display: none;">
+            <div class="modal-icon">🔐</div>
+            <h3 class="modal-title">Проверка безопасности</h3>
+            <p class="modal-text">Решите простую задачу, чтобы подтвердить, что вы не бот:</p>
+            
+            <div style="background: rgba(26, 26, 46, 0.7); padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid var(--gold);">
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <span style="font-size: 2.5rem; color: var(--gold); font-weight: bold;" id="captchaQuestion"></span>
+                </div>
+                <div class="form-group" style="text-align: left;">
+                    <label class="form-label">Ваш ответ</label>
+                    <input type="number" class="form-input" id="captchaInput" placeholder="Введите ответ">
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary btn-small" onclick="refreshCaptcha()">
+                        <i class="fas fa-redo"></i> Обновить
+                    </button>
+                    <button class="btn btn-small" onclick="streamersVoteCheckCaptcha()">
+                        ✓ Проверить
+                    </button>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-small" onclick="showStreamersVoteStep('streamersVoteStep1')">← Назад</button>
+                <button class="btn btn-small" onclick="streamersVoteCheckCaptcha()">Проверить и продолжить</button>
+            </div>
+        </div>
+        
+        <!-- Step 3: Confirmation -->
+        <div id="streamersVoteStep2" style="display: none;">
+            <div class="modal-icon">⚠️</div>
+            <h3 class="modal-title">Внимание!</h3>
+            <p class="modal-text">
+                В номинации будут участвовать только <strong>32 стримера</strong>, 
+                которые наберут больше всего голосов.
+                <br><br>
+                <strong>Ваш голос отменить будет нельзя!</strong>
+                <br><br>
+                Вы уверены, что хотите проголосовать за <strong id="voteStreamerNameConfirm"></strong>?
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-small" onclick="closeStreamersVoteModal()">Отмена</button>
+                <button class="btn btn-small" onclick="submitStreamersVote()">✓ Отправить голос</button>
+            </div>
+        </div>
+        
+        <!-- Step 4: Success -->
+        <div id="streamersVoteStep3" style="display: none;">
+            <div class="modal-icon">🎉</div>
+            <h3 class="modal-title">Голос принят!</h3>
+            <p class="modal-text">
+                Спасибо за ваш голос! Он успешно отправлен.
+                <br><br>
+                Следите за новостями, чтобы узнать результаты!
+            </p>
+            <button class="btn btn-small" onclick="closeStreamersVoteModal()">Закрыть</button>
+        </div>
+        
+        <!-- Already Voted -->
+        <div id="streamersVoteAlready" style="display: none;">
+            <div class="modal-icon">🚫</div>
+            <h3 class="modal-title">Вы уже голосовали!</h3>
+            <p class="modal-text">
+                Вы уже отдали свой голос за стримера. 
+                Повторное голосование невозможно.
+            </p>
+            <button class="btn btn-small" onclick="closeStreamersVoteModal()">Закрыть</button>
+        </div>
     </div>
+</div>
 
     <!-- Nominee Profile Modal -->
     <div class="modal-overlay" id="nomineeProfileModal">
