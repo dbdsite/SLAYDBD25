@@ -6,14 +6,13 @@
         document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#D4AF37;font-size:24px;">⚠️ Несанкционированный доступ запрещен!</div>';
     }
 })();
-       
-        
+              
 // ============================================
 // CONFIGURATION - НАСТРОЙКИ
 // ============================================
 const CONFIG = {
     // URL Google Apps Script (ОБЯЗАТЕЛЬНО ЗАМЕНИТЬ!)
-    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbz64SE19UPezx-a_H2mMEH-dcHk_Darq4xfssPkxpR8aDFQD_dUABFP5UUXUOmle6IGHg/exec',
+    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbza6IlrxnF0TZUwACRZL0aSQN7qTY-33mbMZWGUDOdyivJIqDZM-AIhH9gxAqvmdIbefg/exec',
     
     // Локальные настройки (не содержат секретов!)
     TELEGRAM_CHANNEL_URL: 'https://t.me/slaydbd2025',
@@ -47,6 +46,9 @@ let streamersFromSheet = [];
 // КАПЧА ПЕРЕМЕННЫЕ
 let captchaAnswer = 0;
 let captchaVerified = false;
+
+// 🆕 SESSION TOKEN ДЛЯ ЗАЩИТЫ ОТ БОТОВ
+let sessionToken = null;
 
 const NOMINATION_NAMES = {
     'best_streamer': 'Лучший ДБД стример года',
@@ -154,7 +156,7 @@ function refreshCaptcha() {
 }
 
 // ============================================
-// BROWSER FINGERPRINT
+// BROWSER FINGERPRINT (УЛУЧШЕННЫЙ)
 // ============================================
 function generateFingerprint() {
     const canvas = document.createElement('canvas');
@@ -171,26 +173,60 @@ function generateFingerprint() {
         screen.colorDepth,
         new Date().getTimezoneOffset(),
         navigator.hardwareConcurrency || 'unknown',
-        canvasData.slice(-50)
+        navigator.platform || 'unknown',
+        canvasData.slice(-100)  // 🆕 Берём больше данных
     ].join('|');
     
-    let hash = 0;
+    // 🆕 УЛУЧШЕННЫЙ ХЕШ (длиннее и без подозрительного префикса)
+    let hash1 = 0;
+    let hash2 = 0;
     for (let i = 0; i < fingerprint.length; i++) {
         const char = fingerprint.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
+        hash1 = ((hash1 << 5) - hash1) + char;
+        hash1 = hash1 & hash1;
+        hash2 = ((hash2 << 7) + hash2) ^ char;
+        hash2 = hash2 & hash2;
     }
     
-    return 'fp_' + Math.abs(hash).toString(36);
+    // Формируем длинный fingerprint (минимум 20 символов)
+    const part1 = Math.abs(hash1).toString(36);
+    const part2 = Math.abs(hash2).toString(36);
+    const part3 = Date.now().toString(36);
+    
+    return part1 + part2 + part3;  // Без префикса fp_
 }
 
 function getFingerprint() {
     let fp = localStorage.getItem('deviceFingerprint');
-    if (!fp) {
+    
+    // 🆕 Проверяем что fingerprint достаточно длинный и валидный
+    if (!fp || fp.length < 20 || fp.startsWith('fp_')) {
         fp = generateFingerprint();
         localStorage.setItem('deviceFingerprint', fp);
     }
+    
     return fp;
+}
+
+// ============================================
+// SESSION TOKEN - ЗАЩИТА ОТ БОТОВ
+// ============================================
+async function initSession() {
+    try {
+        const response = await fetch(CONFIG.GOOGLE_APPS_SCRIPT_URL + '?action=getSessionToken');
+        
+        if (!response.ok) {
+            throw new Error('Failed to get session token');
+        }
+        
+        const data = await response.json();
+        sessionToken = data.token;
+        console.log('✅ Session token получен');
+        
+    } catch (error) {
+        console.error('❌ Ошибка получения session token:', error);
+        sessionToken = null;
+    }
 }
 
 // ============================================
@@ -299,6 +335,7 @@ async function apiRequest(action, data = {}) {
             body: JSON.stringify({
                 action: action,
                 fingerprint: getFingerprint(),
+                sessionToken: sessionToken,  // 🆕 ДОБАВЛЯЕМ SESSION TOKEN
                 ...data
             })
         });
@@ -409,6 +446,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Настраиваем автоформатирование Telegram полей
     setupTelegramInputs();
+    
+    // 🆕 ПОЛУЧАЕМ SESSION TOKEN (защита от ботов)
+    await initSession();
     
     // Проверяем доступность API
     const pingResult = await apiGet('ping');
