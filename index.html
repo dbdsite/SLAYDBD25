@@ -72,30 +72,44 @@
         </section>
 
         <!-- Fund Section -->
-        <section class="section" id="fundSection">
-            <div class="section-header">
-                <button class="btn btn-back" onclick="showSection('mainMenu')" style="margin-bottom: 20px; margin-top: 0;">← Назад</button>
-                <h2 class="section-title">💎 Поддержать Фонд</h2>
-            </div>
-            <div class="card fund-content">
-                <div class="fund-icon">🎁</div>
-                <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">О нашем фонде</h3>
-                <p style="color: var(--gold-light); line-height: 1.8; margin-bottom: 20px;">
-                    Фонд SLAY DBD 2025 создан для поддержки стримерского сообщества Dead by Daylight. 
-                    Все собранные средства направятся в призовой фонд для победителя премии 
-                    и развитие комьюнити. 20% Организации 80% Победителю.
-                </p>
-                <p style="color: var(--gold-light); line-height: 1.8; margin-bottom: 30px;">
-                    Ваша поддержка помогает нам делать наши мероприятия ещё более масштабными и незабываемыми! 
-                    Каждый донат — это вклад в развитие любимого сообщества.
-                </p>
-                <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">Фонд сейчас составляет - 00000 руб.</h3>
-                <br>
-                <button class="btn" onclick="window.open(CONFIG.SUPPORT_URL, '_blank')">
-                    ❤️ Поддержать
-                </button>
-            </div>
-        </section>
+<section class="section" id="fundSection">
+    <div class="section-header">
+        <button class="btn btn-back" onclick="showSection('mainMenu')" style="margin-bottom: 20px; margin-top: 0;">← Назад</button>
+        <h2 class="section-title">💎 Поддержать Фонд</h2>
+    </div>
+    <div class="card fund-content">
+        <div class="fund-icon">🎁</div>
+        <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">О нашем фонде</h3>
+        <p style="color: var(--gold-light); line-height: 1.8; margin-bottom: 20px;">
+            Фонд SLAY DBD 2025 создан для поддержки стримерского сообщества Dead by Daylight. 
+            Все собранные средства направятся в призовой фонд для победителя премии 
+            и развитие комьюнити. 20% Организации 80% Победителю.
+        </p>
+        <p style="color: var(--gold-light); line-height: 1.8; margin-bottom: 30px;">
+            Ваша поддержка помогает нам делать наши мероприятия ещё более масштабными и незабываемыми! 
+            Каждый донат — это вклад в развитие любимого сообщества.
+        </p>
+        <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">Фонд сейчас составляет - 5 000 руб.</h3>
+        <br>
+        
+        <!-- Кнопка "Поддержать" -->
+        <button class="btn" onclick="window.open(CONFIG.SUPPORT_URL, '_blank')" style="margin-bottom: 40px;">
+            ❤️ Поддержать
+        </button>
+        
+        <!-- Заголовок "Спонсоры" с уменьшенным отступом снизу -->
+        <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; margin-top: 20px;">
+            Спонсоры:
+        </h3>
+        
+        <!-- Кнопка Zuenok с уменьшенным отступом сверху -->
+        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+            <button class="btn" onclick="window.open('https://www.twitch.tv/zuenok__', '_blank')" style="min-width: 300px; background: linear-gradient( #79288f 0%, #c41bd0 100%);">
+                <i class="fab fa-twitch"></i> Zuenok
+            </button>
+        </div>
+    </div>
+</section>
 
         <!-- Suggest Streamer Section -->
         <section class="section" id="suggestSection">
