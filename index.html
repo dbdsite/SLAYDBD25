@@ -92,10 +92,10 @@
         <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px;">Фонд сейчас составляет - 5 000 руб.</h3>
         <br>
         
-        <!-- Кнопка "Поддержать" -->
-        <button class="btn" onclick="window.open(CONFIG.SUPPORT_URL, '_blank')" style="margin-bottom: 40px;">
-            ❤️ Поддержать
-        </button>
+        <!-- В разделе fundSection замените кнопку "Поддержать" -->
+<button class="btn" onclick="showSupportFundModal()" style="margin-bottom: 40px;">
+    ❤️ Поддержать
+</button>
         
         <!-- Заголовок "Спонсоры" с уменьшенным отступом снизу -->
         <h3 style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; margin-top: 20px;">
@@ -412,6 +412,79 @@
         </div>
     </footer>
 
+    <!-- Support Fund Modal -->
+    <div class="modal-overlay" id="supportFundModal">
+        <div class="modal" style="max-width: 600px;">
+            <button class="modal-close-btn" onclick="closeModal('supportFundModal')">×</button>
+            <div class="modal-icon">💎</div>
+            <h3 class="modal-title">Поддержать Фонд SLAY DBD 2025</h3>
+            <p class="modal-text" style="margin-bottom: 30px;">
+                Выберите удобный способ поддержки. Каждое пожертвование помогает развивать сообщество DBD!
+            </p>
+            
+            <div class="payment-methods">
+                <!-- DonatePay -->
+                <div class="payment-method" id="donatepayMethod">
+                    <button class="payment-btn" onclick="togglePaymentMethod('donatepay')">
+                        <span class="payment-icon">💰</span>
+                        <span class="payment-name">DonatePay</span>
+                        <span class="payment-arrow">▼</span>
+                    </button>
+                    <div class="payment-content" id="donatepayContent">
+                        <div class="payment-widget">
+                            <iframe
+                                src="https://widget.donatepay.ru/widgets/page/364e7a71754c953d3f6b4d1438e667cf2a47bbedf9985af48ed1028f3d8e4da7?widget_id=5154175&sum=200" 
+                                width="100%" 
+                                height="220" 
+                                frameborder="0"
+                                style="border-radius: 10px; border: 2px solid var(--gold);">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Yoomoney -->
+                <div class="payment-method">
+                    <button class="payment-btn" onclick="window.open('https://yoomoney.ru/to/4100118303546359', '_blank')">
+                        <span class="payment-icon">💳</span>
+                        <span class="payment-name">Yoomoney</span>
+                        <span class="payment-arrow">↗</span>
+                    </button>
+                </div>
+                
+                <!-- Card Number -->
+                <div class="payment-method" id="cardMethod">
+                    <button class="payment-btn" onclick="toggleCardNumber()" id="cardButton">
+                        <span class="payment-icon">🏦</span>
+                        <span class="payment-name">По номеру карты</span>
+                        <span class="payment-arrow">▼</span>
+                    </button>
+                    <div class="payment-content" id="cardContent" style="display: none;">
+                        <div class="card-number-display">
+                            <div class="card-number" id="cardNumber">2204 1202 0195 2187</div>
+                            <button class="btn-copy" onclick="copyCardNumber()">
+                                <i class="fas fa-copy"></i> Копировать
+                            </button>
+                            <div class="copy-success" id="copySuccess" style="display: none;">
+                                <i class="fas fa-check"></i> Скопировано!
+                            </div>
+                        </div>
+                        <p style="color: var(--gold-light); font-size: 0.9rem; margin-top: 10px;">
+                            При переводе указывайте коментарий Slay DBD и свой ник, желательно твича!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 15px; background: rgba(26, 26, 46, 0.7); border-radius: 10px; border-left: 4px solid var(--gold);">
+                <p style="color: var(--gold-light); margin: 0; font-size: 0.9rem;">
+                    💖 Спасибо за вашу поддержку! Средства идут на призовой фонд для победителей 
+                    и развитие DBD-сообщества.
+                </p>
+            </div>
+        </div>
+    </div>
+    
     <!-- Modal for Disabled Features -->
     <div class="modal-overlay" id="disabledModal">
         <div class="modal">
