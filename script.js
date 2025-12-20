@@ -1357,6 +1357,60 @@ function closeModal(modalId) {
     }
 }
 
+// Функции для модального окна поддержки фонда
+        function showSupportFundModal() {
+            document.getElementById('supportFundModal').style.display = 'flex';
+        }
+        
+        function togglePaymentMethod(method) {
+            const content = document.getElementById(method + 'Content');
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+                // Автоматически подстраиваем высоту iframe
+                if (method === 'donatepay') {
+                    content.querySelector('iframe').style.height = '220px';
+                }
+            }
+        }
+        
+        function toggleCardNumber() {
+            const content = document.getElementById('cardContent');
+            const button = document.getElementById('cardButton');
+            
+            if (content.style.display === 'none') {
+                // Показываем номер карты и меняем текст кнопки
+                content.style.display = 'block';
+                button.querySelector('.payment-name').textContent = '2204 1202 0195 2187';
+                button.querySelector('.payment-arrow').textContent = '▲';
+            } else {
+                // Скрываем номер карты и возвращаем исходный текст
+                content.style.display = 'none';
+                button.querySelector('.payment-name').textContent = 'По номеру карты';
+                button.querySelector('.payment-arrow').textContent = '▼';
+            }
+        }
+        
+        function copyCardNumber() {
+            const cardNumber = document.getElementById('cardNumber').textContent;
+            navigator.clipboard.writeText(cardNumber.replace(/\s/g, ''))
+                .then(() => {
+                    const copySuccess = document.getElementById('copySuccess');
+                    copySuccess.style.display = 'block';
+                    setTimeout(() => {
+                        copySuccess.style.display = 'none';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Ошибка копирования: ', err);
+                });
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
     // ============================================
     // ANTI-DEVTOOLS PROTECTION
     // ============================================
