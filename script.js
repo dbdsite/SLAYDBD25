@@ -12,7 +12,7 @@
 // ============================================
 const CONFIG = {
     // URL Google Apps Script (ОБЯЗАТЕЛЬНО ЗАМЕНИТЬ!)
-    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbza6IlrxnF0TZUwACRZL0aSQN7qTY-33mbMZWGUDOdyivJIqDZM-AIhH9gxAqvmdIbefg/exec',
+    GOOGLE_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxdqtZb35-tNA7psPJ-1CMiG1tqRcaQrKUH6Rj3XTj5ANjj45p2unu3W-fKMat8LNePeA/exec',
     
     // Локальные настройки (не содержат секретов!)
     TELEGRAM_CHANNEL_URL: 'https://t.me/slaydbd2025',
