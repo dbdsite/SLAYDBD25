@@ -1320,7 +1320,7 @@ const STREAMERS_DB = [
     {
         id: 2,
         name: "Animu19",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b85dac9b-0ef6-427f-890c-8c1097973e53-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/animu19",
         votes: 0,
@@ -1336,7 +1336,7 @@ const STREAMERS_DB = [
     {
         id: 3,
         name: "BanditkaRF",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/09781e6c-6af5-4917-b33c-4c9e7f4d814c-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/banditkarf",
         votes: 0,
@@ -1368,7 +1368,7 @@ const STREAMERS_DB = [
     {
         id: 5,
         name: "Cfcbrt",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/188bb88f-1f7f-4da4-b849-d6159bfd439d-profile_image-70x70.jpeg",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/cfcbrt",
         votes: 0,
@@ -1384,7 +1384,7 @@ const STREAMERS_DB = [
     {
         id: 6,
         name: "HozyMei",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/7bf0b38e-a322-46bf-a95a-92133e36a63a-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/hozymei",
         votes: 0,
@@ -1400,7 +1400,7 @@ const STREAMERS_DB = [
     {
         id: 7,
         name: "Kalerine",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/99f2889a-f77a-4ef0-9990-a7aca8413760-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/kalerine",
         votes: 0,
@@ -1416,7 +1416,7 @@ const STREAMERS_DB = [
     {
         id: 8,
         name: "KiperOnZavod",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/9b0e6eea-1ff5-4601-a4f4-f7681a6397e4-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/kiperonzavod",
         votes: 0,
@@ -1480,7 +1480,7 @@ const STREAMERS_DB = [
     {
         id: 12,
         name: "Mommyalya",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/91cb67be-e0fc-4573-99b4-e94e23ed1bc4-profile_image-70x70.jpeg",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/mommyalya",
         votes: 0,
@@ -1512,7 +1512,7 @@ const STREAMERS_DB = [
     {
         id: 14,
         name: "NightFuryo3o",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f228354a-9fa1-426b-8349-47fcb7691b82-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/nightfuryo3o",
         votes: 0,
@@ -1528,7 +1528,7 @@ const STREAMERS_DB = [
     {
         id: 15,
         name: "Otryzhka_Bomzha",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d132b535-5ea8-4e10-91d7-6f31ba1c3e50-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/otryzhka_bomzha",
         votes: 0,
@@ -1608,7 +1608,7 @@ const STREAMERS_DB = [
     {
         id: 20,
         name: "Riversong___",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/bcebbd2b-2034-4da6-9454-9041b46a059b-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/riversong___",
         votes: 0,
@@ -1656,7 +1656,7 @@ const STREAMERS_DB = [
     {
         id: 23,
         name: "STROGANOV",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/96383744-94f7-41a1-af62-3fe7c7641f09-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/stroganov",
         votes: 0,
@@ -1672,7 +1672,7 @@ const STREAMERS_DB = [
     {
         id: 24,
         name: "T1muren",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cb5f7869-99b6-4a61-a85e-da6e2b5bdfe9-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/t1muren",
         votes: 0,
@@ -1688,7 +1688,7 @@ const STREAMERS_DB = [
     {
         id: 25,
         name: "TheCrashB",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d7d67dfe-230a-4f8f-81e5-7157c37bce84-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/thecrashb",
         votes: 0,
@@ -1704,7 +1704,7 @@ const STREAMERS_DB = [
     {
         id: 26,
         name: "Tigra",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f5cb5de3-3e93-49c6-a5b3-03b1523589dc-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/tigra",
         votes: 0,
@@ -1736,7 +1736,7 @@ const STREAMERS_DB = [
     {
         id: 28,
         name: "TumannayaMgla",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/519164d5-8061-46c0-ad90-f2ff2c0e8aab-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/tumannayamgla",
         votes: 0,
@@ -1768,7 +1768,7 @@ const STREAMERS_DB = [
     {
         id: 30,
         name: "Vshtamm",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/0acbf4e9-a0f6-4d06-aa79-690f814fee2c-profile_image-70x70.jpeg",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/vshtamm",
         votes: 0,
@@ -1784,7 +1784,7 @@ const STREAMERS_DB = [
     {
         id: 31,
         name: "xVETKA",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/998b3d6b-67c2-499c-8c9f-ee3a36c29fef-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/xvetka",
         votes: 0,
