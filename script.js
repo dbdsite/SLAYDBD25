@@ -1,11 +1,4 @@
-// Анти-копирование защита
-(function() {
-    if (window.location.hostname !== 'dbdsite.github.io' && 
-        window.location.hostname !== 'localhost' &&
-        window.location.hostname !== '127.0.0.1') {
-        document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#D4AF37;font-size:24px;">⚠️ Несанкционированный доступ запрещен!</div>';
-    }
-})();
+
               
 // ============================================
 // CONFIGURATION - НАСТРОЙКИ
@@ -20,10 +13,10 @@ const CONFIG = {
     
     // Включение/выключение кнопок
     BUTTONS: {
-        SUGGEST_STREAMER: true,
-        NOMINATE_STREAMER: false,
-        STREAMERS_LIST: true,
-        NOMINEES_LIST: false,
+        SUGGEST_STREAMER: false,
+        NOMINATE_STREAMER: true,
+        STREAMERS_LIST: false,
+        NOMINEES_LIST: true,
         SUPPORT_FUND: true,
         INFO: true,
         VOTES_COUNT: true,
@@ -560,20 +553,65 @@ function closeModal(modalId) {
 
 function showModal(modalId, text = null) {
     const modal = document.getElementById(modalId);
+    if (!modal) return;
     
     if (text) {
         const textElement = document.getElementById(modalId + 'Text');
         if (textElement) textElement.textContent = text;
     }
     
-    // Устанавливаем высокий z-index для окон ошибок
+    modal.style.display = '';
+    
     if (modalId === 'errorModal' || modalId === 'disabledModal') {
         modal.style.zIndex = '9999';
     }
     
     modal.classList.add('active');
     
-    // Фокус на кнопку закрытия
+    const closeBtn = modal.querySelector('button');
+    if (closeBtn) closeBtn.focus();
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    
+    modal.classList.remove('active');
+    modal.style.display = '';
+    
+    setTimeout(() => {
+        modal.style.zIndex = '';
+    }, 300);
+    
+    if (modalId === 'streamersVoteModal') {
+        captchaVerified = false;
+    }
+}
+
+function showErrorModal(text) {
+    const modal = document.getElementById('errorModal');
+    const textElement = document.getElementById('errorModalText');
+    
+    if (textElement) textElement.textContent = text;
+    
+    modal.style.display = '';
+    modal.style.zIndex = '99999';
+    modal.classList.add('active');
+    
+    const closeBtn = modal.querySelector('button');
+    if (closeBtn) closeBtn.focus();
+}
+
+function showDisabledModal(text) {
+    const modal = document.getElementById('disabledModal');
+    const textElement = document.getElementById('disabledModalText');
+    
+    if (textElement) textElement.textContent = text;
+    
+    modal.style.display = '';
+    modal.style.zIndex = '99999';
+    modal.classList.add('active');
+    
     const closeBtn = modal.querySelector('button');
     if (closeBtn) closeBtn.focus();
 }
@@ -596,7 +634,7 @@ function handleButton(buttonType) {
     const button = buttonMap[buttonType];
     
     if (!button.enabled) {
-        showDisabledModal( `Раздел "${button.name}" пока что недоступен.`);
+        showDisabledModal( `Раздел "${button.name}" Больше не доступен до 2026 года. Посмотрите пожалуста разделы "Номинировать стримера" и "Список номинантов"`);
         return;
     }
     
@@ -1265,34 +1303,514 @@ function openNomineeProfile(streamerId) {
 const STREAMERS_DB = [
     {
         id: 1,
+        name: "AneSstezia",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b494023a-0c0c-43b2-983d-19e0ecf92c17-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/RVbXYMm5/photo_2025_12_24_19_48_12.jpg",
+        twitch: "https://www.twitch.tv/anesstezia",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Давно, но осознанно с 1 марта 2025 года",
+            q2: "Что самое важное в стриме?",
+            a2: "Быть на одной волне с аудиторией и показывать скилуху",
+            q3: "Пожелание зрителям?",
+            a3: "Верьте в себя, учитесь у лучших и у вас все получится ;3"
+        }
+    },
+    {
+        id: 2,
+        name: "Animu19",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/animu19",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 3,
+        name: "BanditkaRF",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/banditkarf",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 4,
+        name: "Blacknovel",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/aa492443-022f-4f5d-8ab3-0852f20710ce-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/dtS4fqFv/photo_2025_12_24_20_19_01.jpg",
+        twitch: "https://twitch.tv/blacknovel",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "В конце июля 2025",
+            q2: "Что самое важное в стриме?",
+            a2: "Будь самим собой и найдешь тех, кому понравишься",
+            q3: "Пожелание зрителям?",
+            a3: "Спасибо всем тем, кто за меня голосовал!"
+        }
+    },
+    {
+        id: 5,
+        name: "Cfcbrt",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/cfcbrt",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 6,
+        name: "HozyMei",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/hozymei",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 7,
+        name: "Kalerine",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/kalerine",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 8,
+        name: "KiperOnZavod",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/kiperonzavod",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 9,
+        name: "KRISTYUSHA_",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ad5997f1-c8b8-4dd5-8e44-1af0b476f91d-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/4NFB0JGg/photo_2025_12_24_20_04_51.jpg",
+        twitch: "https://twitch.tv/kristyusha_",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Давно, но осознанно с 1 марта 2025 года",
+            q2: "Что самое важное в стриме?",
+            a2: "Быть на одной волне с аудиторией и показывать скилуху",
+            q3: "Пожелание зрителям?",
+            a3: "Верьте в себя, учитесь у лучших и у вас все получится ;3"
+        }
+    },
+    {
+        id: 10,
+        name: "MCPLEH",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b7a31939-32c0-404d-8b5a-3bea0be49c98-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/j2SPvgXR/photo-2025-12-05-06-17-42.jpg",
+        twitch: "https://twitch.tv/mcpleh",
+        votes: 16,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Почти 4 года",
+            q2: "Что самое важное в стриме?",
+            a2: "Не давайте прогибаться под фриков на своих же стримах.",
+            q3: "Пару слов зрителям?",
+            a3: "Ёмаё, я сам создатель этой номинации, и не знал что наберу 15+ голосов. Спасибо ребята, кто голосовал!"
+        }
+    },
+    {
+        id: 11,
+        name: "MogilevTM",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg",
+        profileImage: "https://i.postimg.cc/vZr7YVDf/mogilevtm.png",
+        twitch: "https://twitch.tv/mogilevtm_",
+        votes: 22,
+        interview: {
+            q1: "Почему начал стримить?",
+            a1: "Хотел делиться своим игровым опытом.",
+            q2: "Твой главный секрет успеха?",
+            a2: "Это Косплеи! За ними будущее!",
+            q3: "Планы на будущее?",
+            a3: "Расти дальше и пробовать новые форматы."
+        }
+    },
+    {
+        id: 12,
+        name: "Mommyalya",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/mommyalya",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 13,
+        name: "Mulder",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/61dffcb4-a3d1-4347-bbd4-80a74b57307a-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/xTd6gXwn/Ji_U8k_Ng_Fg5m96EGp_8wf_JXk_XOBCM37e_FLdl_Zwf_MNWk_UUui_Dht_NBZRq2We5FCDb_SU_abra_Dwo_E7630hgp_Sh2Kj.jpg",
+        twitch: "https://twitch.tv/mulder",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Стримлю уже 9ый год с ноября 2017 года.",
+            q2: "Что самое важное в стриме?",
+            a2: "Аудитория, конечно же, в этом и суть прямых трансляций",
+            q3: "Пожелание зрителям?",
+            a3: "Живите так, как не живете)"
+        }
+    },
+    {
+        id: 14,
+        name: "NightFuryo3o",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/nightfuryo3o",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 15,
+        name: "Otryzhka_Bomzha",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/otryzhka_bomzha",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 16,
+        name: "ParabellumLTD",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cce3ce1c-bfec-4f25-80a7-4c0283118dce-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/vBDZNr56/photo_2025_12_24_17_51_08.jpg",
+        twitch: "https://twitch.tv/parabellumltd",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Примерно полтора года",
+            q2: "Что самое важное в стриме?",
+            a2: "График, терпение, любовь к своему делу (без этого никак)",
+            q3: "Пожелание зрителям?",
+            a3: "Что б хер стоял и деньги были)"
+        }
+    },
+    {
+        id: 17,
+        name: "ParaDoxPlayTTV",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/53df78a0-d404-4be0-bb53-9da779ba2268-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/5NknrxJ4/photo_2025_12_25_01_14_33.jpg",
+        twitch: "https://twitch.tv/paradoxplayttv",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "С 2020 года на ютубе, несколько лет назад перешëл на твич. ",
+            q2: "Что самое важное в стриме?",
+            a2: "Хорошее настроение. Токсичность и лабубы.",
+            q3: "Пожелание зрителям?",
+            a3: "Бегать больше одного генератора, минусовать больше 1 суриката."
+        }
+    },
+    {
+        id: 18,
+        name: "Penguin_Ruina",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/17e0566d-7b5c-453c-b7d6-a94569c05c80-profile_image-70x70.jpeg",
+        profileImage: "https://i.postimg.cc/s2BVPpST/penguin.png",
+        twitch: "https://twitch.tv/penguin_ruina",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Стримлю ДБД уже лет 6 (первые 4 года на YouTube - канал удалён). Но, учитывая, что я Руина, то руиню и в других играх",
+            q2: "Любимый персонаж?",
+            a2: "У меня нет любимого персонажа - для меня это всё одинаковые текстурки с разной громкостью криков. А если говорить о манах... Каждый уникален и интересен по своему. Проще говоря - обойдемся без мейнов",
+            q3: "Пожелание зрителям?",
+            a3: "Любите своего стримера, потому что ваш стример - любит вас. Годного контента на просторах TWITCH и успехов в реальной жизни!"
+        }
+    },
+    {
+        id: 19,
+        name: "Provans_Kate",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b852763d-fd00-46e3-b5ff-765df0ebacd0-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/DzvZqkZD/photo_2025_12_09_12_11_39.jpg",
+        twitch: "https://twitch.tv/provans_kate",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "С 1 января 2022 года начинала стримить с PS4 без микрофона и вебки)",
+            q2: "Любимый персонаж?",
+            a2: "Ренато Лира и Они",
+            q3: "Пожелание зрителям?",
+            a3: "Спасибо каждому за поддержку, вы пупсики <3"
+        }
+    },
+    {
+        id: 20,
+        name: "Riversong___",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/riversong___",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 21,
+        name: "SmaiL_DBD",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/ebf45954-0171-470f-9a69-2b0a970024e5-profile_image-70x70.jpeg",
+        profileImage: "https://i.postimg.cc/ncw0WHJy/photo_2025_12_22_13_56_11.jpg",
+        twitch: "https://twitch.tv/smail_dbd",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Стримлю с 2021 года.",
+            q2: "Что самое важное в стриме?",
+            a2: "Атмосфера, подача.",
+            q3: "Пожелание зрителям?",
+            a3: "Хороших мансов и Удачи по Жизни."
+        }
+    },
+    {
+        id: 22,
         name: "Spc_tgc",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f983d142-d6e5-46cf-80d9-f9c5cd6c6836-profile_image-70x70.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/f983d142-d6e5-46cf-80d9-f9c5cd6c6836-profile_image-70x70.png",
         twitch: "https://twitch.tv/spc_tgc",
         votes: 30,
         interview: {
-            q1: "Как давно стримишь?",
-            a1: "Достаточно давно, больше 5 лет.",
-            q2: "Что самое важное в стриме?",
-            a2: "Взаимодействие с коммьюнити и качественный контент.",
+            q1: "Как давно стримишь DBD?",
+            a1: "Год. С того момента, как начала играть в эту игру и она стала чем-то важным. :) ",
+            q2: "Любимый персонаж?",
+            a2: "Да всех пеших терпил, но особенно Гоуста. Он единственный из стеллсовых, кто так и не получил никакого баффа",
             q3: "Пожелание зрителям?",
-            a3: "Спасибо за вашу поддержку и активность!"
+            a3: "Дорогие коллеги, нихрена себе вы наголосовали, жду всех на митинг по выяснению суеты"
         }
     },
     {
-        id: 2,
-        name: "MogilevTM",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/183376cf-247a-433e-91bd-22fcd30d3901-profile_image-70x70.jpeg",
-        twitch: "https://twitch.tv/mogilevtm",
-        votes: 22,
+        id: 23,
+        name: "STROGANOV",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/stroganov",
+        votes: 0,
         interview: {
-            q1: "Почему начал стримить?",
-            a1: "Хотел делиться своим игровым опытом.",
-            q2: "Твой главный секрет успеха?",
-            a2: "Регулярность и постоянное самосовершенствование.",
-            q3: "Планы на будущее?",
-            a3: "Расти дальше и пробовать новые форматы."
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 24,
+        name: "T1muren",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/t1muren",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 25,
+        name: "TheCrashB",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/thecrashb",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 26,
+        name: "Tigra",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/tigra",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 27,
+        name: "TimeToKillTeam",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cf9f8fe6-e398-483c-886f-d8fd377a9caf-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/rFYQH8T8/photo_2025_12_24_21_21_39.jpg",
+        twitch: "https://twitch.tv/timetokillteam",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Первые стрим делал еще в середине 2024 года, но основательно с февраля 2025. ",
+            q2: "Что самое важное в стриме?",
+            a2: "Наличие коня, чтобы у меня горела жопа и обязательно вопрос: «Концепты будут?»",
+            q3: "Пожелание зрителям?",
+            a3: "Удалите дбд и самой большой удачи в год лошади❤️"
+        }
+    },
+    {
+        id: 28,
+        name: "TumannayaMgla",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/tumannayamgla",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 29,
+        name: "VikaKlubnika01",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/c0b3bde8-39e0-4acc-84c3-40874c41f108-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/BQwMzq3G/photo_2025_12_24_20_18_17.jpg",
+        twitch: "https://twitch.tv/vikaklubnika01",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Вопрос элементарный, но мне не так просто на него ответить... т.к. стримить я пыталась первый раз давно в 2016 году ))) Но не срослось. Повторно я попробовала себя в этом увлекательном деле в 2023 году и до сих пор!",
+            q2: "Что самое важное в стриме?",
+            a2: "Быть собой, но не нарушая при этом правила платформы... (а так иногда хочется!)",
+            q3: "Пожелание зрителям?",
+            a3: "Цените своего любимого стримера, ведь он не вечен)"
+        }
+    },
+    {
+        id: 30,
+        name: "Vshtamm",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/vshtamm",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 31,
+        name: "xVETKA",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        twitch: "https://twitch.tv/xvetka",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "Ответ стримера...",
+            q2: "Что самое важное в стриме?",
+            a2: "Ответ стримера...",
+            q3: "Пожелание зрителям?",
+            a3: "Ответ стримера..."
+        }
+    },
+    {
+        id: 32,
+        name: "Kakcaxap_ok",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/5d85af32-7c63-4519-876e-a162d80f82f1-profile_image-70x70.jpeg",
+        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/5d85af32-7c63-4519-876e-a162d80f82f1-profile_image-70x70.jpeg",
+        twitch: "https://www.twitch.tv/kakcaxap_ok",
+        votes: 0,
+        interview: {
+            q1: "Как давно стримишь?",
+            a1: "С августа 2025 года начала стримить, очень нравится этим заниматься)",
+            q2: "Любимые персонажи из Dead by Daylight?",
+            a2: "Любимые  Анечка, Вескер и Фенг Мин",
+            q3: "Пожелание зрителям?",
+            a3: "Спасибо Вам огромное за поддержку, я Вас всех люблю и всегда рада каждому❤️"
         }
     }
 ];
@@ -1359,57 +1877,53 @@ function closeModal(modalId) {
 
 // Функции для модального окна поддержки фонда
         function showSupportFundModal() {
-            document.getElementById('supportFundModal').style.display = 'flex';
-        }
-        
-        function togglePaymentMethod(method) {
-            const content = document.getElementById(method + 'Content');
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-            } else {
-                content.style.display = 'block';
-                // Автоматически подстраиваем высоту iframe
-                if (method === 'donatepay') {
-                    content.querySelector('iframe').style.height = '220px';
-                }
+    const modal = document.getElementById('supportFundModal');
+    if (modal) {
+        modal.style.display = '';
+        modal.classList.add('active');
+    }
+}
+
+function togglePaymentMethod(method) {
+    const content = document.getElementById(method + 'Content');
+    if (!content) return;
+    
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    
+    if (method === 'donatepay' && content.style.display === 'block') {
+        const iframe = content.querySelector('iframe');
+        if (iframe) iframe.style.height = '220px';
+    }
+}
+
+function toggleCardNumber() {
+    const content = document.getElementById('cardContent');
+    const button = document.getElementById('cardButton');
+    if (!content || !button) return;
+    
+    const nameSpan = button.querySelector('.payment-name');
+    const arrowSpan = button.querySelector('.payment-arrow');
+    const isHidden = content.style.display === 'none' || content.style.display === '';
+    
+    content.style.display = isHidden ? 'block' : 'none';
+    if (nameSpan) nameSpan.textContent = isHidden ? '2204 1202 0195 2187' : 'По номеру карты';
+    if (arrowSpan) arrowSpan.textContent = isHidden ? '▲' : '▼';
+}
+
+function copyCardNumber() {
+    const el = document.getElementById('cardNumber');
+    if (!el) return;
+    
+    navigator.clipboard.writeText(el.textContent.replace(/\s/g, ''))
+        .then(() => {
+            const success = document.getElementById('copySuccess');
+            if (success) {
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 2000);
             }
-        }
-        
-        function toggleCardNumber() {
-            const content = document.getElementById('cardContent');
-            const button = document.getElementById('cardButton');
-            
-            if (content.style.display === 'none') {
-                // Показываем номер карты и меняем текст кнопки
-                content.style.display = 'block';
-                button.querySelector('.payment-name').textContent = '2204 1202 0195 2187';
-                button.querySelector('.payment-arrow').textContent = '▲';
-            } else {
-                // Скрываем номер карты и возвращаем исходный текст
-                content.style.display = 'none';
-                button.querySelector('.payment-name').textContent = 'По номеру карты';
-                button.querySelector('.payment-arrow').textContent = '▼';
-            }
-        }
-        
-        function copyCardNumber() {
-            const cardNumber = document.getElementById('cardNumber').textContent;
-            navigator.clipboard.writeText(cardNumber.replace(/\s/g, ''))
-                .then(() => {
-                    const copySuccess = document.getElementById('copySuccess');
-                    copySuccess.style.display = 'block';
-                    setTimeout(() => {
-                        copySuccess.style.display = 'none';
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Ошибка копирования: ', err);
-                });
-        }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
+        })
+        .catch(console.error);
+}
 
     // ============================================
     // ANTI-DEVTOOLS PROTECTION
