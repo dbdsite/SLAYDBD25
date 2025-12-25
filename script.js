@@ -99,6 +99,82 @@ function validateTelegramLogin(value) {
 }
 
 // ============================================
+// TWITCH URL VALIDATOR
+// ============================================
+function validateTwitchUrl(url) {
+    const trimmed = url.trim();
+    
+    // Проверяем что ссылка начинается с https://twitch.tv/ или https://www.twitch.tv/
+    const validPrefixes = ['https://twitch.tv/', 'https://www.twitch.tv/'];
+    let matchedPrefix = null;
+    
+    for (const prefix of validPrefixes) {
+        if (trimmed.startsWith(prefix)) {
+            matchedPrefix = prefix;
+            break;
+        }
+    }
+    
+    if (!matchedPrefix) {
+        return {
+            valid: false,
+            error: 'Ссылка на Twitch должна быть в формате https://twitch.tv/username или https://www.twitch.tv/username'
+        };
+    }
+    
+    // Извлекаем username из ссылки
+    const pathPart = trimmed.replace(matchedPrefix, '');
+    const username = pathPart.split('/')[0].split('?')[0].trim();
+    
+    // Проверяем что username не пустой
+    if (!username || username.length < 1) {
+        return {
+            valid: false,
+            error: 'Некорректная ссылка на Twitch. Укажите полную ссылку в формате https://twitch.tv/username'
+        };
+    }
+    
+    // Проверяем допустимые символы в username (буквы, цифры, подчёркивание)
+    const usernameRegex = /^[a-zA-Z0-9_]{1,25}$/;
+    if (!usernameRegex.test(username)) {
+        return {
+            valid: false,
+            error: 'Некорректный Twitch username. Используйте только латинские буквы, цифры и _'
+        };
+    }
+    
+    return {
+        valid: true,
+        username: username.toLowerCase(),
+        url: `https://twitch.tv/${username.toLowerCase()}`  // Нормализуем к формату без www
+    };
+}
+
+// ============================================
+// NICKNAME MATCH VALIDATOR
+// ============================================
+function validateNickMatch(nick, telegram, twitchUsername) {
+    const nickLower = nick.toLowerCase().trim();
+    
+    // Убираем @ из Telegram для сравнения
+    const telegramUsername = telegram.startsWith('@') 
+        ? telegram.substring(1).toLowerCase() 
+        : telegram.toLowerCase();
+    
+    const twitchLower = twitchUsername.toLowerCase();
+    
+    // Проверяем совпадение с Telegram ИЛИ Twitch
+    if (nickLower === telegramUsername || nickLower === twitchLower) {
+        return { valid: true };
+    }
+    
+    return {
+        valid: false,
+        error: `Никнейм "${nick}" должен совпадать с вашим Telegram логином (${telegramUsername}) или Twitch username (${twitchLower})`
+    };
+}
+
+// ============================================
 // НАСТРОЙКА TELEGRAM ИНПУТОВ
 // ============================================
 function setupTelegramInputs() {
@@ -1013,23 +1089,42 @@ function startVoting(nomination) {
 function startBracket() {
     const nick = document.getElementById('voterNick').value.trim();
     const telegramInput = document.getElementById('voterTelegram');
-    const twitch = document.getElementById('voterTwitch').value.trim();
+    const twitchInput = document.getElementById('voterTwitch');
     let telegram = telegramInput.value.trim();
+    let twitch = twitchInput.value.trim();
 
+    // Проверяем что все поля заполнены
     if (!nick || !telegram || !twitch) {
         showErrorModal('Пожалуйста, заполните все поля!');
         return;
     }
 
-    // Валидация Telegram
-    const validation = validateTelegramLogin(telegram);
-    if (!validation.valid) {
-        showErrorModal(validation.error);
+    // 1. Валидация Telegram
+    const telegramValidation = validateTelegramLogin(telegram);
+    if (!telegramValidation.valid) {
+        showErrorModal(telegramValidation.error);
         return;
     }
     
-    telegramInput.value = validation.value;  // Используем validation.value
-    telegram = validation.value;  // Используем validation.value
+    telegramInput.value = telegramValidation.value;
+    telegram = telegramValidation.value;
+
+    // 2. Валидация Twitch ссылки (ОБЯЗАТЕЛЬНЫЙ ФОРМАТ https://twitch.tv/username)
+    const twitchValidation = validateTwitchUrl(twitch);
+    if (!twitchValidation.valid) {
+        showErrorModal(twitchValidation.error);
+        return;
+    }
+    
+    twitchInput.value = twitchValidation.url;
+    twitch = twitchValidation.url;
+
+    // 3. Проверка совпадения никнейма с Telegram ИЛИ Twitch username
+    const nickValidation = validateNickMatch(nick, telegram, twitchValidation.username);
+    if (!nickValidation.valid) {
+        showErrorModal(nickValidation.error);
+        return;
+    }
 
     voterData = { nick, telegram, twitch };
     
