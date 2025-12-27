@@ -1,4 +1,11 @@
-
+// Анти-копирование защита
+(function() {
+    if (window.location.hostname !== 'dbdsite.github.io' && 
+        window.location.hostname !== 'localhost' &&
+        window.location.hostname !== '127.0.0.1') {
+        document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#D4AF37;font-size:24px;">⚠️ Несанкционированный доступ запрещен!</div>';
+    }
+})();
               
 // ============================================
 // CONFIGURATION - НАСТРОЙКИ
@@ -1464,32 +1471,32 @@ const STREAMERS_DB = [
         id: 5,
         name: "Cfcbrt",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/188bb88f-1f7f-4da4-b849-d6159bfd439d-profile_image-70x70.jpeg",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/VsDM809r/photo_2025_12_26_15_20_55.jpg",
         twitch: "https://twitch.tv/cfcbrt",
         votes: 0,
         interview: {
-            q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            q1: "Как давно стримишь DBD?",
+            a1: "Дбд я стримлю чуть больше 2 лет",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Главное я считаю атмосфера и искреннее общение",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "В новом 26 году я желаю: 1) Чтобы все желания сбывались 2) Каждый новый день был лучше прошлого."
         }
     },
     {
         id: 6,
         name: "HozyMei",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/7bf0b38e-a322-46bf-a95a-92133e36a63a-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/c1XYSt7v/photo_2025_12_26_01_11_58.jpg",
         twitch: "https://twitch.tv/hozymei",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
-            q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a1: "Примерно 5 лет, но стабильно начала только в этом году.",
+            q2: "Немного о себе?",
+            a2: "Всегда на добром вайбе ♥️Но больно кусаюсь в форме волка за Дракулу :3",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Верьте в себя и у вас обязательно всё получится!"
         }
     },
     {
@@ -1576,16 +1583,16 @@ const STREAMERS_DB = [
         id: 12,
         name: "Mommyalya",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/91cb67be-e0fc-4573-99b4-e94e23ed1bc4-profile_image-70x70.jpeg",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/kMf8mRNV/photo_2025_12_25_19_48_34.jpg",
         twitch: "https://twitch.tv/mommyalya",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Стримить я начала 15.12.22 Trovo, а на твич пришла 31.03.24",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Не знаю как для остальных, но для меня всегда было самым важным на стриме это актив зрителей. Если со мной общаються, то я и 10 часов могу спокойно просидеть!",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Хочу сказать всем огромное спасибо, кто был со мной с самого начала и новеньким! ВЫ самые лучшие!"
         }
     },
     {
@@ -1607,17 +1614,17 @@ const STREAMERS_DB = [
     {
         id: 14,
         name: "NightFuryo3o",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f228354a-9fa1-426b-8349-47fcb7691b82-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://i.postimg.cc/prGnY3XW/photo_2025_12_26_04_40_54.jpg",
+        profileImage: "https://i.postimg.cc/prGnY3XW/photo_2025_12_26_04_40_54.jpg",
         twitch: "https://twitch.tv/nightfuryo3o",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Уже как 8 лет",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Желание и Постоянство",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Всё будет Друкно и Штукно о3о"
         }
     },
     {
@@ -1800,16 +1807,16 @@ const STREAMERS_DB = [
         id: 26,
         name: "Tigra",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/f5cb5de3-3e93-49c6-a5b3-03b1523589dc-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/yxQSX2Y6/photo_2025_11_06_14_49_01.jpg",
         twitch: "https://twitch.tv/tigra",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "В стриминге с 2017, а в дбд пришла 13 марта 2018 года, один раз попробовала и окунулась в мир Сущности с головой)",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Создавать атмосферу и заряжать энергией, постоянно придумывать интерактивы для зрителей",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Любите и заботьтесь о самом важном человеке в вашей жизни - о себе"
         }
     },
     {
@@ -1832,16 +1839,16 @@ const STREAMERS_DB = [
         id: 28,
         name: "TumannayaMgla",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/519164d5-8061-46c0-ad90-f2ff2c0e8aab-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/J06BcS4M/photo_2025_12_26_23_32_04.jpg",
         twitch: "https://twitch.tv/tumannayamgla",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Стримлю больше 4х лет",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "На стримах важна атмосфера, не люблю негатив, люблю веселье.",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Дорогие зрители и будущие зрители, если вы грустите, то знайте на моих стримах две истины «не будь унылым говном, будь позитивной какашкой, как я!» и «ццАдекват, не наш формат» "
         }
     },
     {
