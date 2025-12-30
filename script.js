@@ -1423,32 +1423,32 @@ const STREAMERS_DB = [
         id: 2,
         name: "Animu19",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b85dac9b-0ef6-427f-890c-8c1097973e53-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/02fm0cMk/photo-2025-12-27-12-25-17.jpg",
         twitch: "https://twitch.tv/animu19",
         votes: 0,
         interview: {
-            q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
-            q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
-            q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            q1: "Какой перк ты берёшь всегда — и за выжившего, и за убийцу?",
+            a1: " «За выжившего — „Воин света“, люблю ослеплять убийцу. За убийцу — „Им не укрыться“. Помогает решать проблему с поиском выживших».",
+            q2: "Какая карта тебе сложнее всего даётся?",
+            a2: "«Мемориальный институт Лэри. Я просто в ней теряюсь».",
+            q3: "Что чаще всего раздражает в матчах?",
+            a3: "«Когда выжившие игнорируют генераторы и бегают кругами — игра затягивается без смысла»."
         }
     },
     {
         id: 3,
         name: "BanditkaRF",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/09781e6c-6af5-4917-b33c-4c9e7f4d814c-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/nrxZdKsT/photo_2025_08_06_10_04_23.jpg",
         twitch: "https://twitch.tv/banditkarf",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
-            q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a1: "Бандитка на твиче второй год! Очень нравится кошмарить маньяков!",
+            q2: "Кто любимый персонаж?",
+            a2: "Так как я сурв мейнер то любимый персонаж Микаэла(скин кошечка) кто давно со мной на канале тот знает",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Всех с наступающим новым годом!"
         }
     },
     {
@@ -1503,16 +1503,16 @@ const STREAMERS_DB = [
         id: 7,
         name: "Kalerine",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/99f2889a-f77a-4ef0-9990-a7aca8413760-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/gjpdMywB/photo_2025_12_28_18_05_53.jpg",
         twitch: "https://twitch.tv/kalerine",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Начала стримить около года назад.",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Самое главное - быть собой и дарить зрителям хорошее настроение. ",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Пусть ваша жизнь будет наполнена яркими моментами и приятными эмоциями!"
         }
     },
     {
@@ -1631,16 +1631,16 @@ const STREAMERS_DB = [
         id: 15,
         name: "Otryzhka_Bomzha",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d132b535-5ea8-4e10-91d7-6f31ba1c3e50-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/NFtYN8yn/photo_2025_12_27_06_09_28.jpg",
         twitch: "https://twitch.tv/otryzhka_bomzha",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Вся моя жизнь — это стрим деградации человека. Так что стримлю я уже 37 лет",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "К стриму нужно подходить основательно: 4 литра колы (БЕЗ САХАРА!!!), анальная пробка 5 см (10 см если играешь на мане), 2 отца ЛИБО отсутствие каких либо родственников. Без этих составляющих в стримы можно даже не соваться",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Поменьше IQ вам, чтобы вы и дальше продолжали сидеть на твиче и смотреть таких как я (во мне 3 бутылки сзади)"
         }
     },
     {
@@ -1711,16 +1711,16 @@ const STREAMERS_DB = [
         id: 20,
         name: "Riversong___",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/bcebbd2b-2034-4da6-9454-9041b46a059b-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/5yJ1P5HR/photo_2025_12_28_16_17_41.jpg",
         twitch: "https://twitch.tv/riversong___",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Первый стрим 12.03.2024. Но в серьез взялся за стримы год назад +-.",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Зрители - вайб стрима.",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Хочу сказать, что они все булочки и мы, стримеры, без них - никто."
         }
     },
     {
@@ -1832,7 +1832,7 @@ const STREAMERS_DB = [
             q2: "Что самое важное в стриме?",
             a2: "Наличие коня, чтобы у меня горела жопа и обязательно вопрос: «Концепты будут?»",
             q3: "Пожелание зрителям?",
-            a3: "Удалите дбд и самой большой удачи в год лошади❤️"
+            a3: "Удалите дбд и самой большой удачи в год лошади!"
         }
     },
     {
@@ -1869,34 +1869,34 @@ const STREAMERS_DB = [
     },
     {
         id: 30,
-        name: "Vshtamm",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/0acbf4e9-a0f6-4d06-aa79-690f814fee2c-profile_image-70x70.jpeg",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
-        twitch: "https://twitch.tv/vshtamm",
+        name: "Lagerta_Seeman",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/481347b6-d915-4e3f-bb44-613a427e79f1-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/GpYmqm7G/sdefsd33.jpg",
+        twitch: "https://www.twitch.tv/lagerta_seeman",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Сттримлю очень давно, прорывалась с самых низов!",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Люди вокруг - залог успеха в всем!",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Всем спасибо, пупсики <3"
         }
     },
     {
         id: 31,
         name: "xVETKA",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/998b3d6b-67c2-499c-8c9f-ee3a36c29fef-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
-        twitch: "https://twitch.tv/xvetka",
+        profileImage: "https://i.postimg.cc/NFtYN8yJ/vetka.png",
+        twitch: "https://twitch.tv/xvetka_1",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Стримлю уже 15 лет от рождества христова",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Почему такой ник? Шла как то по улице, зацепилась за ветку капюшоном, и думаю, буду-ка я веткой!",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Не буду ничего желать, мне не интересна эта премия, и комьюнити. Голосовать я вас не просила за меня."
         }
     },
     {
