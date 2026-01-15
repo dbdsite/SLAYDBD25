@@ -1790,7 +1790,7 @@ const STREAMERS_DB = [
     {
         id: 25,
         name: "E1issey",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d7d67dfe-230a-4f8f-81e5-7157c37bce84-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d194b7dc-2faf-4379-ad08-1bea5328a273-profile_image-70x70.png",
         profileImage: "https://i.postimg.cc/qq0d8TRS/e1issey.png",
         twitch: "https://www.twitch.tv/e1issey",
         votes: 0,
