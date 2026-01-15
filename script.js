@@ -1518,17 +1518,17 @@ const STREAMERS_DB = [
     {
         id: 8,
         name: "KiperOnZavod",
-        image: "https://i.postimg.cc/fbQgrvcP/photo_2025_12_30_11_07_41.jpg",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/9b0e6eea-1ff5-4601-a4f4-f7681a6397e4-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/fbQgrvcP/photo_2025_12_30_11_07_41.jpg",
         twitch: "https://twitch.tv/kiperonzavod",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Начинал в 2020 году, в 2025 основательно подсел",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Радовать и смешить людей, и чтобы сервера DBD не лагали",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Всем Сваги Богу и поменьше играть в DBD, а то перегорите"
         }
     },
     {
@@ -1758,33 +1758,33 @@ const STREAMERS_DB = [
     {
         id: 23,
         name: "STROGANOV",
-        image: "https://i.postimg.cc/zDy633Gn/STROGANOV.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/96383744-94f7-41a1-af62-3fe7c7641f09-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/zDy633Gn/STROGANOV.png",
         twitch: "https://twitch.tv/stroganov",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "Уже давно года 4-5",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Взаимодействие с аудиторией",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Всем спасибо! Все свободны )))"
         }
     },
     {
         id: 24,
         name: "T1muren",
-        image: "https://i.postimg.cc/7LrQWN3c/photo_2026_01_05_16_08_23.jpg",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cb5f7869-99b6-4a61-a85e-da6e2b5bdfe9-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/7LrQWN3c/photo_2026_01_05_16_08_23.jpg",
         twitch: "https://twitch.tv/t1muren",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
-            q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
-            q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a1: "С 2018 по 2024 был на YouTube, а с 2024 только на Twitch.",
+            q2: "Как давно пришёл в DBD?",
+            a2: "Когда я перешёл на Twitch и купил педали для ног.",
+            q3: "Что скажешь зрителям?",
+            a3: "Спасибо, что вы есть, без вас не было этого всего, что имею сейчас"
         }
     },
     {
@@ -1798,7 +1798,7 @@ const STREAMERS_DB = [
             q1: "Как давно стримишь?",
             a1: "7 лет...",
             q2: "Что самое важное в стриме?",
-            a2: "Самочуствие",
+            a2: "Самочуствие стримера",
             q3: "Пожелание зрителям?",
             a3: "Не болейте, а если заболеите быстрее попровляйтесь!"
         }
