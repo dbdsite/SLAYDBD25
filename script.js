@@ -1518,7 +1518,7 @@ const STREAMERS_DB = [
     {
         id: 8,
         name: "KiperOnZavod",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/9b0e6eea-1ff5-4601-a4f4-f7681a6397e4-profile_image-70x70.png",
+        image: "https://i.postimg.cc/fbQgrvcP/photo_2025_12_30_11_07_41.jpg",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/kiperonzavod",
         votes: 0,
@@ -1758,7 +1758,7 @@ const STREAMERS_DB = [
     {
         id: 23,
         name: "STROGANOV",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/96383744-94f7-41a1-af62-3fe7c7641f09-profile_image-70x70.png",
+        image: "https://i.postimg.cc/zDy633Gn/STROGANOV.png",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/stroganov",
         votes: 0,
@@ -1774,7 +1774,7 @@ const STREAMERS_DB = [
     {
         id: 24,
         name: "T1muren",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cb5f7869-99b6-4a61-a85e-da6e2b5bdfe9-profile_image-70x70.png",
+        image: "https://i.postimg.cc/7LrQWN3c/photo_2026_01_05_16_08_23.jpg",
         profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
         twitch: "https://twitch.tv/t1muren",
         votes: 0,
@@ -1789,18 +1789,18 @@ const STREAMERS_DB = [
     },
     {
         id: 25,
-        name: "TheCrashB",
+        name: "E1issey",
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d7d67dfe-230a-4f8f-81e5-7157c37bce84-profile_image-70x70.png",
-        profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/placeholder-profile_image-70x70.png",
-        twitch: "https://twitch.tv/thecrashb",
+        profileImage: "https://i.postimg.cc/qq0d8TRS/e1issey.png",
+        twitch: "https://www.twitch.tv/e1issey",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Ответ стримера...",
+            a1: "7 лет...",
             q2: "Что самое важное в стриме?",
-            a2: "Ответ стримера...",
+            a2: "Самочуствие",
             q3: "Пожелание зрителям?",
-            a3: "Ответ стримера..."
+            a3: "Не болейте, а если заболеите быстрее попровляйтесь!"
         }
     },
     {
@@ -1869,34 +1869,34 @@ const STREAMERS_DB = [
     },
     {
         id: 30,
-        name: "Lagerta_Seeman",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/481347b6-d915-4e3f-bb44-613a427e79f1-profile_image-70x70.png",
-        profileImage: "https://i.postimg.cc/GpYmqm7G/sdefsd33.jpg",
-        twitch: "https://www.twitch.tv/lagerta_seeman",
+        name: "MrGrifonio",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/db6f7818-f007-4187-b844-69cc522be453-profile_image-70x70.png",
+        profileImage: "https://i.postimg.cc/Y0kw1H9T/mrgrifonio.png",
+        twitch: "https://www.twitch.tv/mrgrifonio",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Сттримлю очень давно, прорывалась с самых низов!",
+            a1: "Стримлю очень давно, прорывался с самых низов!",
             q2: "Что самое важное в стриме?",
             a2: "Люди вокруг - залог успеха в всем!",
             q3: "Пожелание зрителям?",
-            a3: "Всем спасибо, пупсики <3"
+            a3: "Всем спасибо, пива в чат!"
         }
     },
     {
         id: 31,
-        name: "xVETKA",
-        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/998b3d6b-67c2-499c-8c9f-ee3a36c29fef-profile_image-70x70.png",
-        profileImage: "https://i.postimg.cc/NFtYN8yJ/vetka.png",
-        twitch: "https://twitch.tv/xvetka_1",
+        name: "GalaxyTM",
+        image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b1b9b857-e5c7-4649-b106-9d52605b98cf-profile_image-70x70.jpeg",
+        profileImage: "https://i.postimg.cc/C5YVjg1W/Galaxy_TM.png",
+        twitch: "https://www.twitch.tv/galaxytm_",
         votes: 0,
         interview: {
             q1: "Как давно стримишь?",
-            a1: "Стримлю уже 15 лет от рождества христова",
-            q2: "Почему такой ник?",
-            a2: "Шла как то по улице, зацепилась за ветку капюшоном, и думаю, буду-ка я веткой!",
+            a1: "2 года",
+            q2: "Почему начал стримить?",
+            a2: "Сфера в которой, я решил себя испытать.",
             q3: "Пожелание зрителям?",
-            a3: "Не буду ничего желать, мне не интересна эта премия, и комьюнити. Голосовать я вас не просила за меня."
+            a3: "Любить то что вы делаете, оставайтесь людьми и держите марку!"
         }
     },
     {
