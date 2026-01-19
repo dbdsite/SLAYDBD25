@@ -21,13 +21,13 @@ const CONFIG = {
     // Включение/выключение кнопок
     BUTTONS: {
         SUGGEST_STREAMER: false,
-        NOMINATE_STREAMER: true,
+        NOMINATE_STREAMER: false,
         STREAMERS_LIST: false,
         NOMINEES_LIST: true,
         SUPPORT_FUND: true,
         INFO: true,
-        VOTES_COUNT: true,
-        CONTACT_SUPPORT: true
+        VOTES_COUNT: false,
+        CONTACT_SUPPORT: false
     }
 };
 
