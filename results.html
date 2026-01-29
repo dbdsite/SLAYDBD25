@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Итоги голосования SLAY DBD 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="https://i.postimg.cc/g2WKzQgW/SLAYDBD-05-52-43.png" type="image/x-icon">
+    
+    <style>
+        :root {
+            --gold: #e9c983;
+            --gold-light: #d3793b;
+            --gold-dark: #d68a4b;
+            --purple: #1a1a1a;
+            --purple-light: #333333;
+            --purple-dark: #0a0a0a;
+            --bg-gradient: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a1a1a 50%, #0a0a0a 75%, #000000 100%);
+            --card-bg: linear-gradient(135deg, rgba(15, 15, 15, 0.98) 0%, rgba(30, 30, 30, 0.95) 100%);
+            --card-bg-alt: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(30, 30, 30, 0.9) 100%);
+            --gold-border: rgba(212, 175, 55, 0.3);
+            --gold-shadow: rgba(212, 175, 55, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #000;
+            min-height: 100vh;
+            overflow: hidden;
+            color: var(--gold-light);
+            width: 100%;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: orbFloat 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .bg-orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: rgba(212, 175, 55, 0.05);
+            top: -100px;
+            left: -100px;
+        }
+
+        .bg-orb:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: rgba(100, 100, 100, 0.08);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        .bg-orb:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: rgba(212, 175, 55, 0.03);
+            top: 50%;
+            left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(-50px, -30px) scale(1.05); }
+        }
+
+        /* Presentation Container */
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(100%) rotateY(-10deg);
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0) rotateY(0deg);
+            pointer-events: all;
+        }
+
+        .slide.prev {
+            transform: translateX(-100%) rotateY(10deg);
+        }
+
+        /* Slide Content */
+        .slide-header {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .slide-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--gold-light);
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Winner Card */
+        .winner-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(25, 25, 25, 0.95) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .winner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .winner-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--gold);
+            margin: 0 auto 20px;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .winner-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .winner-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .winner-position {
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .winner-votes {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .winner-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-telegram {
+            background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+            color: white;
+        }
+
+        .social-twitch {
+            background: linear-gradient(135deg, #9146FF 0%, #772CE8 100%);
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Stats Card */
+        .stats-card {
+            background: var(--card-bg);
+            border: 1px solid var(--gold-border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .stat-details {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .stat-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Final Slide Styles */
+        .final-winners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .final-winner-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(25, 25, 25, 0.92) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-winner-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .final-winner-card:hover::before {
+            left: 100%;
+        }
+
+        .final-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            margin: 0 auto 15px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .final-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .final-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-nomination {
+            font-size: 0.9rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            padding: 5px 10px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .final-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+            color: var(--purple-dark);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .slide-counter {
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid var(--gold-border);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Modal for Interview */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: modalAppear 0.5s ease-out;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .modal-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .modal-subtitle {
+            color: var(--gold-light);
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .interview-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .interview-question {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .interview-answer {
+            color: var(--gold-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            padding-left: 15px;
+            border-left: 2px solid var(--gold-border);
+        }
+
+        /* Intro Animation */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeOutIntro 1s ease-in-out 3s forwards;
+        }
+
+        .intro-logo {
+            width: 300px;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: logoReveal 1s ease-out 0.5s forwards;
+        }
+
+        .intro-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleReveal 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes logoReveal {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes titleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutIntro {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 101;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .results-grid, .final-winners-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .slide {
+                padding: 20px 15px;
+            }
+            
+            .nav-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .winner-avatar {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .final-avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .intro-logo {
+                width: 200px;
+            }
+            
+            .intro-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Fact Cards */
+        .fact-card {
+            background: var(--card-bg-alt);
+            border: 1px solid var(--gold-border);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .fact-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .fact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .fact-text {
+            color: var(--gold-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        /* Стили для слайда поддержки */
+.support-list {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.support-item {
+    transition: all 0.3s ease;
+}
+
+.support-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+/* Стили для слайда организации */
+.organizer-list {
+    width: 100%;
+}
+
+.organizer-item {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.organizer-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+    </style>
+</head>
+<body>
+    <!-- Intro Animation -->
+    <div class="intro-overlay" id="introOverlay">
+        <img src="https://i.postimg.cc/0yVz9d5v/111Slay_DBD2025.png" alt="SLAY DBD 2025" class="intro-logo">
+        <h1 class="intro-title">Итоги голосования</h1>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="bg-orb"></div>
+        <div class="bg-orb"></div>
+        <div class="bg-orb"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Presentation Container -->
+    <div class="presentation-container">
+        <div class="slides-container" id="slidesContainer">
+            <!-- Slide 1: Title -->
+            <div class="slide active" id="slide1">
+                <div class="slide-header">
+                    <h1 class="slide-title">Итоги SLAY DBD 2025</h1>
+                    <p class="slide-subtitle">Результаты голосования и победители в основных номинациях</p>
+                </div>
+                <div class="results-grid">
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/cce3ce1c-bfec-4f25-80a7-4c0283118dce-profile_image-70x70.png" 
+                             alt="ParabellumLTD" class="winner-avatar" onclick="openInterview(1)">
+                        <h2 class="winner-name">ParabellumLTD</h2>
+                        <div class="winner-position">🥇 1 место</div>
+                        <div class="winner-votes">71 голос</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Самый популярный стример года</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/parabell5" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/parabellumltd" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card">
+                        <div class="stat-number">255</div>
+                        <div class="stat-label">Всего голосов</div>
+                        
+                        <div class="stat-number">32</div>
+                        <div class="stat-label">Участников</div>
+                        
+                        <div class="stat-details">
+                            <div class="stat-detail">
+                                <span>Активных голосований:</span>
+                                <span style="color: var(--gold); font-weight: 600;">42</span>
+                            </div>
+                            <div class="stat-detail">
+                                <span>Дней голосования:</span>
+                                <span style="color: var(--gold); font-weight: 600;">14</span>
+                            </div>
+                            <div class="stat-detail">
+                                <span>Уникальных участников:</span>
+                                <span style="color: var(--gold); font-weight: 600;">389</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: 2nd and 3rd Place -->
+            <div class="slide" id="slide2">
+                <div class="slide-header">
+                    <h1 class="slide-title">🥈 Призёры</h1>
+                    <p class="slide-subtitle">Второе и третье место в общем рейтинге</p>
+                </div>
+                <div class="results-grid">
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/cf9f8fe6-e398-483c-886f-d8fd377a9caf-profile_image-70x70.png" 
+                             alt="TimeToKillTeam" class="winner-avatar" onclick="openInterview(2)">
+                        <h2 class="winner-name">TimeToKillTeam</h2>
+                        <div class="winner-position">🥈 2 место</div>
+                        <div class="winner-votes">33 голоса</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Стабильный рост аудитории</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/TTk_team_official" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/timetokillteam" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/7bf0b38e-a322-46bf-a95a-92133e36a63a-profile_image-70x70.png" 
+                             alt="HozyMei" class="winner-avatar" onclick="openInterview(3)">
+                        <h2 class="winner-name">HozyMei</h2>
+                        <div class="winner-position">🥉 3 место</div>
+                        <div class="winner-votes">16 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Лучший развлекательный контент</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/HozyMei" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/hozymei" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Statistics -->
+            <div class="slide" id="slide3">
+                <div class="slide-header">
+                    <h1 class="slide-title">📊 Статистика</h1>
+                    <p class="slide-subtitle">Интересные цифры и факты о голосовании</p>
+                </div>
+                <div class="results-grid">
+                    <div class="fact-card">
+                        <div class="fact-icon">👥</div>
+                        <h3 class="fact-title">Аудитория</h3>
+                        <p class="fact-text">В голосовании приняло участие более <br>5 000 тысяч уникальных пользователей</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="fact-icon">⚡</div>
+                        <h3 class="fact-title">Активность</h3>
+                        <p class="fact-text">Пиковая активность была зафиксирована с 15 по 25 декабря <br>- 50+ голосов за сутки</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="fact-icon">📈</div>
+                        <h3 class="fact-title">Рост</h3>
+                        <p class="fact-text">Средний прирост голосов за день составлял 30+ голосов</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Best Content -->
+            <div class="slide" id="slide4">
+                <div class="slide-header">
+                    <h1 class="slide-title">🎭 Лучший контент</h1>
+                    <p class="slide-subtitle">Победители в развлекательных номинациях</p>
+                </div>
+                <div class="results-grid">
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/96383744-94f7-41a1-af62-3fe7c7641f09-profile_image-70x70.png" 
+                             alt="STROGANOV" class="winner-avatar" onclick="openInterview(5)">
+                        <h2 class="winner-name">STROGANOV</h2>
+                        <div class="winner-position">🎮 Лучшие гайды</div>
+                        <div class="winner-votes">10 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Детальные разборы стратегий</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/StroganovDBD" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://twitch.tv/stroganov" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/519164d5-8061-46c0-ad90-f2ff2c0e8aab-profile_image-70x70.png" 
+                             alt="TumannayaMgla" class="winner-avatar" onclick="openInterview(4)">
+                        <h2 class="winner-name">TumannayaMgla</h2>
+                        <div class="winner-position">🎪 Развлечения</div>
+                        <div class="winner-votes">14 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Шоу и активности</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/TumannayaMglalife" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://twitch.tv/tumannayamgla" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Rising Stars -->
+            <div class="slide" id="slide5">
+                <div class="slide-header">
+                    <h1 class="slide-title">⭐ Восходящие звёзды</h1>
+                    <p class="slide-subtitle">Самые перспективные стримеры сезона</p>
+                </div>
+                <div class="results-grid">
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/5d85af32-7c63-4519-876e-a162d80f82f1-profile_image-70x70.jpeg" 
+                             alt="Kakcaxap_ok" class="winner-avatar" onclick="openInterview(8)">
+                        <h2 class="winner-name">Kakcaxap_ok</h2>
+                        <div class="winner-position">🚀 Прорыв года</div>
+                        <div class="winner-votes">11 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Быстрый рост аудитории</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/kakcaxapTeam" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/kakcaxap_ok" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/c0b3bde8-39e0-4acc-84c3-40874c41f108-profile_image-70x70.png" 
+                             alt="VikaKlubnika01" class="winner-avatar" onclick="openInterview(7)">
+                        <h2 class="winner-name">VikaKlubnika01</h2>
+                        <div class="winner-position">🎯 Точный контент</div>
+                        <div class="winner-votes">11 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Уникальный стиль стримов</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/BikaKlubnika" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://twitch.tv/vikaklubnika01" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Community Facts -->
+            <div class="slide" id="slide6">
+                <div class="slide-header">
+                    <h1 class="slide-title">🤝 Факты о сообществе</h1>
+                    <p class="slide-subtitle">Как голосовало наше комьюнити</p>
+                </div>
+                <div class="results-grid">
+                    <div class="fact-card">
+                        <div class="fact-icon">⏰</div>
+                        <h3 class="fact-title">Время активности</h3>
+                        <p class="fact-text">Большинство голосов (62%) были отданы в утренее время с 8:00 до 12:00 по МСК</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="fact-icon">📱</div>
+                        <h3 class="fact-title">Устройства</h3>
+                        <p class="fact-text">58% голосов отданы с мобильных устройств, 42% - с компьютеров</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="fact-icon">🌟</div>
+                        <h3 class="fact-title">Лояльность</h3>
+                        <p class="fact-text">35% участников голосовали в нескольких номинациях за разных стримеров, а не за одного</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Most Active -->
+            <div class="slide" id="slide7">
+                <div class="slide-header">
+                    <h1 class="slide-title">🔥 Самые активные</h1>
+                    <p class="slide-subtitle">Стримеры с лучшей вовлечённостью</p>
+                </div>
+                <div class="results-grid">
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/d132b535-5ea8-4e10-91d7-6f31ba1c3e50-profile_image-70x70.png" 
+                             alt="Otryzhka_Bomzha" class="winner-avatar" onclick="openInterview(9)">
+                        <h2 class="winner-name">Otryzhka_Bomzha</h2>
+                        <div class="winner-position">⚽ Спортивный контент</div>
+                        <div class="winner-votes">9 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Регулярные трансляции</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/burp_stream" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/otryzhka_bomzha" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/b852763d-fd00-46e3-b5ff-765df0ebacd0-profile_image-70x70.png" 
+                             alt="Provans_Kate" class="winner-avatar" onclick="openInterview(10)">
+                        <h2 class="winner-name">Provans_Kate</h2>
+                        <div class="winner-position">🎯 Тактический контент</div>
+                        <div class="winner-votes">6 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Профессиональный подход</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/+cHwGzBJHRbxhMWYy" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/provans_kate" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Viewers Choice -->
+            <div class="slide" id="slide8">
+                <div class="slide-header">
+                    <h1 class="slide-title">❤️ Выбор зрителей</h1>
+                    <p class="slide-subtitle">Победители в номинации зрительских симпатий</p>
+                </div>
+                <div class="results-grid">
+                    <div class="winner-card">
+                        <img src="https://i.postimg.cc/prGnY3XW/photo_2025_12_26_04_40_54.jpg" 
+                             alt="NightFuryo3o" class="winner-avatar" onclick="openInterview(11)">
+                        <h2 class="winner-name">NightFuryo3o</h2>
+                        <div class="winner-position">❤️ Приз симпатий</div>
+                        <div class="winner-votes">7 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Самый любимый стример комьюнити</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/+-SDrMmcoKcM0ZjIy" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/nightfuryo3o" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="winner-card">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/53df78a0-d404-4be0-bb53-9da779ba2268-profile_image-70x70.png" 
+                             alt="ParaDoxPlay" class="winner-avatar" onclick="openInterview(12)">
+                        <h2 class="winner-name">ParaDoxPlay</h2>
+                        <div class="winner-position">🎨 Креативный подход</div>
+                        <div class="winner-votes">7 голосов</div>
+                        <p style="color: var(--gold-light); margin-bottom: 20px;">Уникальный творческий контент</p>
+                        <div class="winner-social">
+                            <a href="https://t.me/ParaDoxMedia" target="_blank" class="social-btn social-telegram">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </a>
+                            <a href="https://www.twitch.tv/paradoxplayttv" target="_blank" class="social-btn social-twitch">
+                                <i class="fab fa-twitch"></i> Twitch
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Support -->
+<div class="slide" id="slide9">
+    <div class="slide-header">
+        <h1 class="slide-title">🤝 Поддержка</h1>
+        <p class="slide-subtitle">Благотворительный сбор в рамках номинации</p>
+    </div>
+    <div class="results-grid">
+        <div class="stats-card">
+            <div class="stat-number">10,000 ₽</div>
+            <div class="stat-label">Собрано средств</div>
+            <div class="stat-details" style="margin-top: 30px;">
+                <div class="stat-detail">
+                    <span>Цель сбора:</span>
+                    <span style="color: var(--gold); font-weight: 600;">∞</span>
+                </div>
+                <div class="stat-detail">
+                    <span>Участников сбора:</span>
+                    <span style="color: var(--gold); font-weight: 600;">1</span>
+                </div>
+                <div class="stat-detail">
+                    <span>Дней сбора:</span>
+                    <span style="color: var(--gold); font-weight: 600;">∞</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="winner-card">
+            <h2 class="winner-name" style="margin-bottom: 25px;">Топ организаторы сбора</h2>
+            
+            <div class="support-list">
+                <div class="support-item" style="margin-bottom: 15px; padding: 15px; background: rgba(212, 175, 55, 0.1); border-radius: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="color: var(--gold-light);">Zuenok</span>
+                        <span style="color: var(--gold); font-weight: 700;">10,000 ₽</span>
+                    </div>
+                    <button onclick="window.open('https://www.twitch.tv/zuenok__', '_blank')" 
+                            class="social-btn social-twitch" 
+                            style="width: 100%; padding: 8px; font-size: 0.9rem;">
+                        <i class="fab fa-twitch"></i> Twitch
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Organization -->
+<div class="slide" id="slide10">
+    <div class="slide-header">
+        <h1 class="slide-title">🏛️ Организация</h1>
+        <p class="slide-subtitle">Команда, которая сделала SLAY DBD 2025 возможным</p>
+    </div>
+    <div class="results-grid">
+        <div class="winner-card">
+            <h2 class="winner-name" style="margin-bottom: 25px;">Организационный комитет</h2>
+            
+            <div class="organizer-list">
+                <div class="organizer-item" style="margin-bottom: 20px; padding: 20px; background: rgba(30, 30, 30, 0.7); border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/c39afce5-9518-43b3-8007-51c1b7f596f4-profile_image-70x70.png" 
+                             alt="SLAY_Head" 
+                             style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold);">
+                        <div>
+                            <h3 style="color: var(--gold); margin-bottom: 5px;">MCPLEH</h3>
+                            <p style="color: var(--gold-light); font-size: 0.9rem;">Главный организатор</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--gold-light); margin-bottom: 15px; font-size: 0.9rem;">Общее руководство проектом, координация команды, связи с партнерами. Разработка сайта голосования, техническая поддержка, антифрод системы</p>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="window.open('https://www.twitch.tv/mcpleh', '_blank')" 
+                                class="social-btn social-twitch" 
+                                style="flex: 1; padding: 10px; font-size: 0.9rem;">
+                            <i class="fab fa-twitch"></i> Twitch
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="organizer-item" style="margin-bottom: 20px; padding: 20px; background: rgba(30, 30, 30, 0.7); border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/ab0fcfdd-2079-4a0c-b755-0a7f25bf0af1-profile_image-70x70.jpg" 
+                             alt="Design_Muse" 
+                             style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #E4405F;">
+                        <div>
+                            <h3 style="color: var(--gold); margin-bottom: 5px;">Nestli_Exidaz</h3>
+                            <p style="color: var(--gold-light); font-size: 0.9rem;">Модератор</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--gold-light); margin-bottom: 15px; font-size: 0.9rem;">Сбор информации, редактирование, связь с участниками, организационные моменты</p>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="window.open('https://www.twitch.tv/nestli_exidaz', '_blank')" 
+                                class="social-btn social-twitch" 
+                                style="flex: 1; padding: 10px; font-size: 0.9rem;">
+                            <i class="fab fa-twitch"></i> Twitch
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="organizer-item" style="padding: 20px; background: rgba(30, 30, 30, 0.7); border-radius: 15px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/481347b6-d915-4e3f-bb44-613a427e79f1-profile_image-70x70.png" 
+                             alt="Nestli_Exidaz" 
+                             style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #0088cc;">
+                        <div>
+                            <h3 style="color: var(--gold); margin-bottom: 5px;">Lagerta_Seeman</h3>
+                            <p style="color: var(--gold-light); font-size: 0.9rem;">Пиар-менеджер</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--gold-light); margin-bottom: 15px; font-size: 0.9rem;">Реклама номинации SLAY DBD в источниках дбд</p>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="window.open('https://www.twitch.tv/lagerta_seeman', '_blank')" 
+                                class="social-btn social-twitch" 
+                                style="flex: 1; padding: 10px; font-size: 0.9rem;">
+                            <i class="fab fa-twitch"></i> Twitch
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="fact-card">
+            <div class="fact-icon">👥</div>
+            <h3 class="fact-title">Команда проекта</h3>
+            <p class="fact-text">Над проектом работало 2 человека в течение 3 месяцев</p>
+            
+            <div style="margin-top: 20px; text-align: left;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);">
+                    <span style="color: var(--gold-light);">Модераторы:</span>
+                    <span style="color: var(--gold);">2 человека</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.1);">
+                    <span style="color: var(--gold-light);">Копирайтеры:</span>
+                    <span style="color: var(--gold);">2 человека</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: var(--gold-light);">Волонтеры:</span>
+                    <span style="color: var(--gold);">3 человек</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px;">
+                <button onclick="window.open('https://t.me/slaydbd2025', '_blank')" 
+                        class="social-btn social-telegram" 
+                        style="width: 100%; padding: 12px; font-size: 1rem;">
+                    <i class="fab fa-telegram"></i> Официальный канал проекта
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: Final Winners Grid (старый 9-й слайд) -->
+<div class="slide" id="slide11">
+    <div class="slide-header">
+        <h1 class="slide-title">🏁 Победители номинаций</h1>
+        <p class="slide-subtitle">Все чемпионы SLAY DBD 2025 в одном месте</p>
+    </div>
+    <div class="final-winners-grid" id="finalWinnersGrid">
+        <!-- Filled by JavaScript -->
+    </div>
+</div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+            </div>
+            
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Interview Modal -->
+    <div class="modal-overlay" id="interviewModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeInterview()">×</button>
+            <div class="modal-header">
+                <img src="" alt="" class="modal-avatar" id="modalAvatar">
+                <h2 class="modal-name" id="modalName"></h2>
+                <div class="modal-subtitle" id="modalSubtitle"></div>
+            </div>
+            <div class="interview-content" id="interviewContent">
+                <!-- Interview questions and answers will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // База данных стримеров (такая же как в index.html)
+        const STREAMERS_DB = [
+            {
+                id: 1,
+                name: "ParabellumLTD",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cce3ce1c-bfec-4f25-80a7-4c0283118dce-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/vBDZNr56/photo_2025_12_24_17_51_08.jpg",
+                telegram: "https://t.me/parabell5",
+                twitch: "https://twitch.tv/parabellumltd",
+                votes: 71,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Примерно полтора года",
+                    q2: "Что самое важное в стриме?",
+                    a2: "График, терпение, любовь к своему делу (без этого никак)",
+                    q3: "Пожелание зрителям?",
+                    a3: "Что б хер стоял и деньги были)"
+                },
+                nomination: "Лучший ДБД стример года"
+            },
+            {
+                id: 2,
+                name: "TimeToKillTeam",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/cf9f8fe6-e398-483c-886f-d8fd377a9caf-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/rFYQH8T8/photo_2025_12_24_21_21_39.jpg",
+                telegram: "https://t.me/TTk_team_official",
+                twitch: "https://twitch.tv/timetokillteam",
+                votes: 33,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Первые стрим делал еще в середине 2024 года, но основательно с февраля 2025. ",
+                    q2: "Что самое важное в стриме?",
+                    a2: "Наличие коня, чтобы у меня горела жопа и обязательно вопрос: «Концепты будут?»",
+                    q3: "Пожелание зрителям?",
+                    a3: "Удалите дбд и самой большой удачи в год лошади!"
+                },
+                nomination: "2 место в общем рейтинге"
+            },
+            {
+                id: 3,
+                name: "HozyMei",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/7bf0b38e-a322-46bf-a95a-92133e36a63a-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/c1XYSt7v/photo_2025_12_26_01_11_58.jpg",
+                telegram: "https://t.me/HozyMei",
+                twitch: "https://twitch.tv/hozymei",
+                votes: 16,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Примерно 5 лет, но стабильно начала только в этом году.",
+                    q2: "Немного о себе?",
+                    a2: "Всегда на добром вайбе ♥️Но больно кусаюсь в форме волка за Дракулу :3",
+                    q3: "Пожелание зрителям?",
+                    a3: "Верьте в себя и у вас обязательно всё получится!"
+                },
+                nomination: "3 место в общем рейтинге"
+            },
+            {
+                id: 4,
+                name: "TumannayaMgla",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/519164d5-8061-46c0-ad90-f2ff2c0e8aab-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/J06BcS4M/photo_2025_12_26_23_32_04.jpg",
+                telegram: "https://t.me/TumannayaMglalife",
+                twitch: "https://www.twitch.tv/tumannayamgla",
+                votes: 14,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Стримлю больше 4х лет",
+                    q2: "Что самое важное в стриме?",
+                    a2: "На стримах важна атмосфера, не люблю негатив, люблю веселье.",
+                    q3: "Пожелание зрителям?",
+                    a3: "Дорогие зрители и будущие зрители, если вы грустите, то знайте на моих стримах две истины «не будь унылым говном, будь позитивной какашкой, как я!» и «ццАдекват, не наш формат» "
+                },
+                nomination: "Лучший развлекательный контент"
+            },
+            {
+                id: 5,
+                name: "STROGANOV",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/96383744-94f7-41a1-af62-3fe7c7641f09-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/zDy633Gn/STROGANOV.png",
+                telegram: "https://t.me/StroganovDBD",
+                twitch: "https://www.twitch.tv/stroganov",
+                votes: 10,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Уже давно года 4-5",
+                    q2: "Что самое важное в стриме?",
+                    a2: "Взаимодействие с аудиторией",
+                    q3: "Пожелание зрителям?",
+                    a3: "Всем спасибо! Все свободны )))"
+                },
+                nomination: "Лучший гайд контент"
+            },
+            {
+                id: 7,
+                name: "VikaKlubnika01",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/c0b3bde8-39e0-4acc-84c3-40874c41f108-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/BQwMzq3G/photo_2025_12_24_20_18_17.jpg",
+                telegram: "https://t.me/BikaKlubnika",
+                twitch: "https://www.twitch.tv/vikaklubnika01",
+                votes: 11,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Вопрос элементарный, но мне не так просто на него ответить... т.к. стримить я пыталась первый раз давно в 2016 году ))) Но не срослось. Повторно я попробовала себя в этом увлекательном деле в 2023 году и до сих пор!",
+                    q2: "Что самое важное в стриме?",
+                    a2: "Быть собой, но не нарушая при этом правила платформы... (а так иногда хочется!)",
+                    q3: "Пожелание зрителям?",
+                    a3: "Цените своего любимого стримера, ведь он не вечен)"
+                },
+                nomination: "Прорыв года"
+            },
+            {
+                id: 8,
+                name: "Kakcaxap_ok",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/5d85af32-7c63-4519-876e-a162d80f82f1-profile_image-70x70.jpeg",
+                profileImage: "https://static-cdn.jtvnw.net/jtv_user_pictures/5d85af32-7c63-4519-876e-a162d80f82f1-profile_image-70x70.jpeg",
+                telegram: "https://t.me/kakcaxapTeam",
+                twitch: "https://www.twitch.tv/kakcaxap_ok",
+                votes: 11,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "С августа 2025 года начала стримить, очень нравится этим заниматься)",
+                    q2: "Любимые персонажи из Dead by Daylight?",
+                    a2: "Любимые  Анечка, Вескер и Фенг Мин",
+                    q3: "Пожелание зрителям?",
+                    a3: "Спасибо Вам огромное за поддержку, я Вас всех люблю и всегда рада каждому❤️"
+                },
+                nomination: "Уникальный стиль"
+            },
+            {
+                id: 9,
+                name: "Otryzhka_Bomzha",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/d132b535-5ea8-4e10-91d7-6f31ba1c3e50-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/NFtYN8yn/photo_2025_12_27_06_09_28.jpg",
+                telegram: "https://t.me/burp_stream",
+                twitch: "https://www.twitch.tv/otryzhka_bomzha",
+                votes: 9,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Вся моя жизнь — это стрим деградации человека. Так что стримлю я уже 37 лет",
+                    q2: "Что самое важное в стриме?",
+                    a2: "К стриму нужно подходить основательно: 4 литра колы (БЕЗ САХАРА!!!), анальная пробка 5 см (10 см если играешь на мане), 2 отца ЛИБО отсутствие каких либо родственников. Без этих составляющих в стримы можно даже не соваться",
+                    q3: "Пожелание зрителям?",
+                    a3: "Поменьше IQ вам, чтобы вы и дальше продолжали сидеть на твиче и смотреть таких как я (во мне 3 бутылки сзади)"
+                },
+                nomination: "Завоз 25 года"
+            },
+            {
+                id: 10,
+                name: "Provans_Kate",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/b852763d-fd00-46e3-b5ff-765df0ebacd0-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/DzvZqkZD/photo_2025_12_09_12_11_39.jpg",
+                telegram: "https://t.me/+cHwGzBJHRbxhMWYy",
+                twitch: "https://www.twitch.tv/provans_kate",
+                votes: 6,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "С 1 января 2022 года начинала стримить с PS4 без микрофона и вебки)",
+                    q2: "Любимый персонаж?",
+                    a2: "Ренато Лира и Они",
+                    q3: "Пожелание зрителям?",
+                    a3: "Спасибо каждому за поддержку, вы пупсики <3"
+                },
+                nomination: "Уникальный геймплей"
+            },
+            {
+                id: 11,
+                name: "NightFuryo3o",
+                image: "https://i.postimg.cc/prGnY3XW/photo_2025_12_26_04_40_54.jpg",
+                profileImage: "https://i.postimg.cc/prGnY3XW/photo_2025_12_26_04_40_54.jpg",
+                telegram: "https://www.twitch.tv/nightfuryo3o",
+                twitch: "https://t.me/+-SDrMmcoKcM0ZjIy",
+                votes: 7,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "Уже как 8 лет",
+                    q2: "Что самое важное в стриме?",
+                    a2: "Желание и Постоянство",
+                    q3: "Пожелание зрителям?",
+                    a3: "Всё будет Друкно и Штукно о3о"
+                },
+                nomination: "Номинант симпаний о3о"
+            },
+            {
+                id: 12,
+                name: "ParaDoxPlayTTV",
+                image: "https://static-cdn.jtvnw.net/jtv_user_pictures/53df78a0-d404-4be0-bb53-9da779ba2268-profile_image-70x70.png",
+                profileImage: "https://i.postimg.cc/5NknrxJ4/photo_2025_12_25_01_14_33.jpg",
+                telegram: "https://t.me/ParaDoxMedia",
+                twitch: "https://www.twitch.tv/paradoxplayttv",
+                votes: 7,
+                interview: {
+                    q1: "Как давно стримишь?",
+                    a1: "С 2020 года на ютубе, несколько лет назад перешëл на твич. ",
+                    q2: "Что самое важное в стриме?",
+                    a2: "Хорошее настроение. Токсичность и лабубы.",
+                    q3: "Пожелание зрителям?",
+                    a3: "Бегать больше одного генератора, минусовать больше 1 суриката."
+                },
+                nomination: "Медиа сфера"
+            },
+        ];
+
+        // Переменные для управления слайдами
+        let currentSlideIndex = 0;
+        const totalSlides = 11;
+        let isAnimating = false;
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Запуск интро анимации
+            setTimeout(() => {
+                document.getElementById('introOverlay').style.display = 'none';
+            }, 3000);
+
+            // Инициализация прогресс бара
+            updateProgressBar();
+            
+            // Инициализация финального слайда
+            initializeFinalSlide();
+            
+            // Добавление обработчиков клавиатуры
+            document.addEventListener('keydown', handleKeyPress);
+        });
+
+        // Инициализация финального слайда с победителями
+        function initializeFinalSlide() {
+    const grid = document.getElementById('finalWinnersGrid');
+            
+            // Выбираем 4 победителя для финального слайда
+            const winners = [
+                { id: 1, name: "ParabellumLTD", nomination: "🥇 Лучший ДБД стример года" },
+                { id: 11, name: "NightFuryo3o", nomination: "❤️ Приз зрительских симпатий" },
+                { id: 5, name: "STROGANOV", nomination: "📚 Лучший гайд контент" },
+                { id: 4, name: "TumannayaMgla", nomination: "🎭 Лучший развлекательный контент" }
+            ];
+            
+            grid.innerHTML = winners.map(winner => {
+                const streamer = STREAMERS_DB.find(s => s.id === winner.id) || STREAMERS_DB[0];
+                return `
+                    <div class="final-winner-card">
+                        <img src="${streamer.image}" 
+                             alt="${streamer.name}" 
+                             class="final-avatar"
+                             onclick="openInterview(${streamer.id})">
+                        <h3 class="final-name">${streamer.name}</h3>
+                        <div class="final-nomination">${winner.nomination}</div>
+                        <div class="final-social">
+                            <a href="${streamer.telegram || '#'}" target="_blank" class="final-social-btn social-telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="${streamer.twitch}" target="_blank" class="final-social-btn social-twitch">
+                                <i class="fab fa-twitch"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Управление слайдами
+        function nextSlide() {
+            if (isAnimating || currentSlideIndex >= totalSlides - 1) return;
+            
+            isAnimating = true;
+            const currentSlide = document.getElementById(`slide${currentSlideIndex + 1}`);
+            const nextSlide = document.getElementById(`slide${currentSlideIndex + 2}`);
+            
+            currentSlide.classList.remove('active');
+            currentSlide.classList.add('prev');
+            nextSlide.classList.add('active');
+            
+            currentSlideIndex++;
+            updateUI();
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 800);
+        }
+
+        function prevSlide() {
+            if (isAnimating || currentSlideIndex <= 0) return;
+            
+            isAnimating = true;
+            const currentSlide = document.getElementById(`slide${currentSlideIndex + 1}`);
+            const prevSlide = document.getElementById(`slide${currentSlideIndex}`);
+            
+            currentSlide.classList.remove('active');
+            prevSlide.classList.remove('prev');
+            prevSlide.classList.add('active');
+            
+            currentSlideIndex--;
+            updateUI();
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 800);
+        }
+
+        function updateUI() {
+            // Обновление счетчика
+            document.getElementById('currentSlide').textContent = currentSlideIndex + 1;
+            
+            // Обновление кнопок навигации
+            document.getElementById('prevBtn').disabled = currentSlideIndex === 0;
+            document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides - 1;
+            
+            // Обновление прогресс бара
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        function handleKeyPress(e) {
+            if (isAnimating) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    prevSlide();
+                    break;
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    goToSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    goToSlide(totalSlides - 1);
+                    break;
+            }
+        }
+
+        function goToSlide(index) {
+            if (isAnimating || index < 0 || index >= totalSlides || index === currentSlideIndex) return;
+            
+            isAnimating = true;
+            
+            // Убираем активный класс со всех слайдов
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+            
+            // Устанавливаем новый активный слайд
+            currentSlideIndex = index;
+            document.getElementById(`slide${currentSlideIndex + 1}`).classList.add('active');
+            
+            updateUI();
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 800);
+        }
+
+        // Управление модальным окном интервью
+        function openInterview(streamerId) {
+            const streamer = STREAMERS_DB.find(s => s.id === streamerId);
+            if (!streamer) return;
+            
+            document.getElementById('modalAvatar').src = streamer.profileImage || streamer.image;
+            document.getElementById('modalAvatar').alt = streamer.name;
+            document.getElementById('modalName').textContent = streamer.name;
+            document.getElementById('modalSubtitle').textContent = `${streamer.nomination || 'Победитель SLAY DBD 2025'}`;
+            
+            let interviewHTML = '';
+            if (streamer.interview) {
+                interviewHTML = `
+                    <div class="interview-item">
+                        <p class="interview-question">${streamer.interview.q1}</p>
+                        <p class="interview-answer">${streamer.interview.a1}</p>
+                    </div>
+                    <div class="interview-item">
+                        <p class="interview-question">${streamer.interview.q2}</p>
+                        <p class="interview-answer">${streamer.interview.a2}</p>
+                    </div>
+                    <div class="interview-item">
+                        <p class="interview-question">${streamer.interview.q3}</p>
+                        <p class="interview-answer">${streamer.interview.a3}</p>
+                    </div>
+                `;
+            } else {
+                interviewHTML = '<p style="color: var(--gold-light); text-align: center;">Информация скоро появится...</p>';
+            }
+            
+            document.getElementById('interviewContent').innerHTML = interviewHTML;
+            document.getElementById('interviewModal').classList.add('active');
+        }
+
+        function closeInterview() {
+            document.getElementById('interviewModal').classList.remove('active');
+        }
+
+        // Закрытие модального окна по клику на оверлей
+        document.getElementById('interviewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInterview();
+            }
+        });
+    </script>
+</body>
+</html>
